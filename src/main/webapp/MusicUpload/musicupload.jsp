@@ -1,0 +1,166 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<body>
+<div class="container">
+  <form id="form1" name="form1" method="post">
+    <div role="tabpanel">
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#home1" data-toggle="tab" role="tab" aria-controls="tab1">음원 업로드 01</a></li>
+        <li role="presentation"><a href="#paneTwo1" data-toggle="tab" role="tab" aria-controls="tab2">저작권 수익 분배</a></li>
+        <li role="presentation"><a href="#paneTwo2" data-toggle="tab" role="tab" aria-controls="tab2">저작권 허가</a></li>
+        
+      </ul>
+      <div id="tabContent1" class="tab-content">
+<div role="tabpanel" class="tab-pane fade in active" id="home1">
+  <p>&nbsp;</p>
+  <div class="row">
+            <div class="col-xs-3"><img src="file:///C|/Users/seong_jo/AppData/Roaming/Adobe/Dreamweaver CC 2017/ko_KR/Configuration/Temp/Assets/eam55E5.tmp/images/ImgResponsive_Placeholder.png" class="img-circle img-responsive" alt="Placeholder image"></div>
+            <div class="col-xs-8">
+              <div class="row">
+                <div class="col-xs-2"><span class="label label-info">음원 명</span></div>
+                <div class="col-xs-10">
+<input type="text" name="textfield" id="textfield">
+                </div>
+                <div class="col-xs-2"><span class="label label-info">장르</span></div>
+                <div class="col-xs-10">
+<select name="select" id="select">
+</select>
+                &nbsp;</div>
+                <div class="col-xs-2"><span class="label label-info">앨범</span></div>
+                <div class="col-xs-10">
+<select name="select2" id="select2">
+</select>
+                &nbsp;</div>
+                <div class="col-xs-2"><span class="label label-info">소개</span></div>
+                <div class="col-xs-10">
+<textarea name="textarea" id="textarea"></textarea>
+                &nbsp;</div>
+              </div>
+            </div>
+</div>
+          <div class="row">
+            <div class="col-xs-6">&nbsp;</div>
+            <div class="col-xs-6">&nbsp;</div>
+            <div class="col-xs-12">
+              <label for="fileField">File:</label>
+              <input type="file" name="fileField" id="fileField">
+<audio controls></audio>
+            &nbsp;</div>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="paneTwo1">
+          <div class="row">
+            <div class="col-xs-4">
+              <div class="jumbotron">
+                <h1>저작권료 안내사항</h1>
+                <p>판매된 음원은 여기에서 설정한 비율대로 계좌에 전송됩니다. 제대로 입력하셔야 하며, 사용자의 실수로 부주의하게 입력된 피해는 FM측에서 책임지지 않습니다.</p>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="input-group"><span class="input-group-btn">
+                      <button class="btn btn-default" type="button"> 동의</button>
+                      </span>
+                      <input type="text" class="form-control" placeholder="placeholder content">
+                    </div>
+                    <!-- /input-group -->
+                  </div>
+                  <!-- /.col-lg-6 -->
+                  
+                  <!-- /.col-lg-6 -->
+                </div>
+                <p>&nbsp;</p>
+              </div>
+            </div>
+            <div class="col-xs-8">
+              <div class="row">
+                <div class="col-xs-3"><span class="label label-primary">저작권자 명</span></div>
+                <div class="col-xs-3"><span class="label label-primary">수익 비율</span></div>
+                <div class="col-xs-3"><span class="label label-primary">계좌 등록</span></div>
+                <div class="col-xs-3"><span class="label label-primary">FM 아이디 연동</span></div>
+              </div>
+              <div class="row">
+                <div class="col-xs-3">
+                  <input type="text" name="textfield4" id="textfield4">
+                </div>
+                <div class="col-xs-3">
+                  <input type="text" name="textfield2" id="textfield2">
+                </div>
+                <div class="col-xs-3">
+                  <button type="button" class="btn btn-info">등록</button>
+                </div>
+                <div class="col-xs-3">
+                  <button type="button" class="btn btn-default">아이디 인증</button>
+                </div>
+</div>
+<div class="row">
+                <div class="col-xs-3">
+<input type="text" name="textfield3" id="textfield3">
+                </div>
+                <div class="col-xs-3">
+<input type="text" name="textfield5" id="textfield5">
+                </div>
+                <div class="col-xs-3">
+                  <button type="button" class="btn btn-info">등록</button>
+                </div>
+                <div class="col-xs-3">
+                  <button type="button" class="btn btn-default">아이디 인증</button>
+                </div>
+                <div class="col-xs-12">
+                  <button type="button" class="btn btn-success">추가하기</button>
+                &nbsp;</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="paneTwo2">&nbsp;
+          <div class="row">
+            <div class="col-xs-12"><span class="label label-info">이제 저작권 이용 허락 범위를 결정하시면 음원 등록이 완료됩니다. FM에서 마음껏 창작활동을 펼쳐주세요!</span></div>
+<div class="col-xs-12">
+  <div>
+    <p>
+      <label>
+        <input type="checkbox" name="CheckboxGroup1" value="ㄴㄹㅇ" id="CheckboxGroup1_0">
+        ㄴㅇ</label>
+      <br>
+      <label>
+        <input type="checkbox" name="CheckboxGroup1" value="ㄹㄴㄹㄴ" id="CheckboxGroup1_1">
+        ㄴㄹㅇ</label>
+      <br>
+      <label>
+        <input type="checkbox" name="CheckboxGroup1" value="ㄴㄹㅇ" id="CheckboxGroup1_2">
+        ㄴㅇㄹ</label>
+      <br>
+      <label>
+        <input type="checkbox" name="CheckboxGroup1" value="ㄴㄹㅇ" id="CheckboxGroup1_3">
+        ㄴㄹㅇ</label>
+      <br>
+      <label>
+        <input type="checkbox" name="CheckboxGroup1" value="ㄹㅇㅎㅎㅇㄹ" id="CheckboxGroup1_4">
+        ㄹㅇ</label>
+      <br>
+    </p>
+    <p>
+      <button type="button" class="btn btn-default"> 음원 등록하기</button>
+    </p>
+  &nbsp;</div>
+  &nbsp;</div>
+</div>
+</div>
+      </div>
+      <div>&nbsp;</div>
+</div>
+    &nbsp;
+  </form>
+</div>
+
+</body>
+</html>
