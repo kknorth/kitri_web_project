@@ -39,7 +39,7 @@ public class QuickStartGuide {
 		//musicStamp();
 	}
 	public void testBestBlock() throws IOException, CoinStackException {
-		System.out.println("@@ BestBlock");
+		System.out.println("## BestBlock");
 		
 		// getBlockchainStatus : Blockchain 상태정보 조회, 상태정보 객체에  getBestheight메소드를 사용하면 최신 블록번호를 알 수 있다, 또한 getBestBlockHash메소드는 최신 블록의 해시를 반환.
 		// 블록의 해시는 블록의 정보를 조회할때 ID로 사용가능
