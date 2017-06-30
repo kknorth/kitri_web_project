@@ -52,6 +52,15 @@
 			<version>${org.aspectj-version}</version>
 		</dependency>	
 		
+		<!-- test -->
+		<dependency>
+	         <groupId>net.tanesha.recaptcha4j</groupId>
+	         <artifactId>recaptcha4j</artifactId>
+	         <version>0.0.7</version>
+        </dependency>
+		
+		
+		
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
