@@ -28,5 +28,8 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.0"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/libs/mail.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/libs/imaging.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/libs/simplecaptcha-1.1.1.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/libs/standard.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
