@@ -15,7 +15,7 @@
 <body>
 <body>
 	
-		<form id="form1" name="form1" method="post">
+		<form id="audioUploadForm" name="audioUploadForm" method="post" action = "/FairMusic/audio.do?state=0">
 			<div role="tabpanel">
 				<ul class="nav nav-tabs" role="tablist">
 					<li role="presentation" class="active"><a href="#audio_fan_01"
@@ -41,27 +41,27 @@
 										<span class="label label-info">음원 명</span>
 									</div>
 									<div class="col-xs-10">
-										<input type="text" name="textfield" id="textfield" required="required">
+										<input type="text" name="audio_title" id="audio_title" required="required">
 									</div>
 									<div class="col-xs-2">
 										<span class="label label-info">장르</span>
 									</div>
 									<div class="col-xs-10">
-										<select name="select" id="select">
+										<select name="audio_genre" id="audio_genre">
 										</select> &nbsp;
 									</div>
 									<div class="col-xs-2">
 										<span class="label label-info">앨범</span>
 									</div>
 									<div class="col-xs-10">
-										<select name="select2" id="select2">
+										<select name="audio_album" id="audio_album">
 										</select> &nbsp;
 									</div>
 									<div class="col-xs-2">
 										<span class="label label-info">소개</span>
 									</div>
 									<div class="col-xs-10">
-										<textarea name="textarea" id="textarea"></textarea>
+										<textarea name="audio_detail" id="audio_detail"></textarea>
 										
 									</div>
 								</div>

@@ -1,6 +1,10 @@
 package com.fairmusic.dto;
 
+
+
 import java.sql.Date;
+
+import oracle.sql.DATE;
 
 public class audioDTO {
 	
@@ -11,7 +15,7 @@ public class audioDTO {
 	private String audio_image;
 	private String audio_detail;
 	private String album_code;
-	private Date audio_date;
+	private String audio_date;
 	private String audio_link;
 	private String audio_price;
 	private String audio_copyrighter;
@@ -24,7 +28,7 @@ public class audioDTO {
 
 	public audioDTO(String audio_code, String audio_title, String artist_code,
 			String audio_jenre, String audio_image, String audio_detail,
-			String album_code, Date audio_date, String audio_link,
+			String album_code, String string, String audio_link,
 			String audio_price, String audio_copyrighter) {
 		super();
 		this.audio_code = audio_code;
@@ -34,7 +38,7 @@ public class audioDTO {
 		this.audio_image = audio_image;
 		this.audio_detail = audio_detail;
 		this.album_code = album_code;
-		this.audio_date = audio_date;
+		this.audio_date = string;
 		this.audio_link = audio_link;
 		this.audio_price = audio_price;
 		this.audio_copyrighter = audio_copyrighter;
@@ -111,12 +115,12 @@ public class audioDTO {
 	}
 
 
-	public Date getAudio_date() {
+	public String getAudio_date() {
 		return audio_date;
 	}
 
 
-	public void setAudio_date(Date audio_date) {
+	public void setAudio_date(String audio_date) {
 		this.audio_date = audio_date;
 	}
 

@@ -14,7 +14,15 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	$(document).ready(function() {
-
+	
+		$("#audiocreate").on("click",function(){//버튼이 클릭될때 실행
+			$('#audioUploadForm').attr({action:'/FairMusic/audio.do?state=0', method:'post'}).submit();
+		});
+		
+		$("#albumcreate").on("click",function(){//버튼이 클릭될때 실행
+			$('#albumUploadForm').attr({action:'/FairMusic/album.do?state=0', method:'post'}).submit();
+		});
+	
 		/* 
 		alert("도큐먼트 대기중");
 		$("#uploadagreechk").on("click",function(){
@@ -188,14 +196,14 @@
 					<jsp:include page="/MusicUpload/musicupload.jsp"></jsp:include>
 				</div>
 				<div class="modal-footer">
-					<button data-dismiss="modal" aria-hidden="true" >등록하기</button>
+					<button data-dismiss="modal" aria-hidden="true" id="audiocreate">등록하기</button>
 					
 				</div>
 			</div>
 
 		</div>
 	</div>
-	
+	<form id = "albumUploadForm">
 	<div class="modal fade" id="albumModal" role="dialog" width = "800">
 		<div class="modal-dialog modal-lg">
 			<!-- Modal content-->
@@ -232,14 +240,14 @@
 						</div>
 				</div>
 				<div class="modal-footer">
-					<button data-dismiss="modal" aria-hidden="true" >등록하기</button>
+					<button data-dismiss="modal" aria-hidden="true" id ="albumcreate">등록하기</button>
 					
 				</div>
 			</div>
 
 		</div>
 	</div>
-	
+	</form>
 	
 	<div class="modal fade" id="editModal" role="dialog">
     <div class="modal-dialog modal-lg">

@@ -9,14 +9,14 @@ public class albumDTO {
 	private String album_title;
 	private String artist_code;
 	private String album_image;
-	private Date album_date;
+	private String album_date;
 	private String album_dc;
 	
 	
 	public albumDTO(){}
 	
 	public albumDTO(String album_code, String album_title, String artist_code,
-			String album_image, Date album_date, String album_dc) {
+			String album_image, String album_date, String album_dc) {
 		super();
 		this.album_code = album_code;
 		this.album_title = album_title;
@@ -58,11 +58,11 @@ public class albumDTO {
 		this.album_image = album_image;
 	}
 
-	public Date getAlbum_date() {
+	public String getAlbum_date() {
 		return album_date;
 	}
 
-	public void setAlbum_date(Date album_date) {
+	public void setAlbum_date(String album_date) {
 		this.album_date = album_date;
 	}
 

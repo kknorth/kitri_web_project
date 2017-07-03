@@ -1,15 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
-	<servlet>
-	    <description></description>
-	    <display-name>artistregist</display-name>
-	    <servlet-name>artistregist</servlet-name>
-	    <servlet-class>com.fairmusic.artist.controller.ArtistRegist</servlet-class>
-  	</servlet>
-  	
-	<servlet-mapping>
-	    <servlet-name>artistregist</servlet-name>
-	    <url-pattern>/artistregist.do</url-pattern>
-    </servlet-mapping>
-  
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <servlet>
+    <description></description>
+    <display-name>artistregist</display-name>
+    <servlet-name>artistregist</servlet-name>
+    <servlet-class>com.fairmusic.artist.controller.ArtistRegist</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>artistregist</servlet-name>
+    <url-pattern>/artistregist.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>audio</display-name>
+    <servlet-name>audio</servlet-name>
+    <servlet-class>com.fairmusic.audio.controller.audioServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>audio</servlet-name>
+    <url-pattern>/audio.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>album</display-name>
+    <servlet-name>album</servlet-name>
+    <servlet-class>com.fairmusic.album.controller.albumServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>album</servlet-name>
+    <url-pattern>/album.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>copyrighter</display-name>
+    <servlet-name>copyrighter</servlet-name>
+    <servlet-class>com.fairmusic.copyrighter.controller.copyrighterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>copyrighter</servlet-name>
+    <url-pattern>/copyrighter.do</url-pattern>
+  </servlet-mapping>
 </web-app>
