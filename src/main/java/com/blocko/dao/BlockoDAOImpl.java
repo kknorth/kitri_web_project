@@ -1,7 +1,7 @@
 package com.blocko.dao;
 
 
-import static com.fairmusic.fw.Query.*;
+import static com.fairmusic.fw.BlockoQuery.*;
 import static com.fairmusic.fw.DBUtil.*;
 
 import java.sql.Connection;

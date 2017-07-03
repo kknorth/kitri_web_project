@@ -17,7 +17,7 @@ public class DBUtil {
 	public static Connection getConnection() {
 		// 실제로 커넥션을 만들어서 리턴하도록 구현
 		Connection con = null;
-		String url = "jdbc:oracle:thin:@192.168.9.121:1521:xe";
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "fm";
 		String password = "fmpass";
 		try {

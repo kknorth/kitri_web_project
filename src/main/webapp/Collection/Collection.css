@@ -94,6 +94,11 @@
             margin-top:10px;
             height:300px; line-height:450px; text-align:center;       
         }
+          #content .section7 div {
+            margin-top:10px;
+            height:300px; line-height:450px; text-align:center;    
+               
+        }       
 
         #content .music_product {
             overflow:hidden;

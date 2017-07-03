@@ -5,9 +5,47 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="Collection.css">
 </head>
+<link rel="stylesheet" type="text/css" href="Collection.css">
 <body>
-
+	 <header>
+	 	<jsp:include page="../CollectionTop.jsp"></jsp:include>
+        <div class="label">Hear the tracks you’ve liked: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size = "30" value ="filter" style = "text-align:center; color:#cccccc;"></div>
+	 </header>
+	 <div id="content">
+        <div class="section4">
+            <div class="Albums_product">
+                <ul>
+                    <li><a href="#" alt="">likeAlbum</a></li>
+                    <li><a href="#" alt="">likeAlbum</a></li>
+                    <li><a href="#" alt="">likeAlbum</a></li>
+                    <li><a href="#" alt="">likeAlbum</a></li>
+                    <li><a href="#" alt="">likeAlbum</a></li>
+                    <li><a href="#" alt="">likeAlbum</a></li>
+                </ul>
+            </div> 
+            <div class="Albums_product">
+                <ul>
+                    <li><a href="#" alt="">likemusic</a></li>
+                    <li><a href="#" alt="">likemusic</a></li>
+                    <li><a href="#" alt="">likemusic</a></li>
+                    <li><a href="#" alt="">likemusic</a></li>
+                    <li><a href="#" alt="">likemusic</a></li>
+                    <li><a href="#" alt="">likemusic</a></li>
+                </ul>
+            </div> 
+            <div class="Albums_product">
+                <ul>
+                    <li><a href="#" alt="">likemusic</a></li>
+                    <li><a href="#" alt="">likemusic</a></li>
+                    <li><a href="#" alt="">likemusic</a></li>
+                    <li><a href="#" alt="">likemusic</a></li>
+                    <li><a href="#" alt="">likemusic</a></li>
+                    <li><a href="#" alt="">likemusic</a></li>
+                </ul>
+            </div>         
+        </div>
+    </div>
 </body>
 </html>

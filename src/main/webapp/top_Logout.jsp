@@ -9,18 +9,18 @@
 </head>
 <body>
 	<div id="header-wrapper">
-		<!-- <form action="/FairMusic/view.do?leftpath=Side_Left.jsp&viewpath=../Search/search.jsp&rightpath=Side_Right.jsp" name="mainform"> -->
+		<form method="post" action="/FairMusic/view.do?leftpath=Side_Left.jsp&viewpath=../Search/search.jsp&rightpath=Side_Right.jsp" name="mainform">
 		<div id="header" class="container">
 			<nav id="nav">
 				<ul>
-					<li><a href="index.jsp" >FairMusic</a></li>
+					<li><a href="/FairMusic/view.do?leftpath=Side_Left.jsp&viewpath=../content.jsp&rightpath=Side_Right.jsp" >FairMusic</a></li>
 					<li><a href="/FairMusic/view.do?viewpath=../Collection.jsp" >Collection</a></li>
-					<li><input type="text" size="40" /></li>
+					<li><input type="text" size="40" /></li>	
 					<li><input type="submit" value="search"/></li>
-					<li><a href="#">Upload</a></li>
+					<!-- <li><a href="#">Upload</a></li> -->
 					<li><a class="dropdown-toggle" data-toggle="dropdown" href="#">user</a>
 					<ul>
-						<li><a href="/FairMusic/view.do?viewpath=../mypage.jsp">Mypage</a></li>
+						<li><a href="/FairMusic/view.do?viewpath=../MusicUpload/myFMpage.jsp">Mypage</a></li>
 						<li><a href="/FairMusic/view.do?viewpath=../Collection/Likes.jsp">Likes</a></li>
 						<li><a href="/FairMusic/view.do?viewpath=../Collection/Playlists.jsp">PlayList</a></li>
 						<li><a href="/FairMusic/view.do?viewpath=../Collection/Following.jsp">Following</a></li>
@@ -28,8 +28,9 @@
 					</ul>
 				</li>
 							
-				<li><a href="#">Message</a></li>
-				<li><a href="#">Logout</a></li>
+				<li><a href="/FairMusic/view.do?leftpath=Side_Left_Message.jsp">Message</a></li>
+				<li><a href="regist-no-sidebar.jsp">Create Account</a></li>
+				<li><a href="login-no-sidebar.jsp">Login</a></li>
 				</ul>
 							</nav>
 						</div>

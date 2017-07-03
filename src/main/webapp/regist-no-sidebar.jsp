@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Telephasic by HTML5 UP</title>
+<title>FairMusic 회원가입</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet" href="assets/css/main.css" />
@@ -53,7 +53,7 @@
 
 				<div class="row">
 					<section class="12u">
-						<form method="post" action="/FairMusic/mailtest.do">
+						<form method="post" action="/FairMusic/artistregist.do" onsubmit="FormSubmit()">
 							<div class="row 50%">
 								<div class="5u 12u">
 									<input type="image" src="images/facebookRegister.png"
@@ -75,7 +75,7 @@
 									<input name="pass" placeholder="비밀번호" type="password" />
 								</div>
 								<div class="12u">
-									<input name="pass" placeholder="비밀번호 확인" type="password" />
+									<input name="passverify" placeholder="비밀번호 확인" type="password" />
 								</div>
 								<div class="12u">
 									<input name="name" placeholder="이름" type="text" />
@@ -89,7 +89,7 @@
 									<ul class="actions">
 
 										<li><input type="submit" name="submit" value="회원 가입"
-											onclick="FormSubmit()" /></li>
+											 /></li><!-- onclick="FormSubmit()" -->
 										<li><input type="reset" value="가입 취소" /></li>
 									</ul>
 								</div>

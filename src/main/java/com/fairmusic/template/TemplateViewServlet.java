@@ -25,5 +25,19 @@ public class TemplateViewServlet extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("/layout/mainLayout.jsp");
 		rd.forward(request, response);
 	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String viewpath = request.getParameter("viewpath");
+		String leftpath = request.getParameter("leftpath");
+		String rightpath = request.getParameter("rightpath");
+		System.out.println(viewpath);
+		System.out.println(leftpath);
+		System.out.println(rightpath);	
+		
+		request.setAttribute("leftpath", leftpath);
+		request.setAttribute("viewpath", viewpath);
+		request.setAttribute("rightpath", rightpath);
+		RequestDispatcher rd = request.getRequestDispatcher("/layout/mainLayout.jsp");
+		rd.forward(request, response);
+	}
 }
 
