@@ -40,4 +40,14 @@
     <servlet-name>copyrighter</servlet-name>
     <url-pattern>/copyrighter.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>email</display-name>
+    <servlet-name>email</servlet-name>
+    <servlet-class>com.fairmusic.loginEmailauth.EmailVerify</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>email</servlet-name>
+    <url-pattern>/email</url-pattern>
+  </servlet-mapping>
 </web-app>

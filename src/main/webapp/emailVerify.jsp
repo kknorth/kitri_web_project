@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <title>Telephasic by HTML5 UP</title>
+   <title>EmailVerify</title>
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="stylesheet" href="assets/css/main.css" />
@@ -31,40 +31,21 @@
                   
                   <div class="row">
                      <section class="12u">
-                        <form method="post" action="#">
+                        <form method="post" action="/FairMusic/email">
                            <div class="row 50%">
                               <div class="12u">
-                                 <input name="id" placeholder="아이디" type="text" />
+                                 <input name="id" placeholder="e-mail" type="text" />
                               </div>
                               <div class="12u">
-                                 <input name="pass" placeholder="비밀번호" type="password" />
+                                 <input name="pass" placeholder="password" type="password" />
                               </div>
-                              <div class="5u 12u">
-                                 <input type="image" src="images/loginbtn_google.png" width="60%">
-                              </div>
-                              <div class="5u 12u">
-                                 <input type="image" src="images/loginbtn_facebook.png" width="60%">
-                              </div>
-                              <div class="2u 12u" align="right">
+                   
+                              <div class="2u 12u" align="right" style ="color:red; float:right;">
                                  <ul class="actions">
-                                    <li><input type="submit" value="로그인" /></li>
+                                    <li><input type="submit" value="이메일 검증번호 받기" data-toggle="modal" data-target="#findidModal"/></li>
                                  </ul>
                               </div>
-                              <div class="3u 12u">
-                                 <input type="button" value="아이디 찾기" data-toggle="modal"
-                  data-target="#findidModal"/>
-                              </div>
-                              <div class="3u 12u">
-                                 <input type="button" value="비밀번호 찾기" data-toggle="modal"
-                  data-target="#findpassModal"/>
-                              </div>
-                              <div class="3u 12u">
-                                 <a href="regist-no-sidebar.jsp"><input type="button" value="회원가입" /></a>
-                              </div>
-                              <div class="3u 12u">
-                                 <a href="/FairMusic/view.do?leftpath=Side_Left.jsp&viewpath=../content.jsp&rightpath=Side_Right.jsp">
-                                 <input type="button" value="돌아가기" /></a>
-                              </div>
+                             
                            </div>
                         </form>
                      </section>
@@ -93,32 +74,15 @@
          <!-- Modal content-->
          <div class="modal-content">
             <div class="modal-body">
-               <jsp:include page="/findId.jsp"></jsp:include>
+               <jsp:include page="/emailVerifyResult.jsp"></jsp:include>
             </div>
             <div class="modal-footer">
-               <button>조성원짱짱맨</button>
+               <button>이메일 검증확인</button>
             </div>
          </div>
 
       </div>
    </div>
-   
-      <div class="modal fade" id="findpassModal" role="dialog">
-      <div class="modal-dialog modal-lg">
-         <!-- Modal content-->
-         <div class="modal-content">
-            <div class="modal-body">
-               <jsp:include page="/findpass.jsp"></jsp:include>
-            </div>
-            <div class="modal-footer">
-               <button>조성원짱짱맨</button>
-            </div>
-         </div>
-
-      </div>
-   </div>
-
-
 
    </body>
 </html>
