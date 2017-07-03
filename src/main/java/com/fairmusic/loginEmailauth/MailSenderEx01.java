@@ -19,12 +19,11 @@ public class MailSenderEx01 {
     private String password = "fairmusic"; // 보내는 사람 이메일(gmail) 비밀번호
     @RequestMapping("emailAuth.do")
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
     	MailSenderEx01 mail = new MailSenderEx01();
     	
     	String authNum = mail.RandomNum();
-    	String toEmail = "junie2368@naver.com"; // 받는 사람 이메일 주소
-        String toName = "한준희 회원님";
+    	String toEmail = "godjsdleka@naver.com"; // 받는 사람 이메일 주소
+        String toName = "우해원 회원님";
         String subject = "FairMusic 이메일 인증입니다.";
         String content = "인증번호 ["+authNum+"]";
         

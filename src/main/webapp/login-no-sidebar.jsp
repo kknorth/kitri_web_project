@@ -51,10 +51,12 @@
 											</ul>
 										</div>
 										<div class="4u 12u">
-											<input type="button" value="아이디 찾기" />
+											<input type="button" value="아이디 찾기" data-toggle="modal"
+						data-target="#findidModal"/>
 										</div>
 										<div class="4u 12u">
-											<input type="button" value="비밀번호 찾기" />
+											<input type="button" value="비밀번호 찾기" data-toggle="modal"
+						data-target="#findpassModal"/>
 										</div>
 										<div class="4u 12u">
 											<input type="button" value="회원가입" />
@@ -80,6 +82,39 @@
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			
+			
+	<div class="modal fade" id="findidModal" role="dialog">
+		<div class="modal-dialog modal-lg">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-body">
+					<jsp:include page="/findId.jsp"></jsp:include>
+				</div>
+				<div class="modal-footer">
+					<button>조성원짱짱맨</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	
+		<div class="modal fade" id="findpassModal" role="dialog">
+		<div class="modal-dialog modal-lg">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-body">
+					<jsp:include page="/findpass.jsp"></jsp:include>
+				</div>
+				<div class="modal-footer">
+					<button>조성원짱짱맨</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
 
 	</body>
 </html>
