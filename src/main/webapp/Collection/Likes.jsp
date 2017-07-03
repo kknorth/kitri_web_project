@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="Collection.css">
 <body>
 	 <header>
+	  <br/>
 	 	<jsp:include page="../CollectionTop.jsp"></jsp:include>
         <div class="label">Hear the tracks you¡¯ve liked: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size = "30" value ="filter" style = "text-align:center; color:#cccccc;"></div>
