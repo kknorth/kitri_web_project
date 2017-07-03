@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 public class EmailVerify extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("asdfasdf");
 		EmailLogic logic = new EmailLogic();
 		String authNum = logic.RandomNum();
 		// 받는 사람 이메일 주소 

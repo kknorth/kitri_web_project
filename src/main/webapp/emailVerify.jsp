@@ -7,6 +7,8 @@
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="stylesheet" href="assets/css/main.css" />
+      
+ 
 </head>
 <body class="no-sidebar">
       <div id="page-wrapper">
@@ -31,7 +33,7 @@
                   
                   <div class="row">
                      <section class="12u">
-                        <form method="post" action="/FairMusic/email">
+                        <form method="post" name="authenform" action="/FairMusic/email" ">
                            <div class="row 50%">
                               <div class="12u">
                                  <input name="id" placeholder="e-mail" type="text" />

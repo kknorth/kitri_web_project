@@ -27,6 +27,7 @@
          return false;
       }
    }
+  
 </script>
 
 </head>
@@ -89,7 +90,7 @@
                            <ul class="actions">
 
                               <li><input type="submit" name="submit" value="회원 가입"
-                                  /></li><!-- onclick="FormSubmit()" -->
+                                  /></li>
                               <li><a href="/FairMusic/view.do?leftpath=Side_Left.jsp&viewpath=../content.jsp&rightpath=Side_Right.jsp"><input type="button" value="가입 취소" /></a></li>
                            </ul>
                         </div>
@@ -97,7 +98,7 @@
                      <div class="g-recaptcha"
                         data-sitekey="6LeWpScUAAAAAEZHSU8Ofsqp1B06zp7EZCi1Oem_"
                         style="float: right;"></div>
-                     <!-- <div id ="html_element"></div> -->
+                     
 
                   </form>
                </section>

@@ -22,7 +22,7 @@ import com.blocko.service.BlockoServiceImpl;
 
 
 
-@WebServlet(name = "stamplist", urlPatterns = { "/stamplist.do" })
+@WebServlet(name = "stamplist", urlPatterns = { "/stamplist" })
 public class StampListServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
