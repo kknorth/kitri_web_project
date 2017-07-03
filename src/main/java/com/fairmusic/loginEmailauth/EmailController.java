@@ -68,14 +68,21 @@ public class EmailController {
 				});
 			
 			Message msg = new MimeMessage(mailSession);
+			//보내는 사람 설정
 			msg.setFrom(new InternetAddress(from,MimeUtility.encodeText(fromName,"UTF-8","B")));
 			
 			InternetAddress[] address1 = {new InternetAddress(to1)};
+			msg.setRecipients(Message.RecipientType.TO, address1);//받는사람설정1
+			msg.setSubject(subject);
+			msg.setSentDate(new java.util.Date()); //보내는 날짜 설정
+			msg.setContent(content,"text/html;charset=euc-kr"); //내용설정(HTML형식)
 			
+			Transport.send(msg); //메일 보내기
 			
-			
-		} catch (Exception e) {
-			
+		}catch (MessagingException e) {
+			e.printStackTrace();
+		}catch (Exception e){
+			e.printStackTrace();
 		}
 	}
 	
