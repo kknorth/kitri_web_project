@@ -5,10 +5,12 @@ import static com.fairmusic.fw.BlockoQuery.*;
 import static com.fairmusic.fw.DBUtil.*;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 import com.blocko.dto.MusicStampDTO;
 
 public class BlockoDAOImpl implements BlockoDAO {
@@ -23,7 +25,7 @@ public class BlockoDAOImpl implements BlockoDAO {
 			ptmt = con.prepareStatement(STAMP_INSERT);
 			ptmt.setString(1, stamp.getUser());
 			ptmt.setString(2, stamp.getMusic());
-			ptmt.setString(3, stamp.getTimestamp());
+			ptmt.setDate(3, (Date) stamp.getTimestamp());
 			ptmt.setString(4, stamp.getMusicHash());
 			result = ptmt.executeUpdate();
 		} catch (SQLException e) {

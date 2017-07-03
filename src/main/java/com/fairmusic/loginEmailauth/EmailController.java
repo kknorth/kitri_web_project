@@ -10,17 +10,20 @@ import javax.mail.internet.MimeUtility;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.ModelAndView;
 
 @WebServlet(name = "emailauth", urlPatterns = { "/emailauth.do" })
-public class EmailController {
+public class EmailController extends HttpServlet{
 	private String fromEmail = "fairmusichelp@gmail.com"; // 보내는 사람 이메일(gmail) 아이디
 	private String password = "fairmusic"; // 보내는 사람 이메일(gmail) 비밀번호
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 		request.setCharacterEncoding("euc-kr");
 		response.setContentType("text/html;charset=euc-kr");
 		
@@ -28,16 +31,12 @@ public class EmailController {
 		String authNum ="";
 		
 		authNum = RandomNum(); //RandomNum 함수를 호출하여 리턴값을 authNum에 저장한다.
-		
 		sendEmail(email, authNum);
 		//sendEmail 함수를 호출한다. 여기서, email과 authNum을 매개변수로 함
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/member/emailAuth.jsp");
-		mv.addObject("email",email);
-		mv.addObject("authNum", authNum);
+		
 		
 		RequestDispatcher rd =
-				request.getRequestDispatcher("/layout/mainLayout.jsp");
+				request.getRequestDispatcher("/email.jsp");
 		rd.forward(request, response);
 
 	}

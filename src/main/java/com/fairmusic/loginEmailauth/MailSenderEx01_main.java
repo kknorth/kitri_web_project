@@ -11,14 +11,14 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
  
-public class MailSenderEx01 {
+public class MailSenderEx01_main {
     
     private String fromEmail = "fairmusichelp@gmail.com"; // 보내는 사람 이메일(gmail) 아이디
     private String password = "fairmusic"; // 보내는 사람 이메일(gmail) 비밀번호
     
     public static void main(String[] args) {
         // TODO Auto-generated method stub
-    	MailSenderEx01 mail = new MailSenderEx01();
+    	MailSenderEx01_main mail = new MailSenderEx01_main();
     	
     	String authNum = mail.RandomNum();
     	String toEmail = "junie2368@naver.com"; // 받는 사람 이메일 주소

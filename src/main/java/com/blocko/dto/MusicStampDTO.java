@@ -1,24 +1,26 @@
 package com.blocko.dto;
 
+import java.util.Date;
+
 public class MusicStampDTO {
 	String music;
 	String user;
-	String Timestamp;
+	Date Timestamp;
 	String musicHash;
 	
 	public MusicStampDTO(){}
-	public MusicStampDTO(String music, String user, String timestamp,
-			String strHash) {
+	public MusicStampDTO(String music, String user, Date timestamp,
+			String musicHash) {
 		super();
 		this.music = music;
 		this.user = user;
-		this.Timestamp = timestamp;
-		this.musicHash = strHash;
+		Timestamp = timestamp;
+		this.musicHash = musicHash;
 	}
 	@Override
 	public String toString() {
 		return "MusicStampDTO [music=" + music + ", user=" + user
-				+ ", Timestamp=" + Timestamp + ", strHash=" + musicHash + "]";
+				+ ", Timestamp=" + Timestamp + ", musicHash=" + musicHash + "]";
 	}
 	public String getMusic() {
 		return music;
@@ -32,10 +34,10 @@ public class MusicStampDTO {
 	public void setUser(String user) {
 		this.user = user;
 	}
-	public String getTimestamp() {
+	public Date getTimestamp() {
 		return Timestamp;
 	}
-	public void setTimestamp(String timestamp) {
+	public void setTimestamp(Date timestamp) {
 		Timestamp = timestamp;
 	}
 	public String getMusicHash() {
@@ -44,5 +46,6 @@ public class MusicStampDTO {
 	public void setMusicHash(String musicHash) {
 		this.musicHash = musicHash;
 	}
+	
 	
 }
