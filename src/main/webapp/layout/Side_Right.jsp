@@ -18,7 +18,7 @@
 		<div class="list-group">
 		<br/>
 		 	<div class="more">
-				<a href="/FairMusic/view.do?leftpath=Side_Left.jsp&viewpath=../Chart/Chart.jsp">more</a>
+				<a href="/FairMusic/view.do?leftpath=Side_Left.jsp&viewpath=../Chart/chart.jsp">more</a>
 			</div>
  				<ul class="list-group">
 					<li class="list-group-item disabled">Chart</li>

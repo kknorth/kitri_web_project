@@ -14,14 +14,14 @@
 </head>
 <body>
 <body>
-	<div class="container">
+	
 		<form id="form1" name="form1" method="post">
 			<div role="tabpanel">
 				<ul class="nav nav-tabs" role="tablist">
 					<li role="presentation" class="active"><a href="#audio_fan_01"
-						data-toggle="tab" role="tab" aria-controls="tab1">음원 업로드 01</a></li>
+						data-toggle="tab" role="tab" aria-controls="tab1">음원 업로드</a></li>
 					<li role="presentation"><a href="#audio_fan_02" data-toggle="tab"
-						role="tab" aria-controls="tab2">저작권 수익 분배</a></li>
+						role="tab" aria-controls="tab2">수익 분배 설정</a></li>
 					<li role="presentation"><a href="#audio_fan_03" data-toggle="tab"
 						role="tab" aria-controls="tab2">저작권 허가</a></li>
 
@@ -41,7 +41,7 @@
 										<span class="label label-info">음원 명</span>
 									</div>
 									<div class="col-xs-10">
-										<input type="text" name="textfield" id="textfield">
+										<input type="text" name="textfield" id="textfield" required="required">
 									</div>
 									<div class="col-xs-2">
 										<span class="label label-info">장르</span>
@@ -62,7 +62,7 @@
 									</div>
 									<div class="col-xs-10">
 										<textarea name="textarea" id="textarea"></textarea>
-										&nbsp;
+										
 									</div>
 								</div>
 							</div>
@@ -72,7 +72,7 @@
 							<div class="col-xs-6">&nbsp;</div>
 							<div class="col-xs-12">
 								<label for="fileField">File:</label> <input type="file"
-									name="fileField" id="fileField">
+									name="fileField" id="fileField" >
 								<audio controls></audio>
 								&nbsp;
 							</div>
@@ -105,7 +105,7 @@
 							<div class="col-xs-8">
 								<div class="row">
 									<div class="col-xs-3">
-										<span class="label label-primary">저작권자 명</span>
+										<span class="label label-primary" >저작권자 명</span>
 									</div>
 									<div class="col-xs-3">
 										<span class="label label-primary">수익 비율</span>
@@ -163,23 +163,23 @@
 								<div>
 									<p>
 										<label> <input type="checkbox" name="CheckboxGroup1"
-											value="ㄴㄹㅇ" id="CheckboxGroup1_0"> ㄴㅇ
+											value="ㄴㄹㅇ" id="CheckboxGroup1_0"> CCL 조건 선택. ▲저작자 표시(attribution) ▲비영리(noncommercial) ▲2차 변경 금지(no derivative) ▲동일조건 변경 허락(share alike)
 										</label> <br> <label> <input type="checkbox"
-											name="CheckboxGroup1" value="ㄹㄴㄹㄴ" id="CheckboxGroup1_1">
-											ㄴㄹㅇ
+											name="CheckboxGroup1" value="ㅇㅇ" id="CheckboxGroup1_1">
+											이 음악은 무료입니다
 										</label> <br> <label> <input type="checkbox"
-											name="CheckboxGroup1" value="ㄴㄹㅇ" id="CheckboxGroup1_2">
-											ㄴㅇㄹ
+											name="CheckboxGroup1" value="ㅇㅇㅇㅇㅇㅇㅇㅇㅇ" id="CheckboxGroup1_2">
+											상업적 이용을 금지하는 조건으로 무료입니다
 										</label> <br> <label> <input type="checkbox"
-											name="CheckboxGroup1" value="ㄴㄹㅇ" id="CheckboxGroup1_3">
-											ㄴㄹㅇ
+											name="CheckboxGroup1" value="ㅇㅇㅇ" id="CheckboxGroup1_3">
+											수익은 기부합니다(조성원 계좌에)
 										</label> <br> <label> <input type="checkbox"
 											name="CheckboxGroup1" value="ㄹㅇㅎㅎㅇㄹ" id="CheckboxGroup1_4">
-											ㄹㅇ
+											이 음악은 유료입니다
 										</label> <br>
 									</p>
 									<p>
-										<button type="button" class="btn btn-default">음원 등록하기</button>
+									
 									</p>
 									&nbsp;
 								</div>
@@ -190,9 +190,8 @@
 				</div>
 				<div>&nbsp;</div>
 			</div>
-			&nbsp;
 		</form>
-	</div>
+
 
 </body>
 </html>

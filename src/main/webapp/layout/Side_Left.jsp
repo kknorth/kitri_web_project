@@ -21,7 +21,7 @@
 									<!-- Sidebar -->
 															  <br/>
 										  <div class="more" >
-												  		<a href="#">more</a>
+												  		<a href="/FairMusic/view.do?viewpath=../Collection/Following.jsp">more</a>
 												  </div>
 											    <ul class="list-group">
 											    	<li class="list-group-item disabled">FollowingList</li>

@@ -1,8 +1,9 @@
-package com.fairmusic.loginEmailauth;
+/*package com.fairmusic.loginEmailauth;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
  
+
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -10,9 +11,10 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.annotation.WebServlet;
 
 import org.springframework.web.bind.annotation.RequestMapping;
- 
+@WebServlet(name = "emailauth", urlPatterns = { "/emailauth.do" })
 public class MailSenderEx01 {
     
     private String fromEmail = "fairmusichelp@gmail.com"; // 보내는 사람 이메일(gmail) 아이디
@@ -68,10 +70,8 @@ public class MailSenderEx01 {
             
             System.out.println("전송이 완료되었습니다.");
         } catch (UnsupportedEncodingException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (MessagingException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -85,3 +85,4 @@ public class MailSenderEx01 {
     }
  
 }
+*/

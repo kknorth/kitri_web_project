@@ -90,7 +90,7 @@
 
                               <li><input type="submit" name="submit" value="회원 가입"
                                   /></li><!-- onclick="FormSubmit()" -->
-                              <li><input type="reset" value="가입 취소" /></li>
+                              <li><a href="/FairMusic/view.do?leftpath=Side_Left.jsp&viewpath=../content.jsp&rightpath=Side_Right.jsp"><input type="button" value="가입 취소" /></a></li>
                            </ul>
                         </div>
                      </div>
