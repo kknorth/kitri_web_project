@@ -10,6 +10,7 @@
 </head>
 <body>
 	<header>
+	 <br/>
         <jsp:include page="../CollectionTop.jsp"></jsp:include>
         <div class="label">Hear your own playlists and the playlists you¡¯ve liked: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <input type="text" size = "30" value ="filter" style = "text-align:center; color:#cccccc;">

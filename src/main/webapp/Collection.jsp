@@ -20,6 +20,7 @@
                 <li><a href="/FairMusic/view.do?viewpath=../Collection/History.jsp" alt="">History</a></li>
             </ul>
         </div> -->
+         <br/>
         <jsp:include page="CollectionTop.jsp"></jsp:include>
         <div class="label">Recently played</div>
     </header>
