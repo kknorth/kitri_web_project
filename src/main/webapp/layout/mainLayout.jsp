@@ -20,7 +20,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<jsp:include page="../top_Logout.jsp"></jsp:include>
+	<jsp:include page="../top.jsp"></jsp:include>
 	<div class="container-fluid text-center">
 		<div class="row">
 		<% if(request.getAttribute("leftpath")!=null){ %>

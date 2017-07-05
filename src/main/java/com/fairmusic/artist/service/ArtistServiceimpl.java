@@ -12,4 +12,24 @@ public class ArtistServiceimpl implements ArtistService{
 		return result;
 	}
 
+
+	@Override
+	public boolean emailCheck(String email) {
+		ArtistDAOimpl dao = new ArtistDAOimpl();
+		boolean result = dao.emailCheck(email);
+		return result;
+	}
+
+
+
+	@Override
+	public artistDTO login(String email, String pass) {
+		ArtistDAOimpl dao = new ArtistDAOimpl();
+		artistDTO dto = dao.login(email, pass);
+		return dto;
+	}
+
 }
+	
+
+

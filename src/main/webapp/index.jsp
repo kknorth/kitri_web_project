@@ -8,7 +8,7 @@
 	</head>
 	<body>
 			<!-- top -->
-			<jsp:include page="top_Logout.jsp"></jsp:include>
+			<jsp:include page="top.jsp"></jsp:include>
 			<!-- Main -->
 				<div class="wrapper">
 					<div id="test_main">

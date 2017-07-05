@@ -4,4 +4,6 @@ import com.fairmusic.dto.artistDTO;
 
 interface ArtistDAO {
 	int regist(artistDTO artist);
+	boolean emailCheck(String email);	
+	artistDTO login(String email,String pass);
 }

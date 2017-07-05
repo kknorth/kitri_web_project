@@ -52,7 +52,7 @@ public class MusicStamp {
 	}
 	
 	public String getMusicHashHex() {
-		String music = "music"; // mp3데이터값 가져오니라
+		String music = "efefefasd"; // mp3데이터값 가져오니라
 		byte[] data = music.getBytes();
 		byte[] hash = Sha256Hash.create(data).getBytes();
 		String hexHash = Utils.HEX.encode(hash);

@@ -1,12 +1,16 @@
 package com.fairmusic.artist.dao;
 
-import static com.fairmusic.fw.DBUtil.*;
+import static com.fairmusic.fw.DBUtil.close;
+import static com.fairmusic.fw.DBUtil.getConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.fairmusic.dto.artistDTO;
+import com.fairmusic.fw.DBUtil;
+import static com.fairmusic.fw.Query.*;
 public class ArtistDAOimpl implements ArtistDAO{
 
 
@@ -38,5 +42,60 @@ public class ArtistDAOimpl implements ArtistDAO{
 		return result;
 	}
 	
+	@Override
+	public boolean emailCheck(String email) {
+		System.out.println("여기 디에이오"+email);
+		Connection con = null;
+		PreparedStatement ptmt = null;
 
+		ResultSet rs = null;
+		boolean result = false;
+		try {
+			con = DBUtil.getConnection();
+			ptmt = con.prepareStatement(EMAIL_CHECK);
+			ptmt.setString(1, email);
+
+			rs = ptmt.executeQuery();
+			if (rs.next()) {
+				result = true;
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			DBUtil.close(rs, ptmt, con);
+		}
+		System.out.println(result);
+		return result;
+	}
+
+	@Override
+	public artistDTO login(String email, String pass) {
+		Connection con = null;
+		PreparedStatement ptmt = null;
+		artistDTO dto = null;
+		ResultSet rs = null;
+
+		try {
+			con = DBUtil.getConnection();
+			ptmt = con.prepareStatement(EMP_login);
+			ptmt.setString(1, email);
+			ptmt.setString(2, pass);
+			rs = ptmt.executeQuery();
+			if (rs.next()) {
+				dto = new artistDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+						rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9),rs.getString(10));
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBUtil.close(rs, ptmt, con);
+		}
+		return dto;
+	}	
+	
 }

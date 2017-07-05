@@ -1,3 +1,4 @@
+<%@page import="com.fairmusic.dto.artistDTO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
@@ -8,7 +9,27 @@
 <title>Insert title here</title>
 </head>
 <body>
+ <% artistDTO user = (artistDTO) session.getAttribute("user"); %>
+ <%if(session.getAttribute("user")==null) {%> 
 	<div id="header-wrapper">
+		<form method="post" action="/FairMusic/view.do?leftpath=Side_Left.jsp&viewpath=../Search/search.jsp&rightpath=Side_Right.jsp" name="mainform">
+		<div id="header" class="container">
+			<nav id="nav">
+				<ul>
+					<li><a href="/FairMusic/view.do?leftpath=Side_Left.jsp&viewpath=../content.jsp&rightpath=Side_Right.jsp" >FairMusic</a></li>
+					<li><input type="text" size="40" /></li>	
+					<li><input type="submit" value="search"/></li>
+					<!-- <li><a href="#">Upload</a></li> -->
+					
+					<li><a href="regist-no-sidebar.jsp">Create Account</a></li>
+					<li><a href="login-no-sidebar.jsp">Login</a></li>
+					</ul>
+								</nav>
+						</div>
+						</form>
+					</div>
+					<%}else{ %>
+		<div id="header-wrapper">
 		<form method="post" action="/FairMusic/view.do?leftpath=Side_Left.jsp&viewpath=../Search/search.jsp&rightpath=Side_Right.jsp" name="mainform">
 		<div id="header" class="container">
 			<nav id="nav">
@@ -29,13 +50,13 @@
 				</li>
 							
 				<li><a href="/FairMusic/view.do?leftpath=Side_Left_Message.jsp">Message</a></li>
-				<li><a href="regist-no-sidebar.jsp">Create Account</a></li>
-				<li><a href="login-no-sidebar.jsp">Login</a></li>
+				<li><a href="/FairMusic/logout.do">Logout</a></li>
 				</ul>
 							</nav>
 						</div>
 						</form>
-					</div>
+					</div>				
+					   <%} %>
 	<!-- Scripts -->
 
 			<script src="assets/js/jquery.min.js"></script>
