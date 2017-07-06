@@ -27,12 +27,16 @@
 	</script> -->
 	
 	<h3>openasset</h3>
-	<form method="post" action="/FairMusic/openasset">
+	<form method="post" action="/FairMusic/bitcoin">
 		<div>어드레스 </div>
 		<input type = "submit" value ="bitcoin주소 발급"><br/>
 		비트코인 주소 ==> ${MusicAddress}<br/>
 		나의 비트코인 잔고 ==>${balance} BTC <br/>
-		결제할 비트코인 주소 입력
+		
+	</form>
+	
+	<form method="post" action="/FairMusic/openasset">
+	보낼 주소 : <input type="text" placeholder="bitcoin-Address">
 	</form>
 </body>
 </html>
