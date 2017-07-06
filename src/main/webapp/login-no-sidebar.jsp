@@ -119,7 +119,7 @@
                   
                   <div class="row">
                      <section class="12u">
-                        <form method="post" action="#">
+                        <form method="post" action="/FairMusic/login.do">
                            <div class="row 50%">
                               <div class="12u">
                                  <input name="id" placeholder="¾ÆÀÌµð" type="text" />
