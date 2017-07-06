@@ -21,7 +21,11 @@
 		})
 		
 		$("#email_verify").on("click", function(){
-			$.post("/FairMusic/email", {"artist_email": $("#artist_email").val()}, success_email)
+			if($("#artist_email").val()==null){
+				alert("이메일을 입력해 주세요")	
+			}else{
+				$.post("/FairMusic/email", {"artist_email": $("#artist_email").val()}, success_email)
+			}
 		})
 		
 		$("#email_verify_check").on("click", function(){
@@ -44,6 +48,7 @@
 				$("#artist_pass_check").html("");
 			}
 		})
+		
 
 	})
 	
@@ -75,6 +80,30 @@
          return false;
       }
    }
+   
+   
+   function timer_start(){ //초기 설정함수
+	   tcounter=180; //3분설정 
+	   t1=setInterval(Timer,1000);
+	  
+	  }
+
+	  function Timer(){     //시간표및 조건검사
+	   tcounter=tcounter-1;   
+	   temp=Math.floor(tcounter/60); 
+	   if ( Math.floor(tcounter/60) < 10 ) { temp = '0'+temp; }
+	    temp = temp + ":";   
+	   if ( (tcounter%60) < 10 ) { temp = temp + '0'; } 
+	    temp = temp + (tcounter%60);
+	    document.getElementById("timer_s").innerHTML=temp;    
+	   if(tcounter<0) {tstop(); alert("이메일 인증 버튼을 다시 눌러주세요")}
+	  }
+	  
+	  function tstop(){ 
+	   clearInterval(t1);
+	   
+	   document.getElementById("timer_s").innerHTML="인증시간이 초과되었습니다.";
+	  }
   
 </script>
 
@@ -102,7 +131,7 @@
 
             <div class="row">
                <section class="12u">
-                  <form method="post" action="/FairMusic/artistregist.do" onsubmit="FormSubmit()">
+                  <form method="post" action="/FairMusic/artistregist.do" onSubmit="FormSubmit()">
                      <div class="row 50%">
                         <div class="5u 12u">
                            <input type="image" src="images/facebookRegister.png"
@@ -117,7 +146,7 @@
                            <input name="artist_email" placeholder="E-mail" type="text" id = "artist_email"/>
                         </div>
                         <div class="3u 12u">
-                          <input type="button" value="이메일 인증하기"  data-toggle="modal" data-target="#findidModal" id="email_verify"/>
+                          <input type="button" value="이메일 인증하기"  data-toggle="modal" data-target="#findidModal" id="email_verify" onclick="timer_start()"/>
                         </div>
                          <div class="12u">
                           	<span id="artist_email_check" style="color: red"></span>
@@ -178,6 +207,11 @@
 					<span class="label label-info">이메일 검증</span>
 					<span id="email_verify_result" style="color: red"></span>
 				</div>
+				
+				<div class="col-lg-12">
+					<div id="timer_s"></div>
+				</div>
+				
 				<div class="col-lg-12">
 					<span class="label label-info">인증번호 7자리를 입력하세요</span> 
 					<input type="text" name="authnum"  id="authnum_check"/>

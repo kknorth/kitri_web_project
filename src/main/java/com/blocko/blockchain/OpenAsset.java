@@ -9,6 +9,7 @@ import org.junit.Test;
 import com.blocko.api.API;
 
 import io.blocko.coinstack.exception.CoinStackException;
+import io.blocko.coinstack.exception.MalformedInputException;
 import io.blocko.coinstack.openassets.ColoringEngine;
 import io.blocko.apache.commons.codec.binary.Hex;
 import io.blocko.coinstack.*;
@@ -26,43 +27,34 @@ public class OpenAsset {
 	public void after(){
 		coinstack.close();
 	}
-	@Test
+	/*@Test
 	public void testGenerateKey() throws CoinStackException {
 		System.out.println("@@ testGenerateKey");
 		String newPrivateKeyWIF = ECKey.createNewPrivateKey();
-		String newPublicKey = Hex.encodeHexString(ECKey.derivePubKey(newPrivateKeyWIF));
 		System.out.println("create privateKey: "+newPrivateKeyWIF);
-		System.out.println("PublicKey: "+newPublicKey);
 		System.out.println("");
+		
+		String AssetAddress = deriveAssetAddressFromPrivateKey(newPrivateKeyWIF);
+		System.out.println("create AssetAddress: "+AssetAddress);
 	}
 	
 	@Test
 	public static String deriveAssetAddressFromPrivateKey(String privateKey){
-		
-		
-		return privateKey;	
+		String AssetAddress="";
+		try {
+			AssetAddress = ECKey.deriveAddress(privateKey);
+		} catch (MalformedInputException e) {
+			e.printStackTrace();
+		}
+		return AssetAddress;	
 	}
-	
-	@Test
-	public static String deriveAssetAddressFromBitcoinAddress(String bitcoinAddress){
-		
-		
-		return bitcoinAddress;	
-	}
-	
-	@Test
-	public static String deriveBitcoinAddressFromAssetAddress(String assetAddress){
-		
-		
-		return assetAddress;
-	}
-	
-	// Asset ID 积己
+		// Asset ID 积己
 	public static String createAssetID(byte[] inputScript){
 		
 		return null;
 	}
-	
+	*/
+
 	// Open Assets Issuance(惯青)
 	 @Test
 	    public void testIssueAsset() throws Exception {
