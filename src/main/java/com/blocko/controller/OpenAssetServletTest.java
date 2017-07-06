@@ -11,6 +11,7 @@ import io.blocko.coinstack.exception.MalformedInputException;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,19 +30,36 @@ public class OpenAssetServletTest extends HttpServlet {
 		request.setCharacterEncoding("euc-kr");
 		response.setContentType("text/html;charset=euc-kr");
 		
-		String newPrivateKey = ECKey.createNewPrivateKey();
-
-		String openAssetAddr = deriveAssetAddressFromPrivateKey(newPrivateKey);
-		System.out.println("create privateKey: "+newPrivateKey);
-		System.out.println("create openAssetAddr: "+openAssetAddr);
+		
+		try {
+			String newPrivateKey = ECKey.createNewPrivateKey();
+			String MusicAddress = ECKey.deriveAddress(newPrivateKey);
+			long balance = coinstack.getBalance(MusicAddress);
+			
+			System.out.println("MusicAddress: "+MusicAddress);
+			System.out.println("create privateKey: "+newPrivateKey);
+			System.out.println("balance: " + balance);
+			request.setAttribute("MusicAddress", MusicAddress);
+			request.setAttribute("balance", balance);
+		} catch (MalformedInputException e) {
+			e.printStackTrace();
+		} catch (CoinStackException e) {
+			
+			e.printStackTrace();
+		}
+		
+		RequestDispatcher rd =
+				request.getRequestDispatcher("/OpenAsset/OpenAsset.jsp");
+		rd.forward(request, response);
+		
 
 	}
 	
-	public static String deriveAssetAddressFromPrivateKey(String privateKey){
+	/*public static String deriveAssetAddressFromPrivateKey(String privateKey){
 		String openAssetAddr = "";
 		
 		return openAssetAddr;
-	}
+	}*/
 	
 
 	/*// Open Assets Issuance(น฿วเ)

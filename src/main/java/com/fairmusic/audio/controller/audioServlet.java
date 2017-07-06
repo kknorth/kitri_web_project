@@ -2,6 +2,7 @@ package com.fairmusic.audio.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -13,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-
 
 import com.fairmusic.seong.fm_Code;
 
@@ -50,28 +50,64 @@ public class audioServlet extends HttpServlet {
          for(int i =0 ; i <items.size(); i++){
             FileItem item = (FileItem)items.get(i);
                if(item.getFieldName().equals("image_file")){
-                  String[] ex = item.getName().split(".");
-                  File imagefile = new File(imagedir, randomvalue+"."+ex[1]);
-                  item.write(imagefile);
-                  
-                  System.out.println("audio_image_file saved in "+imagedir.getPath()+randomvalue+"."+ex[1]);
-                  
+                  if(item.getName()!=""){
+
+                     String[] ex = item.getName().split("\\.");
+                     String tempname = randomvalue+"."+ex[1];
+                     System.out.println(tempname);
+                     File imagefile = new File(imagedir,tempname);
+                     item.write(imagefile);
+                     System.out.println("audio_image_file saved in "+imagedir.getPath()+"\\"+tempname);
+                  }
                }else if(item.getFieldName().equals("audio_file")){
-                  String[] ex = item.getName().split(".");
-                  File audiofile = new File(filedir, randomvalue);
+                  if(item.getName()!=""){
+                  String[] ex = item.getName().split("\\.");
+                  String tempname = randomvalue+"."+ex[1];
+                  System.out.println(tempname);
+                  File audiofile = new File(filedir,tempname);
                   item.write(audiofile);
                   
                   System.out.println("audio_file saved in "+filedir.getPath()+randomvalue+"."+ex[1]);
-                  
+                  }
                }else if(item.getFieldName().equals("the-video-file-field")){
-                  String[] ex = item.getName().split(".");
-                  File vediofile = new File(videodir, randomvalue);
+                  if(item.getName()!=""){
+                  String[] ex = item.getName().split("\\.");
+                  String tempname = randomvalue+"."+ex[1];
+                  System.out.println(tempname);
+                  File vediofile = new File(videodir,tempname);
                   item.write(vediofile);
                   System.out.println("audio_video_file saved in "+videodir.getPath()+randomvalue+"."+ex[1]);
-               }
+                  }
+                  }
          }
+         
+         audioDTOcreate(items);
       }catch(Exception _ex){
-         System.out.println("에러 : "+_ex.getLocalizedMessage());
+         System.out.println("에러 : ");
+         _ex.printStackTrace();
+      }
+   }
+   
+   private void audioDTOcreate(List items){
+      for(int i =0 ; i <items.size(); i++){
+           FileItem item = (FileItem)items.get(i);
+           try{
+              if(item.getFieldName().equals("audio_title")){
+                 System.out.println("타이틀"+item.getString("UTF-8"));
+              }else if(item.getFieldName().equals("audio_genre")){
+                 System.out.println("장르"+item.getString("UTF-8"));
+              }else if(item.getFieldName().equals("audio_album")){
+                 System.out.println("앨범"+item.getString("UTF-8"));
+              }else if(item.getFieldName().equals("audio_detail")){
+                 System.out.println("설명"+item.getString("UTF-8"));
+              }else if(item.getFieldName().equals("ccl_check")){
+                 System.out.println("체크"+item.getString("UTF-8"));
+              }else if(item.getFieldName().equals("audio_value")){
+                 System.out.println("밸류"+item.getString("UTF-8"));
+              }
+           }catch(UnsupportedEncodingException e){
+              e.printStackTrace();
+           }
       }
    }
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -85,7 +121,6 @@ public class audioServlet extends HttpServlet {
       String audio_code = code.uniqueCode(20);
       System.out.println("오디오 코드"+audio_code);
       SeongfileUpload(request,audio_code);
-   
       
       /*audioDTO audio = new audioDTO(audio_code, request.getParameter(""), artist_code, audio_jenre, audio_image, audio_detail, album_code, string, audio_link, audio_price, audio_copyrighter)
       */

@@ -320,7 +320,7 @@
 
                   <div class="col-sm-12">
 
-                     <select class="form-control" id="ccl_check">
+                     <select class="form-control" id="ccl_check" name = "ccl_check">
 
                         <option>¹«·á</option>
 
@@ -334,7 +334,7 @@
 
                      <div id = "audio_price" hidden = "true">
 
-                        <input type = "number"  value = "0">
+                        <input type = "number"  value = "0" id = "audio_value" name = "audio_value">
 
                      </div>
 
@@ -572,7 +572,7 @@
 
                         <div class="real_audio_file" id="real_audio_div" name = "real_audio_div">
 
-                           <input type="file" id = "audio_file">
+                           <input type="file" id = "audio_file" name = "audio_file">
 
                            <p>
 

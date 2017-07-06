@@ -7,8 +7,6 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet" href="assets/css/main.css" />
-
-
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -19,7 +17,6 @@
 		$("#artist_email").on("keyup", function(){
 			$.post("/FairMusic/emailCheck.do", {"artist_email":$("#artist_email").val()}, success_run)
 		})
-		
 		$("#email_verify").on("click", function(){
 			if($("#artist_email").val()==null){
 				alert("이메일을 입력해 주세요")	
@@ -82,14 +79,14 @@
    }
    
    
-   function timer_start(){ //초기 설정함수
+   	   function timer_start(){ //초기 설정함수
 	   tcounter=180; //3분설정 
 	   t1=setInterval(Timer,1000);
 	  
 	  }
 
 	  function Timer(){     //시간표및 조건검사
-	   tcounter=tcounter-1;   
+	   var tcounter=tcounter-1;   
 	   temp=Math.floor(tcounter/60); 
 	   if ( Math.floor(tcounter/60) < 10 ) { temp = '0'+temp; }
 	    temp = temp + ":";   
@@ -101,7 +98,6 @@
 	  
 	  function tstop(){ 
 	   clearInterval(t1);
-	   
 	   document.getElementById("timer_s").innerHTML="인증시간이 초과되었습니다.";
 	  }
   
@@ -143,24 +139,24 @@
                         </div>
 
                         <div class="9u 12u">
-                           <input name="artist_email" placeholder="E-mail" type="text" id = "artist_email"/>
+                           <input name="artist_email" placeholder="E-mail" type="email" id = "artist_email" required="required"/>
                         </div>
                         <div class="3u 12u">
-                          <input type="button" value="이메일 인증하기"  data-toggle="modal" data-target="#findidModal" id="email_verify" onclick="timer_start()"/>
+                          <input type="button" value="이메일 인증하기"  data-toggle="modal" data-target="#findidModal" id="email_verify" onclick="timer_start()" />
                         </div>
                          <div class="12u">
                           	<span id="artist_email_check" style="color: red"></span>
                         </div>
 
                         <div class="12u">
-                           <input name="artist_pass" placeholder="비밀번호" type="password" id = "artist_pass"/>
+                           <input name="artist_pass" placeholder="비밀번호" type="password" id = "artist_pass" required="required"/>
                         </div>
                         <div class="12u">
-                           <input name="passverify" placeholder="비밀번호 확인" type="password" id="artist_pass2" />
+                           <input name="passverify" placeholder="비밀번호 확인" type="password" id="artist_pass2" required="required"/>
                         </div>
                         <div id="artist_pass_check" style= "color: red"></div>
                         <div class="12u">
-                           <input name="artist_id" placeholder="이름" type="text" id = "artist_id"/>
+                           <input name="artist_id" placeholder="이름" type="text" id = "artist_id" required="required"/>
                         </div>
 
                      </div>
@@ -209,7 +205,7 @@
 				</div>
 				
 				<div class="col-lg-12">
-					<div id="timer_s"></div>
+					<div id="timer_s" style="color: red"></div>
 				</div>
 				
 				<div class="col-lg-12">
@@ -225,8 +221,7 @@
 			
         </div>
         <div class="modal-footer">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">Cancel</button>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> Save changes</button>      
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">확인</button>
         </div>
       </div>
       </div>

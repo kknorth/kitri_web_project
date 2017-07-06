@@ -24,17 +24,19 @@ public class LoginServlet extends HttpServlet {
 			
 			ArtistServiceimpl service = new ArtistServiceimpl();
 			artistDTO loginUser = service.login(email, pass);
-
+			System.out.println("서블릿에 가져와?"+ email+pass);
 			
 			String viewpath = "";
-			String leftpath="";
-			String rightpath="";
+			String leftpath= null;
+			String rightpath= null;
+			String rdpath = null;
 			if (loginUser == null) {
-				viewpath = "../login-no-sidebar.jsp";
+				rdpath = "login-no-sidebar.jsp";
 			} else {
 				viewpath = "../content.jsp";
 				leftpath="Side_Left.jsp";
 				rightpath="Side_Right.jsp";
+				rdpath="/layout/mainLayout.jsp";
 			}
 
 
@@ -45,7 +47,7 @@ public class LoginServlet extends HttpServlet {
 			request.setAttribute("rightpath", rightpath);
 
 			RequestDispatcher rd = request
-					.getRequestDispatcher("/layout/mainLayout.jsp");
+					.getRequestDispatcher(rdpath);
 			rd.forward(request, response);
 
 		}

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 	var client = new CoinStack('c7dbfacbdf1510889b38c01b8440b1', '10e88e9904f29c98356fd2d12b26de');
 	var privateKey = CoinStack.ECKey.createKey();
 	console.log(privateKey);
@@ -24,8 +24,15 @@
 			    console.log(CoinStack.Math.toBitcoin(balance) + ' BTC');
 			});
 
-	</script>
+	</script> -->
 	
 	<h3>openasset</h3>
+	<form method="post" action="/FairMusic/openasset">
+		<div>어드레스 </div>
+		<input type = "submit" value ="bitcoin주소 발급"><br/>
+		비트코인 주소 ==> ${MusicAddress}<br/>
+		나의 비트코인 잔고 ==>${balance} BTC <br/>
+		결제할 비트코인 주소 입력
+	</form>
 </body>
 </html>

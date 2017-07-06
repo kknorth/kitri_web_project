@@ -6,20 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Collection</title>
 <link rel="stylesheet" type="text/css" href="Collection/Collection.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
 	<header>
-      <!--   <div class="top_menu">
-            <ul>
-                <li><a href="/FairMusic/view.do?viewpath=../Collection.jsp" alt="">Overview</a></li>
-                <li><a href="/FairMusic/view.do?viewpath=../Collection/Likes.jsp" alt="">Likes</a></li>
-                <li><a href="/FairMusic/view.do?viewpath=../Collection/Playlists.jsp" alt="">Playlists</a></li>
-                <li><a href="/FairMusic/view.do?viewpath=../Collection/Albums.jsp" alt="">Albums</a></li>
-                <li><a href="/FairMusic/view.do?viewpath=../Collection/Stations.jsp" alt="">Stations</a></li>
-                <li><a href="/FairMusic/view.do?viewpath=../Collection/Following.jsp" alt="">Following</a></li>
-                <li><a href="/FairMusic/view.do?viewpath=../Collection/History.jsp" alt="">History</a></li>
-            </ul>
-        </div> -->
          <br/>
         <jsp:include page="CollectionTop.jsp"></jsp:include>
         <div class="label">Recently played</div>

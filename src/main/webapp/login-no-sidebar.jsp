@@ -122,10 +122,10 @@
                         <form method="post" action="/FairMusic/login.do">
                            <div class="row 50%">
                               <div class="12u">
-                                 <input name="id" placeholder="아이디" type="text" />
+                                 <input name="email" placeholder="아이디" type="text"  id="email"/>
                               </div>
                               <div class="12u">
-                                 <input name="pass" placeholder="비밀번호" type="password" />
+                                 <input name="pass" placeholder="비밀번호" type="password" id="pass"/>
                               </div>
 								<div class="fb-login-button" data-max-rows="1" data-size="large"
 									data-button-type="continue_with" data-show-faces="false"

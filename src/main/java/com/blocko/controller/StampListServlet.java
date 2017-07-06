@@ -8,6 +8,8 @@ import io.blocko.coinstack.exception.CoinStackException;
 import io.blocko.coinstack.model.Stamp;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -45,15 +47,19 @@ public class StampListServlet extends HttpServlet {
 			System.out.println("Confirmations: "+stamp.getConfirmations());
 			System.out.println("Timestamp: "+stamp.getTimestamp());
 			
+			
+			Date date = new Date();
+			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG);
+			
+			String formattedDate = dateFormat.format(date);
+			System.out.println(formattedDate);
 		} catch (CoinStackException e) {
 			
 			e.printStackTrace();
 		}
 
 		request.setAttribute("MusicHash", MusicHash);
-		
-		
-	
+
 		RequestDispatcher rd =
 				request.getRequestDispatcher("/MusicUpload/musicstamp.jsp");
 		rd.forward(request, response);
