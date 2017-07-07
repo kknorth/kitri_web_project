@@ -79,14 +79,14 @@
    }
    
    
-   	   function timer_start(){ //초기 설정함수
+   	  function timer_start(){ //초기 설정함수
 	   tcounter=180; //3분설정 
 	   t1=setInterval(Timer,1000);
 	  
 	  }
 
 	  function Timer(){     //시간표및 조건검사
-	   var tcounter=tcounter-1;   
+	   tcounter=tcounter-1;   
 	   temp=Math.floor(tcounter/60); 
 	   if ( Math.floor(tcounter/60) < 10 ) { temp = '0'+temp; }
 	    temp = temp + ":";   
@@ -142,7 +142,7 @@
                            <input name="artist_email" placeholder="E-mail" type="email" id = "artist_email" required="required"/>
                         </div>
                         <div class="3u 12u">
-                          <input type="button" value="이메일 인증하기"  data-toggle="modal" data-target="#findidModal" id="email_verify" onclick="timer_start()" />
+                          <input type="button" value="이메일 인증하기"  data-toggle="modal" data-target="#findidModal" id="email_verify" onclick="timer_start(); this.onclick='';" />
                         </div>
                          <div class="12u">
                           	<span id="artist_email_check" style="color: red"></span>

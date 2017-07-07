@@ -7,6 +7,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <link rel="stylesheet" href="css/main.css" />
 <title>Insert title here</title>
+<script type="text/javascript">
+function signOut() {
+		alert("호출돼???")
+	    var auth2 = gapi.auth2.getAuthInstance();
+	    auth2.signOut().then(function () {
+	      console.log('User signed out.');
+	    });
+	  };
+</script>
 </head>
 <body>
  <% String loginUser_google = (String)session.getAttribute("loginUser_google"); 
@@ -48,7 +57,7 @@
 				</li>
 							
 				<li><a href="/FairMusic/view.do?leftpath=Side_Left_Message.jsp">Message</a></li>
-				<li><a href="/FairMusic/logout.do">Logout</a></li>
+				<li><a href="/FairMusic/logout_Google.do" onclick="signOut();">Logout</a></li>
 				</ul>
 							</nav>
 						</div>

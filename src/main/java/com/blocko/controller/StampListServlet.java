@@ -52,7 +52,7 @@ public class StampListServlet extends HttpServlet {
 			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG);
 			
 			String formattedDate = dateFormat.format(date);
-			System.out.println(formattedDate);
+			System.out.println("Confirmations2 :"+formattedDate);
 		} catch (CoinStackException e) {
 			
 			e.printStackTrace();

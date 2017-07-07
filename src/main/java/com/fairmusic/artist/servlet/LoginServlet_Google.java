@@ -30,8 +30,6 @@ public class LoginServlet_Google extends HttpServlet {
 			rightpath="Side_Right.jsp";
 			rdpath="/layout/mainLayout.jsp";
 		}
-
-
 		HttpSession ses = request.getSession();
 		ses.setAttribute("loginUser_google", loginUser_google);
 		request.setAttribute("viewpath", viewpath);
@@ -43,7 +41,6 @@ public class LoginServlet_Google extends HttpServlet {
 		rd.forward(request, response);
 
 	}
-
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	request.setCharacterEncoding("euc-kr");
 
@@ -72,11 +69,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 
 	RequestDispatcher rd = request
 			.getRequestDispatcher(rdpath);
-	rd.forward(request, response);
-
-
-
-		
+	rd.forward(request, response);		
 	}
 
 }
