@@ -31,7 +31,7 @@
 			
 		})
 		$("#artist_pass2").on("keyup", function(){
-			if($("#artist_pass").val()!=$("#artist_pass2").val()){
+			if($("#artist_pass").val()!="" && $("#artist_pass").val()!=$("#artist_pass2").val()){
 				$("#artist_pass_check").html("비밀번호가 일치하지 않습니다.")
 			}else{
 				$("#artist_pass_check").html("");
@@ -39,7 +39,7 @@
 		})
 		
 		$("#artist_pass").on("keyup", function(){
-			if($("#artist_pass").val()!=$("#artist_pass2").val()){
+			if($("#artist_pass2").val()!="" && $("#artist_pass").val()!=$("#artist_pass2").val()){
 				$("#artist_pass_check").html("비밀번호가 일치하지 않습니다.")
 			}else{
 				$("#artist_pass_check").html("");
@@ -165,9 +165,10 @@
                         <div class="12u" align="right">
                            <ul class="actions">
 
-                              <li><input type="submit" name="submit" value="회원 가입"
-                                  /></li>
-                              <li><a href="/FairMusic/view.do?leftpath=Side_Left.jsp&viewpath=../content.jsp&rightpath=Side_Right.jsp"><input type="button" value="가입 취소" /></a></li>
+                              <li><input type="submit" name="submit" value="회원 가입"/></li>
+                              <li>
+                              <input type="button" value="가입 취소" onclick="location.href='/FairMusic/view.do?leftpath=Side_Left.jsp&viewpath=../content.jsp&rightpath=Side_Right.jsp'"/>
+                              </li>
                            </ul>
                         </div>
                      </div>

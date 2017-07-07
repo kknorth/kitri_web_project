@@ -11,7 +11,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
+	<% String loginUser_google = (String)session.getAttribute("loginUser_google"); 
+	if(loginUser_google==null){%>
 	<jsp:include page="../top.jsp"></jsp:include>
+	<% }else{ %>
+	<jsp:include page="../top_google.jsp"></jsp:include>
+	<% } %>
 	<div class="container-fluid text-center">
 		<div class="row">
 			<% if(request.getAttribute("leftpath")==null && request.getAttribute("rightpath")==null ){ %>

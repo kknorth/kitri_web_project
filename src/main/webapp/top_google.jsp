@@ -9,8 +9,8 @@
 <title>Insert title here</title>
 </head>
 <body>
- <% artistDTO user = (artistDTO) session.getAttribute("user"); %>
- <%if(user==null){%> 
+ <% String loginUser_google = (String)session.getAttribute("loginUser_google"); 
+ 	if(loginUser_google==null){%> 
 	<div id="header-wrapper">
 		<form method="post" action="/FairMusic/view.do?viewpath=../Search/search.jsp&rightpath=Side_Right.jsp" name="mainform">
 		<div id="header" class="container">

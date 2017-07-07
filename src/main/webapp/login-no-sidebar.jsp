@@ -5,10 +5,14 @@
 <head>
    <title>Telephasic by HTML5 UP</title>
       <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <link rel="stylesheet" href="assets/css/main.css" />
+      <meta name="google-signin-scope" content="profile email">
+      <meta name="google-signin-client_id" content="858926206600-4civml71qto6t35fd8hvosi4so9ku55e.apps.googleusercontent.com">
+	  <link rel="stylesheet" href="assets/css/main.css" />
       <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-      
+      <script src="https://apis.google.com/js/platform.js" async defer></script> 
+     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
       <script>
       /* ####################################################로봇인증########################################################## */
 	      function FormSubmit() {
@@ -68,13 +72,13 @@
 		
 		  
 		  // SDK를 비동기적으로 호출 
-		  (function(d, s, id){
-		     var js, fjs = d.getElementsByTagName(s)[0];
-		     if (d.getElementById(id)) {return;}
-		     js = d.createElement(s); js.id = id;
-		     js.src = "//connect.facebook.net/en_US/sdk.js";
-		     fjs.parentNode.insertBefore(js, fjs);
-		   }(document, 'script', 'facebook-jssdk'));
+		  (function(d, s, id) {
+  			var js, fjs = d.getElementsByTagName(s)[0];
+ 			 if (d.getElementById(id)) return;
+ 			 js = d.createElement(s); js.id = id;
+ 			 js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.9&appId=148079569074801";
+ 			 fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
 		  
 		  
 			// 로그인이 성공한 다음에는 간단한 그래프API를 호출한다. 
@@ -95,6 +99,44 @@
 	 		}
 
 	</script>
+	<!-- 카카오톡 시작 -->
+<script type='text/javascript'>
+    Kakao.init('2c01299435b34c747838e7271ed23461');
+    function loginWithKakao() {
+		Kakao.Auth.login({
+			throughTalk : false,
+			success: function(authObj) {
+				/* alert(JSON.stringify(authObj)); */
+		        Kakao.API.request({
+		          url: '/v1/user/me',
+		          success: function(res) {
+		            /* alert(JSON.stringify(res)); */
+		          },
+		          fail: function(error) {
+		            alert(JSON.stringify(error));
+		          }
+		        });
+		         if(authObj){
+	      			 location.href='/FairMusic/view.do?leftpath=Side_Left.jsp&viewpath=../content.jsp&rightpath=Side_Right.jsp';
+	    		}
+		      },
+		      fail: function(err) {
+		        alert(JSON.stringify(err));
+		      }
+		    });
+		};
+	function logoutWithKakao() {
+		Kakao.Auth.logout(function(e){
+    		if(e){
+      			 location.href='login-no-sidebar.jsp';
+    		}
+    	});
+	};
+	function afterloginfacebook(){
+		/* alert("login facebook?"); */
+		location.href='/FairMusic/view.do?leftpath=Side_Left.jsp&viewpath=../content.jsp&rightpath=Side_Right.jsp';
+	};
+</script>
 </head>
 <body class="no-sidebar">
       <div id="page-wrapper">
@@ -114,7 +156,7 @@
             </div>
 
          <!-- Footer -->
-            <div id="promo-wrapper">
+            <div id="footer-wrapper">
                <div id="footer" class="container">
                   
                   <div class="row">
@@ -122,15 +164,73 @@
                         <form method="post" action="/FairMusic/login.do">
                            <div class="row 50%">
                               <div class="12u">
-                                 <input name="email" placeholder="아이디" type="text"  id="email"/>
+                                 <input name="email" placeholder="아이디" type="text"  id="email" style="color: black;"/>
                               </div>
                               <div class="12u">
-                                 <input name="pass" placeholder="비밀번호" type="password" id="pass"/>
+                                 <input name="pass" placeholder="비밀번호" type="password" id="pass" style="color: black;"/>
                               </div>
+                              
+                              <!-- facebook########################### -->
 								<div class="fb-login-button" data-max-rows="1" data-size="large"
 									data-button-type="continue_with" data-show-faces="false"
-									data-auto-logout-link="true" data-use-continue-as="false"></div>
-
+									data-auto-logout-link="true" data-use-continue-as="false" data-scope="public_profile,email" onlogin="afterloginfacebook();"></div>
+								<!-- kakao########################### -->
+								<div>
+								<a id="custom-login-btn" href="javascript:loginWithKakao()">
+										<img
+										src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg"
+										width="260" />
+									</a>
+								</div>	
+								<div>
+									<a href="javascript:logoutWithKakao()">kakao logout</a>
+								</div>
+								
+								<!-- google########################### -->
+								<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+								<script>
+								      function onSignIn(googleUser) {
+								    	var login="";
+								        // Useful data for your client-side scripts:
+								        var profile = googleUser.getBasicProfile();
+								        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+								        console.log('Full Name: ' + profile.getName());
+								        console.log('Given Name: ' + profile.getGivenName());
+								        console.log('Family Name: ' + profile.getFamilyName());
+								        console.log("Image URL: " + profile.getImageUrl());
+								        console.log("Email: " + profile.getEmail());
+									 	name = profile.getGivenName();
+								        Email = profile.getEmail();
+								        id = profile.getId();
+								        if(name!=null && Email!=null && id!=null){
+								        	loginUser_google = "success";
+								        }else{
+								        	loginUser_google = null;
+								        }
+								         
+								   		  /*  document.getElementById('ID').innerHTML = 
+												'Thanks for logging in, ' + profile.getId() + '!'; 
+											document.getElementById('Full Name').innerHTML = 
+												'name, ' + profile.getName() + '!'; 
+											document.getElementById('Email').innerHTML = 
+												'yourEmailID, ' + profile.getEmail() + '!'; 
+								        // The ID token you need to pass to your backend:
+								        var id_token = googleUser.getAuthResponse().id_token;
+								        console.log("ID Token: " + id_token); */
+								        location.href="/FairMusic/login_google.do?loginUser_google="+loginUser_google;
+								      };
+								      function signOut() {
+								  	    var auth2 = gapi.auth2.getAuthInstance();
+								  	    auth2.signOut().then(function () {
+								  	      console.log('User signed out.');
+								  	    });
+								  	  };
+								    </script>
+								    
+								 	 <a href="#" onclick="signOut();">Sign out</a>
+								 <!-- google########################### -->
+	
+	
 								<div id="name"></div>
 								<br />
 								<div id="id"></div>
@@ -142,18 +242,17 @@
                               </div>
                               <div class="3u 12u">
                                  <input type="button" value="아이디 찾기" data-toggle="modal"
-                  data-target="#findidModal"/>
+                  data-target="#findidModal" />
                               </div>
                               <div class="3u 12u">
                                  <input type="button" value="비밀번호 찾기" data-toggle="modal"
-                  data-target="#findpassModal"/>
+                  data-target="#findpassModal" />
                               </div>
                               <div class="3u 12u">
-                                 <a href="regist-no-sidebar.jsp"><input type="button" value="회원가입" /></a>
+                                 <input type="button" value="회원가입" onclick="location.href='regist-no-sidebar.jsp'"/>
                               </div>
                               <div class="3u 12u">
-                                 <a href="/FairMusic/view.do?leftpath=Side_Left.jsp&viewpath=../content.jsp&rightpath=Side_Right.jsp">
-                                 <input type="button" value="돌아가기" /></a>
+                                 <input type="button" value="돌아가기" onclick="location.href='/FairMusic/view.do?leftpath=Side_Left.jsp&viewpath=../content.jsp&rightpath=Side_Right.jsp'"/>
                               </div>
                               
                               <!-- 로봇검증  -->

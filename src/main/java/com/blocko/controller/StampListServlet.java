@@ -56,6 +56,8 @@ public class StampListServlet extends HttpServlet {
 		} catch (CoinStackException e) {
 			
 			e.printStackTrace();
+		}finally{
+			coinstack.close();
 		}
 
 		request.setAttribute("MusicHash", MusicHash);
