@@ -3,49 +3,72 @@ package com.blocko.dto;
 import java.util.Date;
 
 public class MusicStampDTO {
-	String music;
-	String user;
-	Date Timestamp;
+	String id;
+	String musicName;
 	String musicHash;
+	String stampId;
+	String txId;
+	Date Timestamp;
 	
 	public MusicStampDTO(){}
-	public MusicStampDTO(String music, String user, Date timestamp,
-			String musicHash) {
+
+	public MusicStampDTO(String id, String musicName, String musicHash,
+			String stampId, String txId, Date timestamp) {
 		super();
-		this.music = music;
-		this.user = user;
-		Timestamp = timestamp;
+		this.id = id;
+		this.musicName = musicName;
 		this.musicHash = musicHash;
-	}
-	@Override
-	public String toString() {
-		return "MusicStampDTO [music=" + music + ", user=" + user
-				+ ", Timestamp=" + Timestamp + ", musicHash=" + musicHash + "]";
-	}
-	public String getMusic() {
-		return music;
-	}
-	public void setMusic(String music) {
-		this.music = music;
-	}
-	public String getUser() {
-		return user;
-	}
-	public void setUser(String user) {
-		this.user = user;
-	}
-	public Date getTimestamp() {
-		return Timestamp;
-	}
-	public void setTimestamp(Date timestamp) {
+		this.stampId = stampId;
+		this.txId = txId;
 		Timestamp = timestamp;
 	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getMusicName() {
+		return musicName;
+	}
+
+	public void setMusicName(String musicName) {
+		this.musicName = musicName;
+	}
+
 	public String getMusicHash() {
 		return musicHash;
 	}
+
 	public void setMusicHash(String musicHash) {
 		this.musicHash = musicHash;
 	}
-	
+
+	public String getStampId() {
+		return stampId;
+	}
+
+	public void setStampId(String stampId) {
+		this.stampId = stampId;
+	}
+
+	public String getTxId() {
+		return txId;
+	}
+
+	public void setTxId(String txId) {
+		this.txId = txId;
+	}
+
+	public Date getTimestamp() {
+		return Timestamp;
+	}
+
+	public void setTimestamp(Date timestamp) {
+		Timestamp = timestamp;
+	}
 	
 }

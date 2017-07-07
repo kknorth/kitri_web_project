@@ -39,7 +39,10 @@
                    				<div class="12u">
                               ${MusicHash }<br/>
                               ${stampId}
-                             
+                              ${txId}
+                              ${Confirmations}
+                              ${Timestamp}
+                  
                               </div>
                               <div class="2u 12u" align="right" style ="color:red; float:right;">
                                  <ul class="actions">

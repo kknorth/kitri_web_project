@@ -149,10 +149,10 @@
                         </div>
 
                         <div class="12u">
-                           <input name="artist_pass" placeholder="비밀번호" type="password" id = "artist_pass" required="required"/>
+                           <input name="artist_pass" placeholder="비밀번호" type="password" id = "artist_pass" minlength="9" required="required"/>
                         </div>
                         <div class="12u">
-                           <input name="passverify" placeholder="비밀번호 확인" type="password" id="artist_pass2" required="required"/>
+                           <input name="passverify" placeholder="비밀번호 확인" type="password" id="artist_pass2" minlength="9" required="required"/>
                         </div>
                         <div id="artist_pass_check" style= "color: red"></div>
                         <div class="12u">

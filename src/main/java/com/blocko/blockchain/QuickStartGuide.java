@@ -130,14 +130,16 @@ public class QuickStartGuide {
 		// create a target address to send
 		
 		//String toPrivateKeyWIF = ECKey.createNewPrivateKey();
-		String toPrivateKeyWIF = "KwHvqxng9gUDyDLxY4rnyMPsUiuj8ozrP9y4QHPjP8X3ApjjSW4U"; //프라이빗키
-		String toAddress = ECKey.deriveAddress(toPrivateKeyWIF);
+		/*String toPrivateKeyWIF = "KwHvqxng9gUDyDLxY4rnyMPsUiuj8ozrP9y4QHPjP8X3ApjjSW4U"; //프라이빗키
+		String toAddress = ECKey.deriveAddress(toPrivateKeyWIF);*/
 
 		// create a transaction 
 		
 		//***********************트랜잭션 결제********************************
-		/*long amount = io.blocko.coinstack.Math.convertToSatoshi("0.0002");
-		long fee = io.blocko.coinstack.Math.convertToSatoshi("0.0001");*/
+		long amount = io.blocko.coinstack.Math.convertToSatoshi("0");
+		long fee = io.blocko.coinstack.Math.convertToSatoshi("0");
+
+		// sign the transaction using the private key
 		
 		//*****************************Data 트랜잭션*****************************
 		//비트코인을 전송하는 대신 OP_RETURN 이라는 output script를 사용하여 트랜잭션에 데이터를 저장 가능!!!!!!!!!
@@ -146,12 +148,15 @@ public class QuickStartGuide {
 		TransactionBuilder builder = new TransactionBuilder();
 		builder.allowDustyOutput(true);
 		builder.setData("DATA_AT_OP_RETURN 여기다 mp3파일을 넣어는게 맞을까?".getBytes());
+		
+		builder.addOutput("18nUwPjvaKDABspWzNArysJqw4DTWTBgdo", amount);
+		builder.setFee(fee);
 		/*builder.addOutput(toAddress, amount);
 		builder.setFee(fee);
 		 */
 		// sign the transaction using the private key
-		String rawSignedTx = coinstack.createSignedTransaction(builder, "KwHvqxng9gUDyDLxY4rnyMPsUiuj8ozrP9y4QHPjP8X3ApjjSW4U"); //프라이빗키
-		System.out.println(rawSignedTx);
+		String rawSignedTx = coinstack.createSignedTransaction(builder, "L3pJk9yxqVtxf7Kcss6p8e7h9mzvgK8A5Uu6TirpSh53KGniybWf"); //프라이빗키
+		System.out.println(rawSignedTx);		
 		
 		// send the signed transaction
 		coinstack.sendTransaction(rawSignedTx);

@@ -1,14 +1,9 @@
 package com.blocko.controller;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import io.blocko.apache.commons.codec.binary.Hex;
+
 import io.blocko.coinstack.CoinStackClient;
 import io.blocko.coinstack.ECKey;
-import io.blocko.coinstack.Math;
 import io.blocko.coinstack.exception.CoinStackException;
-import io.blocko.coinstack.exception.MalformedInputException;
-import io.blocko.coinstack.model.BlockchainStatus;
 
 import java.io.IOException;
 
@@ -19,18 +14,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.junit.Test;
-
 import com.blocko.api.API;
+import com.blocko.dto.BitcoinAdressDTO;
+import com.blocko.service.BlockoService;
+import com.blocko.service.BlockoServiceImpl;
 
 
- @WebServlet(name = "bitcoin", urlPatterns = { "/bitcoin" })
-public class BitcoinServlet extends HttpServlet {
+
+ @WebServlet(name = "bitcoinAddr", urlPatterns = { "/bitcoinaddr" })
+public class BitcoinAdressInsert extends HttpServlet {
 	CoinStackClient coinstack = API.createNewCoinStackClient();
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("euc-kr");
 		response.setContentType("text/html;charset=euc-kr");
-		
+		String id= null;
 		try {
 			String newPrivateKey = PrivateKey();
 			String MusicAddress = MusicAddress();
@@ -40,12 +37,18 @@ public class BitcoinServlet extends HttpServlet {
 			
 			request.setAttribute("MusicAddress", MusicAddress);
 			request.setAttribute("balance", balance);
+			BitcoinAdressDTO bitaddr = new BitcoinAdressDTO(id, MusicAddress, newPrivateKey);
+			BlockoService service = new BlockoServiceImpl();
+			int result = service.bitcoinAdressInsert(bitaddr);
+			
 		} catch (CoinStackException e) {
 			e.printStackTrace();
+		}finally{
+			coinstack.close();
 		}
 		
 		RequestDispatcher rd =
-				request.getRequestDispatcher("/OpenAsset/OpenAsset.jsp");
+				request.getRequestDispatcher("/bitcoinAddress/bitcoinAddress.jsp");
 		rd.forward(request, response);
 		
 	}

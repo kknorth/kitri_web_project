@@ -1,6 +1,5 @@
 package com.blocko.controller;
 
-import static org.junit.Assert.assertNotNull;
 import io.blocko.bitcoinj.core.Sha256Hash;
 import io.blocko.bitcoinj.core.Utils;
 import io.blocko.coinstack.CoinStackClient;
@@ -9,6 +8,7 @@ import io.blocko.coinstack.model.Stamp;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
@@ -19,26 +19,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.blocko.api.API;
+import com.blocko.dto.BitcoinAdressDTO;
+import com.blocko.dto.MusicStampDTO;
+import com.blocko.service.BlockoService;
+import com.blocko.service.BlockoServiceImpl;
 
 @WebServlet(name = "stamplist", urlPatterns = { "/stamplist.do" })
-public class StampListServlet extends HttpServlet {
+public class StampSelect extends HttpServlet {
 	CoinStackClient coinstack = API.createNewCoinStackClient();
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("euc-kr");
 		response.setContentType("text/html;charset=euc-kr");
-		
-		String music = "efefef"; // mp3데이터값 가져오니라
-		byte[] data = music.getBytes();
-		byte[] hash = Sha256Hash.create(data).getBytes();
-		String MusicHash = Utils.HEX.encode(hash);
-		System.out.println("음악 해쉬값: "+MusicHash);
-		
+		//최종 업로드 버튼 리스트 페이지로 리다이렉트 된다 그리고 리스트를 누르게되면 블록체인 정보가 출력
+		String id= null;
 		try {
-			String stampId = coinstack.stampDocument(MusicHash);
-			System.out.println("음악이 스탬프된 값 : "+stampId);
-			request.setAttribute("stampId", stampId);
+			String musicName ="";
+			Date timestamp = null;
+			String musicHash ="";
+			String stampId ="";
+			String txId ="";
+			BlockoService service = new BlockoServiceImpl();
+			MusicStampDTO musicstamp = service.StampSelect(id, musicHash);
+			MusicStampDTO stamplist = new MusicStampDTO(id, musicName, musicHash, stampId, txId, timestamp);
 			
 			Stamp stamp = coinstack.getStamp("f706145581af043206600a9182357b59c57d37dcf232d44c276f8ce22016c4a1-0");
 			
@@ -47,20 +51,18 @@ public class StampListServlet extends HttpServlet {
 			System.out.println("Confirmations: "+stamp.getConfirmations());
 			System.out.println("Timestamp: "+stamp.getTimestamp());
 			
-			
 			Date date = new Date();
 			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG);
 			
 			String formattedDate = dateFormat.format(date);
 			System.out.println("Confirmations2 :"+formattedDate);
+			
 		} catch (CoinStackException e) {
 			
 			e.printStackTrace();
 		}finally{
 			coinstack.close();
 		}
-
-		request.setAttribute("MusicHash", MusicHash);
 
 		RequestDispatcher rd =
 				request.getRequestDispatcher("/MusicUpload/musicstamp.jsp");
