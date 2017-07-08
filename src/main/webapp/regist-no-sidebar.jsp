@@ -222,7 +222,7 @@
 			
         </div>
         <div class="modal-footer">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">확인</button>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">검증완료</button>
         </div>
       </div>
       </div>
