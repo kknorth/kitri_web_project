@@ -31,7 +31,7 @@ public class StampInsert extends HttpServlet {
 		request.setCharacterEncoding("euc-kr");
 		response.setContentType("text/html;charset=euc-kr");
 		//최종업로드 누를때 인설트되고 결과값 한번  모달에 띄워준다. 그리고 결과 페이지에는 음원 리스트 출력 후 클릭시 StampSelect 서블릿으로 블록체인 데이터 가져오기
-		String id= "woo";
+		String id= "";
 		String musicName = request.getParameter("musicName"); // mp3데이터값 가져오니라
 		byte[] data = musicName.getBytes();
 		byte[] hash = Sha256Hash.create(data).getBytes();

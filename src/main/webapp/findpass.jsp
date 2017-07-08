@@ -24,6 +24,14 @@
   <div class="col-lg-12">
     <button type="button" class="btn btn-lg btn-default">ㄱㄱㄱ</button>
   &nbsp;</div>
+  
+   존재하는 이메일인지 select
+ if존재하면 그 이메일로 이메일 검증할때 쓰는 코드 보내
+ 코드는 비밀번호 update문으로 수정 -db
+ 
+ 비밀번호는 인증번호처럼 임시비밀번호를 전송해서 발송 후 id값 파라미터로 받고 비밀번호 입력시 update문 
+ 
+ 
 </div>
 </body>
 </body>
