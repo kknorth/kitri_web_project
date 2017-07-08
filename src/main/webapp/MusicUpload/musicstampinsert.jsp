@@ -33,15 +33,20 @@
                   
                   <div class="row">
                      <section class="12u">
-                        <form method="post" name="authenform" action="/FairMusic/stamplist.do">
+                        <form method="post" name="authenform" action="/FairMusic/stampinsert">
                            <div class="row 50%">
-                          
+                          		<input type="text" name ="musicName">
                    				<div class="12u">
-                              ${MusicHash }<br/>
-                              ${stampId}
-                              ${txId}
-                              ${Confirmations}
-                              ${Timestamp}
+                              음악이 해쉬된 값 : ${MusicHash }<br/>
+               	해쉬된 음악 블록체인 삽입될 ID:  ${stampId}<br/>
+
+                             <%--  
+                            
+                             ${Confirmations}
+                              ${Timestamp} --%>
+                               ${msg}<br/>
+      
+              
                   
                               </div>
                               <div class="2u 12u" align="right" style ="color:red; float:right;">

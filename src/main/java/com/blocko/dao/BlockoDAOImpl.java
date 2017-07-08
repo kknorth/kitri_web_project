@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.blocko.dto.BitcoinAdressDTO;
 import com.blocko.dto.MusicStampDTO;
@@ -28,10 +29,9 @@ public class BlockoDAOImpl implements BlockoDAO {
 			ptmt.setString(2, stamp.getMusicName());
 			ptmt.setString(3, stamp.getMusicHash());
 			ptmt.setString(4, stamp.getStampId());
-			ptmt.setString(5, stamp.getTxId());
-			ptmt.setDate(6,(java.sql.Date)stamp.getTimestamp());
+			//ptmt.setString(5, stamp.getTxId());
+			//ptmt.setString(6, stamp.getTimestamp());
 			result = ptmt.executeUpdate();
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally{
@@ -51,7 +51,6 @@ public class BlockoDAOImpl implements BlockoDAO {
 			ptmt.setString(1, bitcoinAdress.getId());
 			ptmt.setString(2, bitcoinAdress.getBitcoinAdress());
 			ptmt.setString(3, bitcoinAdress.getPrivatekey());
-			
 			result = ptmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -87,7 +86,7 @@ public class BlockoDAOImpl implements BlockoDAO {
 		}
 
 	@Override
-	public MusicStampDTO StampSelect(String id, String MusicHash) {
+	public MusicStampDTO StampSelect(String id, String MusicName) {
 		Connection con = null;
 		PreparedStatement ptmt = null;
 		ResultSet rs = null;
@@ -96,11 +95,11 @@ public class BlockoDAOImpl implements BlockoDAO {
 			con = getConnection();
 			ptmt = con.prepareStatement(STAMP_SELECT);
 			ptmt.setString(1,id);
-			ptmt.setString(2,MusicHash);
+			ptmt.setString(2,MusicName);
 			rs = ptmt.executeQuery();
 			if(rs.next()){
 				Stamp =new MusicStampDTO(rs.getString(1),rs.getString(2),
-						rs.getString(3),rs.getString(4),rs.getString(5),rs.getDate(6));
+						rs.getString(3),rs.getString(4));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

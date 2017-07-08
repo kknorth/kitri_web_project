@@ -24,7 +24,7 @@ import com.blocko.dto.MusicStampDTO;
 import com.blocko.service.BlockoService;
 import com.blocko.service.BlockoServiceImpl;
 
-@WebServlet(name = "stamplist", urlPatterns = { "/stamplist.do" })
+@WebServlet(name = "stampselect", urlPatterns = { "/stampselect" })
 public class StampSelect extends HttpServlet {
 	CoinStackClient coinstack = API.createNewCoinStackClient();
 	@Override
@@ -33,30 +33,31 @@ public class StampSelect extends HttpServlet {
 		request.setCharacterEncoding("euc-kr");
 		response.setContentType("text/html;charset=euc-kr");
 		//최종 업로드 버튼 리스트 페이지로 리다이렉트 된다 그리고 리스트를 누르게되면 블록체인 정보가 출력
-		String id= null;
+		//블록체인에 승인될 시간이 있기 때문에 timestamp가 null값이 뜰 수 있다.
+		String id= "woo";
 		try {
-			String musicName ="";
-			Date timestamp = null;
-			String musicHash ="";
-			String stampId ="";
-			String txId ="";
+			String musicName =request.getParameter("musicName");
+
 			BlockoService service = new BlockoServiceImpl();
-			MusicStampDTO musicstamp = service.StampSelect(id, musicHash);
-			MusicStampDTO stamplist = new MusicStampDTO(id, musicName, musicHash, stampId, txId, timestamp);
+			MusicStampDTO musicstamp = service.StampSelect(id, musicName);
 			
-			Stamp stamp = coinstack.getStamp("f706145581af043206600a9182357b59c57d37dcf232d44c276f8ce22016c4a1-0");
-			
-			System.out.println("블록체인 트랜잭션 값: "+stamp.getTxId());
-			System.out.println("OutputIndex: "+stamp.getOutputIndex());
-			System.out.println("Confirmations: "+stamp.getConfirmations());
-			System.out.println("Timestamp: "+stamp.getTimestamp());
-			
-			Date date = new Date();
+			Stamp stamp = coinstack.getStamp(musicstamp.getStampId());
+
 			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG);
+			String msg="";
 			
-			String formattedDate = dateFormat.format(date);
-			System.out.println("Confirmations2 :"+formattedDate);
+			try {
+				String Timestamp = dateFormat.format(stamp.getTimestamp());
+				request.setAttribute("Timestamp", Timestamp);
+			} catch (NullPointerException e) {
+				msg = "블록체인 승인중";
+			}
 			
+			request.setAttribute("musicName",musicName);
+			request.setAttribute("musicHash", musicstamp.getMusicHash());
+			request.setAttribute("txId", stamp.getTxId());
+			request.setAttribute("Confirmations", stamp.getConfirmations());
+			request.setAttribute("msg", msg);
 		} catch (CoinStackException e) {
 			
 			e.printStackTrace();
@@ -65,7 +66,7 @@ public class StampSelect extends HttpServlet {
 		}
 
 		RequestDispatcher rd =
-				request.getRequestDispatcher("/MusicUpload/musicstamp.jsp");
+				request.getRequestDispatcher("/MusicUpload/musicstampselect.jsp");
 		rd.forward(request, response);
 	}
 }

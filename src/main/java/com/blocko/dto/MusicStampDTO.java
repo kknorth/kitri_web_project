@@ -7,20 +7,16 @@ public class MusicStampDTO {
 	String musicName;
 	String musicHash;
 	String stampId;
-	String txId;
-	Date Timestamp;
 	
 	public MusicStampDTO(){}
 
 	public MusicStampDTO(String id, String musicName, String musicHash,
-			String stampId, String txId, Date timestamp) {
+			String stampId) {
 		super();
 		this.id = id;
 		this.musicName = musicName;
 		this.musicHash = musicHash;
 		this.stampId = stampId;
-		this.txId = txId;
-		Timestamp = timestamp;
 	}
 
 	public String getId() {
@@ -54,21 +50,6 @@ public class MusicStampDTO {
 	public void setStampId(String stampId) {
 		this.stampId = stampId;
 	}
-
-	public String getTxId() {
-		return txId;
-	}
-
-	public void setTxId(String txId) {
-		this.txId = txId;
-	}
-
-	public Date getTimestamp() {
-		return Timestamp;
-	}
-
-	public void setTimestamp(Date timestamp) {
-		Timestamp = timestamp;
-	}
+	
 	
 }

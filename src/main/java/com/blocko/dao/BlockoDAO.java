@@ -7,7 +7,7 @@ public interface BlockoDAO {
 	int insert(MusicStampDTO stamp);
 	int bitcoinAdressInsert(BitcoinAdressDTO bitcoinAdress);
 	ArrayList<BitcoinAdressDTO> bitcoinAdressSelect(String id);
-	MusicStampDTO StampSelect(String id, String MusicHash);	
+	MusicStampDTO StampSelect(String id, String MusicName);	
 }
 
 

@@ -1,5 +1,7 @@
 package com.fairmusic.album.controller;
 
+import io.blocko.apache.commons.codec.binary.Hex;
+
 import java.io.IOException;
 import java.util.Random;
 
@@ -27,7 +29,6 @@ public class albumServlet extends HttpServlet {
 		String randomcode = (r.nextInt(98)+1) + getRandomString(2)+ (r.nextInt(98)+1) + getRandomString(2)+ (r.nextInt(98)+1) + getRandomString(2)+(r.nextInt(98)+1) + getRandomString(2)+ (r.nextInt(98)+1) + getRandomString(2);
 		System.out.println(randomcode);
 
-		
 		albumDTO album = new albumDTO(randomcode, request.getParameter("album_title"), request.getParameter("artist_code"), request.getParameter("album_image"), request.getParameter("album_date"), request.getParameter("album_dc"));
 
 		 

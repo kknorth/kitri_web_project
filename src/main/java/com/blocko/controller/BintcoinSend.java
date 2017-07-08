@@ -27,11 +27,11 @@ public class BintcoinSend extends HttpServlet {
 		request.setCharacterEncoding("euc-kr");
 		response.setContentType("text/html;charset=euc-kr");
 		
-		String bitcoin = request.getParameter("bitcoin");
+		String reqbitcoin = request.getParameter("bitcoin");
 		String reqfee = request.getParameter("fee");
 		String toAddress = request.getParameter("toAddress");
 		
-		long amount = io.blocko.coinstack.Math.convertToSatoshi(bitcoin); 
+		long amount = io.blocko.coinstack.Math.convertToSatoshi(reqbitcoin); 
 		long fee = io.blocko.coinstack.Math.convertToSatoshi(reqfee);
 
 		TransactionBuilder builder = new TransactionBuilder();
@@ -43,9 +43,20 @@ public class BintcoinSend extends HttpServlet {
 			builder.setFee(fee);
 			// sign the transaction using the private key
 			BlockoService service = new BlockoServiceImpl();
-			ArrayList<BitcoinAdressDTO> deptlist = service.bitcoinAdressSelect(id);
+			ArrayList<BitcoinAdressDTO> btcaddrlist = service.bitcoinAdressSelect(id);
+			request.setAttribute("btcaddrlist", btcaddrlist); //어드레스 리스트에서 내가 보낼 주소와 프라이빗키를 보여준뒤 클릭
 			
-			String rawSignedTx = coinstack.createSignedTransaction(builder, "상대방에게 보낼때 내가보냈다는 증명 : 나의 프라이빗 키로 서명을 해야함");
+			String bitcoinAdress = "";
+			String privatekey = "";
+			
+			BitcoinAdressDTO btcaddr = new BitcoinAdressDTO(id, bitcoinAdress, privatekey);
+
+			for (int i = 0; i < btcaddrlist.size(); i++) {
+				btcaddr = btcaddrlist.get(i);
+			}
+			
+			String privateKey = request.getParameter("privatekey");
+			String rawSignedTx = coinstack.createSignedTransaction(builder, privateKey);
 			System.out.println(rawSignedTx);
 			// transaction lookup
 			String transactionId = TransactionUtil.getTransactionHash(rawSignedTx);
@@ -60,6 +71,5 @@ public class BintcoinSend extends HttpServlet {
 		RequestDispatcher rd =
 				request.getRequestDispatcher("/bitcoinAddress/bitcoinSend.jsp");
 		rd.forward(request, response);
-
 	}
 }

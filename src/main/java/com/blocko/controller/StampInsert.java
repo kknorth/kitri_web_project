@@ -22,7 +22,7 @@ import com.blocko.dto.MusicStampDTO;
 import com.blocko.service.BlockoService;
 import com.blocko.service.BlockoServiceImpl;
 
-@WebServlet(name = "stamplist", urlPatterns = { "/stamplist.do" })
+@WebServlet(name = "stampinsert", urlPatterns = { "/stampinsert" })
 public class StampInsert extends HttpServlet {
 	CoinStackClient coinstack = API.createNewCoinStackClient();
 	@Override
@@ -31,8 +31,8 @@ public class StampInsert extends HttpServlet {
 		request.setCharacterEncoding("euc-kr");
 		response.setContentType("text/html;charset=euc-kr");
 		//최종업로드 누를때 인설트되고 결과값 한번  모달에 띄워준다. 그리고 결과 페이지에는 음원 리스트 출력 후 클릭시 StampSelect 서블릿으로 블록체인 데이터 가져오기
-		String id= null;
-		String musicName = "efefef"; // mp3데이터값 가져오니라
+		String id= "woo";
+		String musicName = request.getParameter("musicName"); // mp3데이터값 가져오니라
 		byte[] data = musicName.getBytes();
 		byte[] hash = Sha256Hash.create(data).getBytes();
 		String MusicHash = Utils.HEX.encode(hash);
@@ -42,20 +42,11 @@ public class StampInsert extends HttpServlet {
 			String stampId = coinstack.stampDocument(MusicHash);
 			System.out.println("음악이 스탬프된 값 : "+stampId);
 			
-			Stamp stamp = coinstack.getStamp("f706145581af043206600a9182357b59c57d37dcf232d44c276f8ce22016c4a1-0");
+			//Stamp stamp = coinstack.getStamp(stampId); //"f706145581af043206600a9182357b59c57d37dcf232d44c276f8ce22016c4a1-0"
 			
-			System.out.println("블록체인 트랜잭션 값: "+stamp.getTxId());
-			System.out.println("OutputIndex: "+stamp.getOutputIndex());
-			System.out.println("Confirmations: "+stamp.getConfirmations());
-			System.out.println("Timestamp: "+stamp.getTimestamp());
+			//System.out.println("블록체인 트랜잭션 값: "+stamp.getTxId());
 			
-			/*Date date = new Date();
-			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG);
-			
-			String formattedDate = dateFormat.format(date);
-			System.out.println("Confirmations2 :"+formattedDate);*/
-			
-			MusicStampDTO stampDTO = new MusicStampDTO(id, musicName, MusicHash, stampId, stamp.getTxId(), stamp.getTimestamp());
+			MusicStampDTO stampDTO = new MusicStampDTO(id, musicName, MusicHash, stampId);
 			BlockoService service = new BlockoServiceImpl();		
 			int result = service.insert(stampDTO);
 			
@@ -66,20 +57,16 @@ public class StampInsert extends HttpServlet {
 				msg = "블록체인 삽입실패";
 			}
 			request.setAttribute("msg", msg);
-			request.setAttribute("result", result);
-			
 			request.setAttribute("MusicHash", MusicHash);
 			request.setAttribute("stampId", stampId);
-			request.setAttribute("txId", stamp.getTxId());
-			request.setAttribute("Confirmations", stamp.getConfirmations());
-			request.setAttribute("Timestamp", stamp.getTimestamp());
+			//request.setAttribute("txId", stamp.getTxId());
 		} catch (CoinStackException e) {
 			e.printStackTrace();
 		}finally{
 			coinstack.close();
 		}
 		RequestDispatcher rd =
-				request.getRequestDispatcher("/MusicUpload/musicstamp.jsp");
+				request.getRequestDispatcher("/MusicUpload/musicstampinsert.jsp");
 		rd.forward(request, response);
 	}
 }

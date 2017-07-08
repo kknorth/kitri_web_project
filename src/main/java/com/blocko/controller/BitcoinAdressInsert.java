@@ -33,6 +33,7 @@ public class BitcoinAdressInsert extends HttpServlet {
 			String MusicAddress = MusicAddress();
 			long balance = coinstack.getBalance(MusicAddress);
 			System.out.println("create privateKey: "+newPrivateKey);
+			System.out.println("MusicAddress: "+MusicAddress);
 			System.out.println("balance: " + balance);
 			
 			request.setAttribute("MusicAddress", MusicAddress);

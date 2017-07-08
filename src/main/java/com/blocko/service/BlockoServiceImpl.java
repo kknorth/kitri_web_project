@@ -31,9 +31,9 @@ public class BlockoServiceImpl implements BlockoService{
 	}
 
 	@Override
-	public MusicStampDTO StampSelect(String id,String MusicHash) 	{
+	public MusicStampDTO StampSelect(String id,String MusicName) 	{
 		BlockoDAO dao = new BlockoDAOImpl();
-		MusicStampDTO MusicStamp = dao.StampSelect(id, MusicHash);
+		MusicStampDTO MusicStamp = dao.StampSelect(id, MusicName);
 		return MusicStamp;
 	}
 
