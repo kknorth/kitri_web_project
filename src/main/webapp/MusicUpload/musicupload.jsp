@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-
-   pageEncoding="EUC-KR"%>
+	pageEncoding="EUC-KR"%>
 
 <!DOCTYPE html>
 
@@ -11,181 +10,100 @@
 <title>Insert title here</title>
 
 <script
-
-   src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script
-
-   src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-<link href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.3.3/css/foundation.min.css" rel="stylesheet" />
+<link
+	href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.3.3/css/foundation.min.css"
+	rel="stylesheet" />
 
 
 
 <style type="text/css">
-
 #audio_fan_02.row.paddong {
-
-   padding-top: 1px;
-
+	padding-top: 1px;
 }
-
-
 
 #dropzone {
-
-   position: relative;
-
-   border: 10px dotted #ff7088;
-
-   border-radius: 20px;
-
-   color: #ff7088;
-
-   font: bold 24px/200px arial;
-
-   height: 300px;
-
-   margin: 30px auto;
-
-   text-align: center;
-
-   width: 300px;
-
+	position: relative;
+	border: 10px dotted #ff7088;
+	border-radius: 20px;
+	color: #ff7088;
+	font: bold 24px/200px arial;
+	height: 300px;
+	margin: 30px auto;
+	text-align: center;
+	width: 300px;
 }
-
-
 
 #dropzone.hover {
-
-   border: 10px solid #ffd0d1;
-
-   color: #ffd0d1;
-
+	border: 10px solid #ffd0d1;
+	color: #ffd0d1;
 }
-
-
 
 #dropzone.dropped {
-
-   background: #ffd0d1;
-
-   border: 10px solid #ff7088;
-
+	background: #ffd0d1;
+	border: 10px solid #ff7088;
 }
-
-
 
 #dropzone div {
-
-   position: absolute;
-
-   top: 0;
-
-   right: 0;
-
-   bottom: 0;
-
-   left: 0;
-
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
 }
-
-
 
 #dropzone img {
-
-   border-radius: 10px;
-
-   vertical-align: middle;
-
-   max-width: 95%;
-
-   max-height: 95%;
-
+	border-radius: 10px;
+	vertical-align: middle;
+	max-width: 95%;
+	max-height: 95%;
 }
-
-
 
 #dropzone [type="file"] {
-
-   cursor: pointer;
-
-   position: absolute;
-
-   opacity: 0;
-
-   top: 0;
-
-   right: 0;
-
-   bottom: 0;
-
-   left: 0;
-
+	cursor: pointer;
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
 }
-
-
 
 .real_audio_file {
-
-   position: relative;
-
-   left: 25%;
-
-   background: #ffeeee;
-
-   width: 500px;
-
-   height: 200px;
-
-   border: 4px dashed #ff7088;
-
+	position: relative;
+	left: 25%;
+	background: #ffeeee;
+	width: 500px;
+	height: 200px;
+	border: 4px dashed #ff7088;
 }
-
-
 
 .real_audio_file p {
-
-   width: 100%;
-
-   height: 100%;
-
-   text-align: center;
-
-   line-height: 170px;
-
-   color: #ff7088;
-
-   font-family: Arial;
-
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	line-height: 170px;
+	color: #ff7088;
+	font-family: Arial;
 }
-
-
 
 .real_audio_file input {
-
-   position: absolute;
-
-   margin: 0;
-
-   padding: 0;
-
-   width: 100%;
-
-   height: 100%;
-
-   outline: none;
-
-   opacity: 0;
-
-   padding: 0;
-
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	outline: none;
+	opacity: 0;
+	padding: 0;
 }
-
 </style>
 
 </head>
@@ -196,461 +114,466 @@
 
 
 
-   <form id="audioUploadForm" name="audioUploadForm" method="post"
+	<form id="audioUploadForm" name="audioUploadForm" method="post"
+		enctype="multipart/form-data" action="/FairMusic/audio.do">
 
-      enctype="multipart/form-data" action="/FairMusic/audio.do">
+		<div role="tabpanel">
 
-      <div role="tabpanel">
+			<ul class="nav nav-tabs" role="tablist">
 
-         <ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active"><a href="#audio_fan_01"
+					data-toggle="tab" role="tab" aria-controls="tab1">음원 기본정보</a></li>
 
-            <li role="presentation" class="active"><a href="#audio_fan_01"
+				<li role="presentation"><a href="#audio_fan_02"
+					data-toggle="tab" role="tab" aria-controls="tab2">수익 분배 설정</a></li>
 
-               data-toggle="tab" role="tab" aria-controls="tab1">음원 기본정보</a></li>
+				<li role="presentation"><a href="#audio_fan_03"
+					data-toggle="tab" role="tab" aria-controls="tab3">음원파일 업로드</a></li>
 
-            <li role="presentation"><a href="#audio_fan_02"
+				<li role="presentation"><a href="#audio_fan_04"
+					data-toggle="tab" role="tab" aria-controls="tab4">+뮤직비디오</a></li>
 
-               data-toggle="tab" role="tab" aria-controls="tab2">수익 분배 설정</a></li>
 
-            <li role="presentation"><a href="#audio_fan_03"
 
-               data-toggle="tab" role="tab" aria-controls="tab3">음원파일 업로드</a></li>
+			</ul>
 
-            <li role="presentation"><a href="#audio_fan_04"
+			<div id="tabContent1" class="tab-content">
 
-               data-toggle="tab" role="tab" aria-controls="tab4">+뮤직비디오</a></li>
+				<div role="tabpanel" class="tab-pane fade in active"
+					id="audio_fan_01">
 
+					<div class="row">
 
+						<div class="col-xs-4">
 
-         </ul>
+							<div id="dropzone">
 
-         <div id="tabContent1" class="tab-content">
+								<div>dropzone</div>
 
-            <div role="tabpanel" class="tab-pane fade in active"
+								<input type="file" accept="image/png, application/pdf"
+									id="image_file" name="image_file" />
 
-               id="audio_fan_01">
+							</div>
 
-               <div class="row">
+						</div>
 
-                  <div class="col-xs-4">
+						<div class="col-xs-8">
 
-                     <div id="dropzone">
+							<div class="row">
 
-                        <div>dropzone</div>
+								<div class="col-xs-2">
 
-                        <input type="file" accept="image/png, application/pdf" id = "image_file" name ="image_file"/>
+									<span class="label label-info">음원 명</span>
 
-                     </div>
+								</div>
 
-                  </div>
+								<div class="col-xs-10">
 
-                  <div class="col-xs-8">
+									<input type="text" name="audio_title" id="audio_title"
+										required="required">
 
-                     <div class="row">
+								</div>
 
-                        <div class="col-xs-2">
+								<div class="col-xs-2">
 
-                           <span class="label label-info">음원 명</span>
+									<span class="label label-info">장르</span>
 
-                        </div>
+								</div>
 
-                        <div class="col-xs-10">
+								<div class="col-xs-10">
 
-                           <input type="text" name="audio_title" id="audio_title"
+									<select name="audio_genre" id="audio_genre">
+									<option>장르1</option>
+									<option>발라드</option>
+									<option>어쩌구저쩌구</option>
+									<option>팝</option>
+									<option>락</option>
+									<option>앤</option>
+									<option>롤</option>
 
-                              required="required">
+									</select> &nbsp;
 
-                        </div>
+								</div>
 
-                        <div class="col-xs-2">
+								<div class="col-xs-2">
 
-                           <span class="label label-info">장르</span>
+									<span class="label label-info">앨범</span>
+									
+									
+								</div>
 
-                        </div>
+								<div class="col-xs-10">
 
-                        <div class="col-xs-10">
+									<select name="audio_album" id="audio_album">
 
-                           <select name="audio_genre" id="audio_genre">
+									</select> &nbsp;
 
-                           </select> &nbsp;
+								</div>
 
-                        </div>
+								<div class="col-xs-2">
 
-                        <div class="col-xs-2">
+									<span class="label label-info">소개</span>
 
-                           <span class="label label-info">앨범</span>
+								</div>
 
-                        </div>
+								<div class="col-xs-10">
 
-                        <div class="col-xs-10">
+									<textarea name="audio_detail" id="audio_detail"></textarea>
 
-                           <select name="audio_album" id="audio_album">
 
-                           </select> &nbsp;
 
-                        </div>
+								</div>
 
-                        <div class="col-xs-2">
+							</div>
 
-                           <span class="label label-info">소개</span>
+						</div>
 
-                        </div>
+					</div>
 
-                        <div class="col-xs-10">
 
-                           <textarea name="audio_detail" id="audio_detail"></textarea>
 
+				</div>
 
+				<div role="tabpanel" class="tab-pane fade" id="audio_fan_02">
 
-                        </div>
+					<div class="row">
 
-                     </div>
+						<div class="col-sm-12">
 
-                  </div>
+							<select class="form-control" id="ccl_check" name="ccl_check">
 
-               </div>
+								<option>무료</option>
 
-               
+								<option>기부-조성원에게-</option>
 
-            </div>
+								<option>상업적 이용 금지</option>
 
-            <div role="tabpanel" class="tab-pane fade" id="audio_fan_02">
+								<option>유료</option>
 
-               <div class="row">
+							</select>
 
-                  <div class="col-sm-12">
+							<div id="audio_price" hidden="true">
 
-                     <select class="form-control" id="ccl_check" name = "ccl_check">
+								<input type="number" value="0" id="audio_value"
+									name="audio_value">
 
-                        <option>무료</option>
+							</div>
 
-                        <option>기부-조성원에게-</option>
+						</div>
 
-                        <option>상업적 이용 금지</option>
+					</div>
 
-                        <option>유료</option>
+					<div class="row">
 
-                     </select>
+						<div class="col-sm-1"></div>
 
-                     <div id = "audio_price" hidden = "true">
 
-                        <input type = "number"  value = "0" id = "audio_value" name = "audio_value">
 
-                     </div>
+						<div class="col-sm-10">
 
-                  </div>
+							<div id="copy_money" hidden="true">
 
-               </div>
+								<div class="row">
 
-               <div class="row">
+									<div class="col-sm-6">
 
-                  <div class="col-sm-1"></div>
+										<span class="label label-primary">저작권자 명</span>
 
+									</div>
 
+									<div class="col-sm-3">
 
-                  <div class="col-sm-10">
+										<span class="label label-primary">수익 비율</span>
 
-                     <div id="copy_money" hidden = "true">
+									</div>
 
-                        <div class="row">
+									<div class="col-sm-3">
 
-                           <div class="col-sm-6">
+										<span class="label label-primary">계좌 등록</span>
 
-                              <span class="label label-primary">저작권자 명</span>
+									</div>
 
-                           </div>
+								</div>
 
-                           <div class="col-sm-3">
+								<div class="row" class="cp1">
 
-                              <span class="label label-primary">수익 비율</span>
+									<div class="col-sm-6">
 
-                           </div>
+										<input type="text" name="cp1name" id="cp1name">
 
-                           <div class="col-sm-3">
+									</div>
 
-                              <span class="label label-primary">계좌 등록</span>
+									<div class="col-sm-3">
 
-                           </div>
+										<input type="text" name="cp1rate" id="cp1rate">
 
-                        </div>
+									</div>
 
-                        <div class="row" class="cp1">
+									<div class="col-sm-3">
 
-                           <div class="col-sm-6">
+										<button type="button" class="btn btn-info">등록</button>
 
-                              <input type="text" name="cp1name" id="cp1name">
+									</div>
 
-                           </div>
+								</div>
 
-                           <div class="col-sm-3">
+								<div class="row" class="cp2">
 
-                              <input type="text" name="cp1rate" id="cp1rate">
+									<div class="col-sm-6">
 
-                           </div>
+										<input type="text" name="cp2name" id="cp2name">
 
-                           <div class="col-sm-3">
+									</div>
 
-                              <button type="button" class="btn btn-info">등록</button>
+									<div class="col-sm-3">
 
-                           </div>
+										<input type="text" name="cp2rate" id="cp2rate">
 
-                        </div>
+									</div>
 
-                        <div class="row" class="cp2">
+									<div class="col-sm-3">
 
-                           <div class="col-sm-6">
+										<button type="button" class="btn btn-info">등록</button>
 
-                              <input type="text" name="cp2name" id="cp2name">
+									</div>
 
-                           </div>
+								</div>
 
-                           <div class="col-sm-3">
+								<div class="row" class="cp3">
 
-                              <input type="text" name="cp2rate" id="cp2rate">
+									<div class="col-sm-6">
 
-                           </div>
+										<input type="text" name="cp3name" id="cp3name">
 
-                           <div class="col-sm-3">
+									</div>
 
-                              <button type="button" class="btn btn-info">등록</button>
+									<div class="col-sm-3">
 
-                           </div>
+										<input type="text" name="cp3rate" id="cp3rate">
 
-                        </div>
+									</div>
 
-                        <div class="row" class="cp3">
+									<div class="col-sm-3">
 
-                           <div class="col-sm-6">
+										<button type="button" class="btn btn-info">등록</button>
 
-                              <input type="text" name="cp3name" id="cp3name">
+									</div>
 
-                           </div>
+								</div>
 
-                           <div class="col-sm-3">
+								<div class="row" class="cp4">
 
-                              <input type="text" name="cp3rate" id="cp3rate">
+									<div class="col-sm-6">
 
-                           </div>
+										<input type="text" name="cp4name" id="cp4name">
 
-                           <div class="col-sm-3">
+									</div>
 
-                              <button type="button" class="btn btn-info">등록</button>
+									<div class="col-sm-3">
 
-                           </div>
+										<input type="text" name="cp4rate" id="cp4rate">
 
-                        </div>
+									</div>
 
-                        <div class="row" class="cp4">
+									<div class="col-sm-3">
 
-                           <div class="col-sm-6">
+										<button type="button" class="btn btn-info">등록</button>
 
-                              <input type="text" name="cp4name" id="cp4name">
+									</div>
 
-                           </div>
+								</div>
 
-                           <div class="col-sm-3">
+								<div class="row" class="cp5">
 
-                              <input type="text" name="cp4rate" id="cp4rate">
+									<div class="col-sm-6">
 
-                           </div>
+										<input type="text" name="cp5name" id="cp5name">
 
-                           <div class="col-sm-3">
+									</div>
 
-                              <button type="button" class="btn btn-info">등록</button>
+									<div class="col-sm-3">
 
-                           </div>
+										<input type="text" name="cp5rate" id="cp5rate">
 
-                        </div>
+									</div>
 
-                        <div class="row" class="cp5">
+									<div class="col-sm-3">
 
-                           <div class="col-sm-6">
+										<button type="button" class="btn btn-info">등록</button>
 
-                              <input type="text" name="cp5name" id="cp5name">
+									</div>
 
-                           </div>
+								</div>
 
-                           <div class="col-sm-3">
+								<div class="row" class="cp6">
 
-                              <input type="text" name="cp5rate" id="cp5rate">
+									<div class="col-sm-6">
 
-                           </div>
+										<input type="text" name="cp6name" id="cp6name">
 
-                           <div class="col-sm-3">
+									</div>
 
-                              <button type="button" class="btn btn-info">등록</button>
+									<div class="col-sm-3">
 
-                           </div>
+										<input type="text" name="cp6rate" id="cp6rate">
 
-                        </div>
+									</div>
 
-                        <div class="row" class="cp6">
+									<div class="col-sm-3">
 
-                           <div class="col-sm-6">
+										<button type="button" class="btn btn-info">등록</button>
 
-                              <input type="text" name="cp6name" id="cp6name">
+									</div>
 
-                           </div>
+								</div>
 
-                           <div class="col-sm-3">
+								<div class="row" class="cp7">
 
-                              <input type="text" name="cp6rate" id="cp6rate">
+									<div class="col-sm-6">
 
-                           </div>
+										<input type="text" name="cp7name" id="cp7name">
 
-                           <div class="col-sm-3">
+									</div>
 
-                              <button type="button" class="btn btn-info">등록</button>
+									<div class="col-sm-3">
 
-                           </div>
+										<input type="text" name="cp7rate" id="cp7rate">
 
-                        </div>
+									</div>
 
-                        <div class="row" class="cp7">
+									<div class="col-sm-3">
 
-                           <div class="col-sm-6">
+										<button type="button" class="btn btn-info">등록</button>
 
-                              <input type="text" name="cp7name" id="cp7name">
+									</div>
 
-                           </div>
+								</div>
 
-                           <div class="col-sm-3">
+							</div>
 
-                              <input type="text" name="cp7rate" id="cp7rate">
+							<div id="ccl_info" hidden="true">
 
-                           </div>
+								<div class="row">
 
-                           <div class="col-sm-3">
+									<div class="col-sm-6">
 
-                              <button type="button" class="btn btn-info">등록</button>
+										<span class="label label-primary">조심하세용~~~</span>
 
-                           </div>
+									</div>
 
-                        </div>
+								</div>
 
-                     </div>
+							</div>
 
-                     <div id="ccl_info" hidden = "true">
+						</div>
 
-                        <div class="row">
 
-                           <div class="col-sm-6">
 
-                              <span class="label label-primary">조심하세용~~~</span>
 
-                           </div>
 
-                        </div>
+						<div class="col-sm-1"></div>
 
-                     </div>
+					</div>
 
-                  </div>
+				</div>
 
 
 
+				<div role="tabpanel" class="tab-pane fade" id="audio_fan_03">
 
+					<div class="row">
 
-                  <div class="col-sm-1"></div>
 
-               </div>
 
-            </div>
+						<div class="col-xs-12">
 
+							<fieldset>
 
+								<legend>Audio File</legend>
 
-            <div role="tabpanel" class="tab-pane fade" id="audio_fan_03">
+								<div class="real_audio_file" id="real_audio_div"
+									name="real_audio_div">
 
-               <div class="row">
+									<input type="file" id="audio_file" name="audio_file">
 
+									<p>
 
+										Drag your <b>Audio</b> here! or click in this area.
 
-                  <div class="col-xs-12">
+									</p>
 
-                     <fieldset>
+								</div>
 
-                        <legend>Audio File</legend>
+							</fieldset>
 
-                        <div class="real_audio_file" id="real_audio_div" name = "real_audio_div">
+						</div>
 
-                           <input type="file" id = "audio_file" name = "audio_file">
+					</div>
 
-                           <p>
+					<div class="row">
 
-                              Drag your <b>Audio</b> here! or click in this area.
+						<div class="col-xs-12">
 
-                           </p>
+							<fieldset>
 
-                        </div>
+								<legend>설명</legend>
 
-                     </fieldset>
+								당신의 음원파일을 업로드하십시오.
 
-                  </div>
+							</fieldset>
 
-               </div>
+						</div>
 
-               <div class="row">
+					</div>
 
-                  <div class="col-xs-12">
+				</div>
 
-                     <fieldset>
+				<div role="tabpanel" class="tab-pane fade" id="audio_fan_04">
 
-                        <legend>설명</legend>
+					<div class="row">
 
-                        당신의 음원파일을 업로드하십시오.
+						<div class="col-xs-12">
 
-                     </fieldset>
+							<fieldset>
 
-                  </div>
 
-               </div>
 
-            </div>
+								<h1>Load An mp4 file</h1>
 
-            <div role="tabpanel" class="tab-pane fade" id="audio_fan_04">
+								<input type="file" id="the-video-file-field"
+									name="the-video-file-field">
 
-               <div class="row">
+								<div id="data-vid" class="large-8 columns">
 
-                  <div class="col-xs-12">
+									<!--video will be inserted here.-->
 
-                     <fieldset>
+								</div>
 
+								<h2 id="name-vid"></h2>
 
+								<p id="size-vid"></p>
 
-                              <h1>Load An mp4 file</h1>
+								<p id="type-vid"></p>
 
-                              <input type="file" id="the-video-file-field" name = "the-video-file-field">
 
-                                    <div id="data-vid" class="large-8 columns">
 
-                                    <!--video will be inserted here.-->
+							</fieldset>
 
-                                    </div>
+						</div>
 
-                                   <h2 id="name-vid"></h2>
+					</div>
 
-                                     <p id="size-vid"></p>
 
-                                     <p id="type-vid"></p>
 
+				</div>
 
+			</div>
 
-                     </fieldset>
+			<div></div>
 
-                  </div>
+		</div>
 
-               </div>
-
-
-
-            </div>
-
-         </div>
-
-         <div></div>
-
-      </div>
-
-   </form>
+	</form>
 
 
 

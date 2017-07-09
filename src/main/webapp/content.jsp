@@ -80,6 +80,8 @@
   <h2>Hear the latest posts from the people you¡¯re following:</h2>
 	
 	<div class="dropdown">
+	
+	
 	  <img src="/FairMusic/images/sing.PNG" alt="Trolltunga Norway" width="100" height="50">
 	  <div class="dropdown-content">
 	    <img src="/FairMusic/images/sing.PNG" alt="Trolltunga Norway" width="300" height="200">
@@ -90,7 +92,7 @@
          </div>
 	  </div>
 	</div>
-	
+	<jsp:include page="/widget/temp2widget.jsp"></jsp:include>
 	<!-- <div id="mainview">
 		<div class="row">
 			<div class="12u"><br/>
@@ -100,13 +102,13 @@
 			</div>
 		</div>
 	</div> -->
-	<div id="content">
+<!-- 	<div id="content">
         <div class="section1"> 
            <ul>
                <li><a href="MusicUpload/myFMpage.jsp"><img src="/FairMusic/images/M.PNG" class="img-thumbnail" alt="Cinque Terre" width="200" height="200"></a></li>
            </ul>
         </div>
-    </div>
+    </div> -->
     
 </div>
 	<div id="bottom"></div>

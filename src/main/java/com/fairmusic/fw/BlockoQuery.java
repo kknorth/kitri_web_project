@@ -5,7 +5,7 @@ public class BlockoQuery {
 	="insert into blockostamp values(?,?,?,?)";
 	
 	public static String STAMP_SELECT
-	="select * from blockostamp where id=? and musicname= ?";
+	="select * from blockostamp where artist_code=? and audio_code= ?";
 	
 	public static String BITCOINADDR_INSERT
 	="insert into bitcoinaddress values(?,?,?)";

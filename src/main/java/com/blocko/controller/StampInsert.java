@@ -1,39 +1,30 @@
 package com.blocko.controller;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import io.blocko.bitcoinj.core.Sha256Hash;
 import io.blocko.bitcoinj.core.Utils;
 import io.blocko.coinstack.CoinStackClient;
 import io.blocko.coinstack.exception.CoinStackException;
 import io.blocko.coinstack.model.Stamp;
 
-import java.io.IOException;
-import java.text.DateFormat;
-import java.util.Date;
-
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.blocko.api.API;
 import com.blocko.dto.MusicStampDTO;
 import com.blocko.service.BlockoService;
 import com.blocko.service.BlockoServiceImpl;
 
-@WebServlet(name = "stampinsert", urlPatterns = { "/stampinsert" })
-public class StampInsert extends HttpServlet {
+public class StampInsert {
 	CoinStackClient coinstack = API.createNewCoinStackClient();
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		request.setCharacterEncoding("euc-kr");
-		response.setContentType("text/html;charset=euc-kr");
-		//최종업로드 누를때 인설트되고 결과값 한번  모달에 띄워준다. 그리고 결과 페이지에는 음원 리스트 출력 후 클릭시 StampSelect 서블릿으로 블록체인 데이터 가져오기
-		String id= "";
-		String musicName = request.getParameter("musicName"); // mp3데이터값 가져오니라
-		byte[] data = musicName.getBytes();
+	@SuppressWarnings("null")
+	public Map<String, String> insert(String audio_code,byte[] filebyte){
+		
+		Map<String,String> stampData = new HashMap<String, String>();
+		
+		String id= null;
+		String audiobyte = audio_code; //
+		byte[] data = filebyte;
 		byte[] hash = Sha256Hash.create(data).getBytes();
 		String MusicHash = Utils.HEX.encode(hash);
 		System.out.println("음악 해쉬값: "+MusicHash);
@@ -42,11 +33,7 @@ public class StampInsert extends HttpServlet {
 			String stampId = coinstack.stampDocument(MusicHash);
 			System.out.println("음악이 스탬프된 값 : "+stampId);
 			
-			//Stamp stamp = coinstack.getStamp(stampId); //"f706145581af043206600a9182357b59c57d37dcf232d44c276f8ce22016c4a1-0"
-			
-			//System.out.println("블록체인 트랜잭션 값: "+stamp.getTxId());
-			
-			MusicStampDTO stampDTO = new MusicStampDTO(id, musicName, MusicHash, stampId);
+			MusicStampDTO stampDTO = new MusicStampDTO(id, audio_code, MusicHash, stampId);
 			BlockoService service = new BlockoServiceImpl();		
 			int result = service.insert(stampDTO);
 			
@@ -56,17 +43,21 @@ public class StampInsert extends HttpServlet {
 			}else{
 				msg = "블록체인 삽입실패";
 			}
-			request.setAttribute("msg", msg);
-			request.setAttribute("MusicHash", MusicHash);
-			request.setAttribute("stampId", stampId);
-			//request.setAttribute("txId", stamp.getTxId());
+			stampData.put("msg", msg);
+			stampData.put("MusicHash", MusicHash);
+			stampData.put("stampId", stampId);
+
+			
+
 		} catch (CoinStackException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
 			coinstack.close();
 		}
-		RequestDispatcher rd =
-				request.getRequestDispatcher("/MusicUpload/musicstampinsert.jsp");
-		rd.forward(request, response);
+		return stampData;
 	}
+
 }
