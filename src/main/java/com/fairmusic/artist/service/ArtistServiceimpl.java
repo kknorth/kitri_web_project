@@ -29,6 +29,14 @@ public class ArtistServiceimpl implements ArtistService{
 		return dto;
 	}
 
+
+	@Override
+	public int pass_update(String email, String newPass) {
+		ArtistDAOimpl dao = new ArtistDAOimpl();
+		int result = dao.pass_update(email, newPass);
+		return result;
+	}
+
 }
 	
 

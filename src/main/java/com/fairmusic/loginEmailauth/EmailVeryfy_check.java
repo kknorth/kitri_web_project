@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.mail.Session;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -35,6 +36,12 @@ public class EmailVeryfy_check extends HttpServlet {
 		}
 		pw.print(msg);
 		
+		ses.setAttribute("authNum", authNum);
+		ses.setAttribute("authNum_check", authNum_check);
+		
+		RequestDispatcher rd =
+				request.getRequestDispatcher("/FairMusic/regist-no-sidebar.jsp");
+		rd.forward(request, response);
 	}
 
 }

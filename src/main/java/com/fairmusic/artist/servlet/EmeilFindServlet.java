@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fairmusic.artist.service.ArtistServiceimpl;
 
-@WebServlet(name = "emeilCheck", urlPatterns = { "/emailCheck.do" })
-public class EmeilCheckServlet extends HttpServlet {
+@WebServlet(name = "emeilFind", urlPatterns = { "/emailFind.do" })
+public class EmeilFindServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("EmeilCheckServlet 실행~");
+		System.out.println("EmeilFindServlet 실행~");
 		response.setContentType("text/html;charset=euc-kr");
 		response.setHeader("cache-control", "no-cache, no-store");
 		PrintWriter pw = response.getWriter();
@@ -24,9 +24,9 @@ public class EmeilCheckServlet extends HttpServlet {
 		boolean check = service.emailCheck(email);
 		String msg = "";
 		if(check==true){
-			msg = "이미 사용중인 이메일 입니다.";
+			msg = "사용중인 ID : "+ email;
 		}else{
-			msg = "사용가능~";
+			msg = "일치하는 ID가 없습니다.";
 		}
 		pw.write(msg);
 	}

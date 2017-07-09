@@ -8,13 +8,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fairmusic.artist.service.ArtistServiceimpl;
+import com.fairmusic.loginEmailauth.EmailLogic;
 
-@WebServlet(name = "emeilCheck", urlPatterns = { "/emailCheck.do" })
-public class EmeilCheckServlet extends HttpServlet {
+@WebServlet(name = "passFind", urlPatterns = { "/passFind.do" })
+public class PassFindServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("EmeilCheckServlet 실행~");
+		System.out.println("PassFindServlet 실행~");
 		response.setContentType("text/html;charset=euc-kr");
 		response.setHeader("cache-control", "no-cache, no-store");
 		PrintWriter pw = response.getWriter();
@@ -23,10 +25,23 @@ public class EmeilCheckServlet extends HttpServlet {
 		ArtistServiceimpl service = new ArtistServiceimpl();
 		boolean check = service.emailCheck(email);
 		String msg = "";
+		EmailLogic logic = new EmailLogic();
+		
+		String newPass = logic.RandomNum();
+		String toName = "우해원 회원님";
+		String subject = "FairMusic 임시 비밀번호입니다.";
+		String content = "임시비밀번호 [" + newPass + "]";
+		
+		System.out.println("newPass : "+newPass);
+		
 		if(check==true){
-			msg = "이미 사용중인 이메일 입니다.";
+			msg = "이메일이 전송되었습니다.";
+			logic.sendMail(email, toName, subject, content);
+			HttpSession ses = request.getSession();
+			int result = service.pass_update(email, newPass);
+			System.out.println(result+" 암호변경");
 		}else{
-			msg = "사용가능~";
+			msg = "일치하는 이메일이 없습니다.";
 		}
 		pw.write(msg);
 	}

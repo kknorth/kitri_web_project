@@ -17,7 +17,6 @@
 		<input type = "submit" value ="BitcoinSend"><br/>
 		비트코인 주소 ==> ${MusicAddress}<br/>
 		나의 비트코인 잔고 ==>${balance} BTC <br/>
-		
 	</form>
 </body>
 </html>

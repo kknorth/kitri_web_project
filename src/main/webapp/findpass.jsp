@@ -8,28 +8,53 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+	$(document).ready(function(){
+  		$("#email_verify_pass").on("click", function(){
+  		 	if($("#artist_email").val()==""){
+  				alert("이메일을 입력해 주세요")	
+  			}else{
+  				 $.post("/FairMusic/passFind.do", {"artist_email": $("#artist_email").val()}, success_email) 
+  			} 
+  		})
+  		
+/*   		$("#email_verify_pass_check").on("click", function(){
+  			alert($("#authnum_check").val())
+			$.post("/FairMusic/pass_update.do", {"authnum_check" : $("#authnum_check").val()}, success_eamil_check)
+  		}) */
+  	})
+  	function success_email(text){
+  		$("#artist_email_check").html(text);
+  	}
+
+  </script>
 </head>
 <body>
 <body>
 <div class="row">
   <div class="col-lg-12"><span class="label label-info">비밀번호 찾기</span></div>
   <div class="col-lg-12">
-  <span class="label label-info">아이디</span>
-<input type="text" name="textfield" id="textfield">
-  </div>
-  <div class="col-lg-12">
 <span class="label label-info">이메일</span>
-<input type="text" name="textfield" id="textfield">
-&nbsp;</div>
-  <div class="col-lg-12">
-    <button type="button" class="btn btn-lg btn-default">ㄱㄱㄱ</button>
-  &nbsp;</div>
-  
-   존재하는 이메일인지 select
- if존재하면 그 이메일로 이메일 검증할때 쓰는 코드 보내
- 코드는 비밀번호 update문으로 수정 -db
+<input type="text" name="textfield" id="artist_email">
+<button type="button" class="btn btn btn-default" id="email_verify_pass"  >임시비밀번호 전송하기</button>
+<span id="artist_email_check" style="color: red"></span>
+ <div class="col-lg-12">
+ <br/>
+<button type="button" class="btn btn btn-default" id="login" onclick="location.href='/FairMusic/login-no-sidebar.jsp'" >로그인 화면으로 돌아가기</button>
  
- 비밀번호는 인증번호처럼 임시비밀번호를 전송해서 발송 후 id값 파라미터로 받고 비밀번호 입력시 update문 
+ </div>
+  
+
+&nbsp;</div>
+<!--   <div class="col-lg-12">
+  <span class="label label-info">인증번호</span>
+  <input type="text" name="textfield" id="authnum_check">
+  <span id="artist_email_check" style="color: red"></span>
+    <button type="button" class="btn btn btn-default" id="email_verify_pass_check">인증번호 확인</button>    
+    &nbsp;</div>
+      <div class="col-lg-12">
+  	<span id="email_verify_result" style="color: red"></span>
+ 	 </div> -->
  
  
 </div>

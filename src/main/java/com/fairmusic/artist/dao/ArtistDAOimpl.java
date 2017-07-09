@@ -1,7 +1,6 @@
 package com.fairmusic.artist.dao;
 
-import static com.fairmusic.fw.DBUtil.close;
-import static com.fairmusic.fw.DBUtil.getConnection;
+import static com.fairmusic.fw.DBUtil.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -96,6 +95,25 @@ public class ArtistDAOimpl implements ArtistDAO{
 			DBUtil.close(rs, ptmt, con);
 		}
 		return dto;
+	}
+
+	@Override
+	public int pass_update(String email, String newPass) {
+		Connection con = null;
+		PreparedStatement ptmt = null;
+		int result= 0;
+		try {
+			con = getConnection();
+			ptmt = con.prepareStatement(Pass_update);
+			ptmt.setString(1, newPass);
+			ptmt.setString(2, email);
+			result = ptmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(null, ptmt, con);
+		}
+		return result;
 	}	
 	
 }

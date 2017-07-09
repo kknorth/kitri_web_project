@@ -161,7 +161,7 @@
                   
                   <div class="row">
                      <section class="12u">
-                        <form method="post" action="/FairMusic/login.do">
+                        <form method="post" action="/FairMusic/login.do" onSubmit = "return FormSubmit();">
                            <div class="row 50%">
                               <div class="12u">
                                  <input name="email" placeholder="아이디" type="text"  id="email" style="color: black;"/>
@@ -289,7 +289,7 @@
                <jsp:include page="/findId.jsp"></jsp:include>
             </div>
             <div class="modal-footer">
-               <button>조성원짱짱맨</button>
+               <button>확인</button>
             </div>
          </div>
 
@@ -304,7 +304,7 @@
                <jsp:include page="/findpass.jsp"></jsp:include>
             </div>
             <div class="modal-footer">
-               <button>조성원짱짱맨</button>
+               <button>확인</button>
             </div>
          </div>
 

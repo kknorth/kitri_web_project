@@ -6,4 +6,5 @@ interface ArtistDAO {
 	int regist(artistDTO artist);
 	boolean emailCheck(String email);	
 	artistDTO login(String email,String pass);
+	int pass_update(String email, String newPass);
 }
