@@ -372,10 +372,8 @@
 				</div>
 				<div class="modal-footer">
 					<button data-dismiss="modal" aria-hidden="true" id="audiocreate">등록하기</button>
-					
 				</div>
 			</div>
-
 		</div>
 	</div>
 	<form id = "albumUploadForm">

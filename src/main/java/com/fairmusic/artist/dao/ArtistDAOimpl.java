@@ -9,6 +9,7 @@ import java.sql.SQLException;
 
 import com.fairmusic.dto.artistDTO;
 import com.fairmusic.fw.DBUtil;
+
 import static com.fairmusic.fw.Query.*;
 public class ArtistDAOimpl implements ArtistDAO{
 
@@ -114,6 +115,33 @@ public class ArtistDAOimpl implements ArtistDAO{
 			close(null, ptmt, con);
 		}
 		return result;
+	}
+
+	@Override
+	public artistDTO getArtistDTO(String artist_code) {
+		Connection con = null;
+		PreparedStatement ptmt = null;
+		artistDTO dto = null;
+		ResultSet rs = null;
+
+		try {
+			con = DBUtil.getConnection();
+			ptmt = con.prepareStatement(Select_Artist);
+			ptmt.setString(1, artist_code);
+			rs = ptmt.executeQuery();
+			if (rs.next()) {
+				dto = new artistDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+						rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9),rs.getString(10));
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBUtil.close(rs, ptmt, con);
+		}
+		return dto;
 	}	
 	
 }

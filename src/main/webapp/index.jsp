@@ -9,8 +9,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	</head>
-	<body>		 
-			 
+	<body>
 	<jsp:include page="top.jsp"></jsp:include>
 	<div class="container-fluid text-center">
 		<div class="row">
@@ -22,13 +21,15 @@
 				</div>
 		</div>
 	</div>
-				
+				<jsp:include page="/serpath.do"></jsp:include>
+
+
 				<!-- Scripts -->
 
  			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.dropotron.min.js"></script>
 			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
+			<script src="assets/js/util.js"></script>+
 			<script src="assets/js/main.js"></script> 
 	</body>
 </html>

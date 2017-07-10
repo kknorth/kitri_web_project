@@ -50,5 +50,39 @@
     <servlet-name>email</servlet-name>
     <url-pattern>/email</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FacebookJoin</display-name>
+    <servlet-name>FacebookJoin</servlet-name>
+    <servlet-class>com.fairmusic.artist.controller.FacebookJoin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FacebookJoin</servlet-name>
+    <url-pattern>/FacebookJoin</url-pattern>
+  </servlet-mapping>
   
+	<servlet>
+		<description />
+		<display-name>widget</display-name>
+		<servlet-name>widget</servlet-name>
+		<servlet-class>com.fairmusic.audio.controller.widgetServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>widget</servlet-name>
+		<url-pattern>/widget.do</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<description />
+		<display-name>serpath</display-name>
+		<servlet-name>serpath</servlet-name>
+		<servlet-class>com.fairmusic.seong.ServerPathServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>serpath</servlet-name>
+		<url-pattern>/serpath.do</url-pattern>
+	</servlet-mapping>
 </web-app>

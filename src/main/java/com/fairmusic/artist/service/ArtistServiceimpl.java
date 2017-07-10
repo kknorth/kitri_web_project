@@ -37,6 +37,14 @@ public class ArtistServiceimpl implements ArtistService{
 		return result;
 	}
 
+
+	@Override
+	public artistDTO getArtistDTO(String artist_code) {
+		ArtistDAOimpl dao = new ArtistDAOimpl();
+		artistDTO dto = dao.getArtistDTO(artist_code);
+		return dto;
+	}
+
 }
 	
 

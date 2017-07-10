@@ -1,14 +1,18 @@
 package com.fairmusic.audio.dao;
 
-import static com.fairmusic.fw.AudioQuery.audioinsert;
+import static com.fairmusic.fw.AudioQuery.*;
 import static com.fairmusic.fw.DBUtil.close;
 import static com.fairmusic.fw.DBUtil.getConnection;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.fairmusic.dto.artistDTO;
 import com.fairmusic.dto.audioDTO;
+import com.fairmusic.fw.DBUtil;
 
 public class AudioDAOimpl implements AudioDAO{
 
@@ -39,6 +43,32 @@ public class AudioDAOimpl implements AudioDAO{
 			close(null, ptmt, con);
 		}
 		return result;
+	}
+
+	@Override
+	public audioDTO selectAudio(String audio_code) {
+		audioDTO dto = null;
+		Connection con = null;
+		PreparedStatement ptmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = DBUtil.getConnection();
+			ptmt = con.prepareStatement(select_audio);
+			ptmt.setString(1, audio_code);
+
+			rs = ptmt.executeQuery();
+			if (rs.next()) {
+				dto = new audioDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13));
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			DBUtil.close(rs, ptmt, con);
+		}
+		return dto;
 	}
 
 }

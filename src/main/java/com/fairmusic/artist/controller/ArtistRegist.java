@@ -36,7 +36,6 @@ public class ArtistRegist extends HttpServlet {
 			//모달, 축하메세지 뜨게
 			
 		}
-		request.setAttribute("leftpath", "Side_Left.jsp");
 		request.setAttribute("viewpath", "../content.jsp");
 		request.setAttribute("rightpath", "Side_Right.jsp");
 		

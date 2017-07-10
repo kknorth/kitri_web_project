@@ -38,8 +38,6 @@
   
     <button type="button" class="btn btn-lg btn-default" id="email_verify_id">아이디 찾기</button>
   &nbsp;</div>
-  이메일 파라미터로 받고 이메일 검증해서 검증되면 디비에 있으면 그값을 가져와서 select해서 바로 그냥 json으로 뿌려주기 
-  else 업으면 회원가입 페이지
    
 </div>
 </body>

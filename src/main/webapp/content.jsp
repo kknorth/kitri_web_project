@@ -52,66 +52,45 @@
 	cursor: pointer;
 }
 </style>
-	
-<script type="text/javascript">
-	 $(document).ready(function() {
-		for (var i = 0; i < 5; i++) {
-			$("div#scroll").appendTo("div#bottom");
-		}
-	}); 
-
-	$(document).ready(function() {
-		//스크롤 이벤트 발생 시
-		$(window).scroll(function() {
-			var scrollHeight = $(window).scrollTop() + $(window).height();
-			var documentHeight = $(document).height();
-			if (scrollHeight = documentHeight) {
-				for (var i = 0; i < 10; i++) {
-					$("<img src='/FairMusic/images/M.PNG'>").appendTo("div#content");
-				}
-			}
-		});
-	});
-</script>
 </head>
 <body>
 
-<div id ="scroll" class="container">
-  <h2>Hear the latest posts from the people you’re following:</h2>
-	
-	<div class="dropdown">
-	
-	
-	  <img src="/FairMusic/images/sing.PNG" alt="Trolltunga Norway" width="100" height="50">
-	  <div class="dropdown-content">
-	    <img src="/FairMusic/images/sing.PNG" alt="Trolltunga Norway" width="300" height="200">
-	    <div class="caption">
-            <a href="MusicUpload/myFMpage.jsp">visit singer profile</a> 
-            &nbsp <a><img src="/FairMusic/images/like.PNG" class="img-thumbnail" alt="Cinque Terre" width="20" height="20"></a>
-            <br/><a href="#">fllow</a> 
-         </div>
-	  </div>
-	</div>
-	<jsp:include page="/widget/temp2widget.jsp"></jsp:include>
-	<!-- <div id="mainview">
-		<div class="row">
-			<div class="12u"><br/>
-				<ol class="list-group">					
-					<li><a href="MusicUpload/myFMpage.jsp"><img src="/FairMusic/images/M.PNG" class="img-thumbnail" alt="Cinque Terre" width="200" height="200"></a></li><br/>
-				</ol>
-			</div>
-		</div>
-	</div> -->
-<!-- 	<div id="content">
-        <div class="section1"> 
-           <ul>
-               <li><a href="MusicUpload/myFMpage.jsp"><img src="/FairMusic/images/M.PNG" class="img-thumbnail" alt="Cinque Terre" width="200" height="200"></a></li>
-           </ul>
-        </div>
-    </div> -->
-    
-</div>
-	<div id="bottom"></div>
-
+<div id="mainview">
+      <div class="row">
+      <div class="12u">
+      <br/><br/>
+       <ol class="list-group">
+         <li class="list-group-item disabled">조성원님의 최근 게시글</li>
+          <li class="list-group-item">
+<%--<a href= "/FairMusic/widget.do">서블릿->웹</a>
+         <jsp:include page ="/widget.do"></jsp:include> --%>
+         
+         <a href= "/widget/fmWidget.jsp">웹->서블릿</a>
+<%--          <jsp:include page ="/widget/fmWidget.jsp">
+         <jsp:param value="e6ddn02ie17ngn4a1l44" name="audio_code"/>
+         </jsp:include> --%>
+         <%-- <jsp:include page="/widget/temp2widget.jsp"></jsp:include> --%>
+          </li>
+          <li class="list-group-item disabled">한준희님의 최근 게시글</li>
+          <li class="list-group-item">
+          <a href="#"><img src="/FairMusic/images/M.PNG" class="img-thumbnail" alt="Cinque Terre" width="200" height="200"></a>
+          <a href="#">한준희</a>-<a href="#"> 냠냠송</a>
+          <a href="#"><img src="/FairMusic/images/like.PNG" class="img-thumbnail" alt="Cinque Terre" width="20" height="20"></a>
+          <a href="#"><img src="/FairMusic/images/like.PNG" class="img-thumbnail" alt="Cinque Terre" width="20" height="20"></a>
+          <a href="#"><img src="/FairMusic/images/like.PNG" class="img-thumbnail" alt="Cinque Terre" width="20" height="20"></a>
+          </li>
+          <li class="list-group-item disabled">우해원님의 최근 게시글</li>
+          <li class="list-group-item">
+          <a href="#"><img src="/FairMusic/images/M.PNG" class="img-thumbnail" alt="Cinque Terre" width="200" height="200"></a>
+          <a href="#">한준희</a>-<a href="#"> 수박송</a>
+          <a href="#"><img src="/FairMusic/images/like.PNG" class="img-thumbnail" alt="Cinque Terre" width="20" height="20"></a>
+          <a href="#"><img src="/FairMusic/images/like.PNG" class="img-thumbnail" alt="Cinque Terre" width="20" height="20"></a>
+          <a href="#"><img src="/FairMusic/images/like.PNG" class="img-thumbnail" alt="Cinque Terre" width="20" height="20"></a>
+          </li>      
+          
+      </ol>
+      </div>
+      </div>
+   </div>
 </body>
 </html>
