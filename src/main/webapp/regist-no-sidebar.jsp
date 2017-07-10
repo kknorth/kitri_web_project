@@ -73,9 +73,9 @@
       if (grecaptcha.getResponse() == "") {
          alert("로봇이 아님을 체크해 주세요!");
          return false;
-    <%--   }else if(!<%=authNum.equals(authNum_check)%>){
-    	  alert("aad!");
-    	  return false; --%>
+   	  }else if(<%=authNum.equals(authNum_check)%>==""){
+    	  alert("이메일 인증을 해주세요!!");
+    	  return false; 
       }else {
          return true;
       }
@@ -766,7 +766,7 @@ FairMusic은 고객의 개인정보를 매우 중요시하며, 고객의 개인정보를 보호하여 개인정
 			
         </div>
         <div class="modal-footer">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">검증완료</button>
+        	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">검증완료</button>
         </div>
       </div>
       </div>

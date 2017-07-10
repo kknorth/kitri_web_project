@@ -8,8 +8,8 @@
 </head>
 <body>
 	
-	<h3>bitcoin</h3>
-	<form method="post" action="/FairMusic/bitcoinaddr">
+	
+	 <form method="post" action="/FairMusic/bitcoinaddr">
 		<div>어드레스 </div>
 		<input type = "submit" value ="bitcoin주소 발급"><br/>
 		비트코인 주소 ==> ${MusicAddress}<br/>
@@ -19,6 +19,8 @@
 	
 	<form method="post" action="#">
 	보낼 주소 : <input type="text" placeholder="bitcoin-Address">
-	</form>
+	</form> 
+	
+	
 </body>
 </html>

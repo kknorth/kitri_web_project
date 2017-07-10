@@ -133,8 +133,6 @@
 				<li role="presentation"><a href="#audio_fan_04"
 					data-toggle="tab" role="tab" aria-controls="tab4">+뮤직비디오</a></li>
 
-
-
 			</ul>
 
 			<div id="tabContent1" class="tab-content">
@@ -220,8 +218,6 @@
 
 									<textarea name="audio_detail" id="audio_detail"></textarea>
 
-
-
 								</div>
 
 							</div>
@@ -229,8 +225,6 @@
 						</div>
 
 					</div>
-
-
 
 				</div>
 
@@ -251,11 +245,25 @@
 								<option>유료</option>
 
 							</select>
-
+	<!-- 						<script type="text/javascript">
+									$(document).ready(function(){
+											$("#audio_value").on("keyup", function(){
+												$.post("/FairMusic/emailCheck.do", {"artist_email":$("#artist_email").val()}, success_run)
+											})
+											$("#email_verify").on("click", function(){
+												if($("#artist_email").val()==""){
+													alert("이메일을 입력해 주세요")	
+												}else{
+													$.post("/FairMusic/email", {"artist_email": $("#artist_email").val()}, success_email);
+												}
+											})
+									})	
+							</script> -->
+							
 							<div id="audio_price" hidden="true">
 
-								<input type="number" value="0" id="audio_value"
-									name="audio_value">
+									<input type="text" placeholder="0 BTC"  id="btc_value"
+									name="btc_value">
 
 							</div>
 
@@ -277,20 +285,20 @@
 
 									<div class="col-sm-6">
 
-										<span class="label label-primary">저작권자 명</span>
-
+										<span class="label label-primary" id = "rightName">저작권자 명</span>
+										
 									</div>
 
 									<div class="col-sm-3">
 
-										<span class="label label-primary">수익 비율</span>
-
+										<span class="label label-primary" id = "percent">수익 비율</span>
+									
 									</div>
 
 									<div class="col-sm-3">
 
 										<span class="label label-primary">계좌 등록</span>
-
+										
 									</div>
 
 								</div>
@@ -310,13 +318,100 @@
 									</div>
 
 									<div class="col-sm-3">
-
-										<button type="button" class="btn btn-info">등록</button>
-
+							<script type="text/javascript">
+									var state1 = 0;
+									$(document).ready(function(){
+											$("#create1").on("click", function(){
+												if(state1==1){
+													alert("이미 생성했습니다.")
+												}else{
+													$.post("/FairMusic/bitcoinaddr", {"rightName":$("#rightName").val(),
+														"percent":$("#percent").val()
+													}, success_run1)
+												}
+												
+											})
+									})	
+									
+									function success_run1(txt){
+										state1 =1;
+										$("#createAddr1").html(txt);
+									}
+									
+									var state2 = 0;
+									$(document).ready(function(){
+										$("#create2").on("click", function(){
+											if(state2==1){
+												alert("이미 생성했습니다.")
+											}else{
+											$.post("/FairMusic/bitcoinaddr", {"rightName":$("#rightName").val(),
+																				"percent":$("#percent").val()
+													}, success_run2)
+											}
+										})
+									})	
+								
+									function success_run2(txt){
+										state2 =1;
+										$("#createAddr2").html(txt);
+									}
+									var state3 = 0;
+									$(document).ready(function(){
+										$("#create3").on("click", function(){
+											if(state3==1){
+												alert("이미 생성했습니다.")
+											}else{
+												$.post("/FairMusic/bitcoinaddr", {"rightName":$("#rightName").val(),
+													"percent":$("#percent").val()
+												}, success_run3)	
+											}
+											
+										})
+									})	
+								
+									function success_run3(txt){
+										state3 =1;
+										$("#createAddr3").html(txt);
+									}
+							</script>
+										<button type="button" class="btn btn-info" id="create1"  onclick="this.onclick='';">생성</button>
+										<button type="button" class="btn btn-info" data-toggle="modal" data-target="#PayModal">등록</button>
+										
 									</div>
+								
+	<!-- ========================================================================================== -->
+						<div class="modal fade" id="PayModal" role="dialog">
+					      <div class="modal-dialog modal-lg">
+					         <!-- Modal content-->
+					      <div class="modal-content">
+					         <div class = "modal-header">
+					         <h3>bitcoin Adress</h3>
+					      </div>
+					        <div class = "modal-body">
+						      <div class="row">
+									<div class="col-lg-12">
+										<span class="label label-info">Bitcoin Adress</span>
+									</div>
+										<div class="col-lg-12">
+											<input type="text" name="btcaddr"  id="btcaddr"/>
+										</div>
+								</div>
+								
+					        </div>	
+					        
+					        <div class="modal-footer">
+								<button type="submit" class="btn btn-lg btn-default" id="email_verify_check">확인</button>
+							</div>
+							
+					      </div>
+					      </div>
+					   </div>
+									
+									
+									
 
 								</div>
-
+									<div id ="createAddr1" style="color:red;"></div>
 								<div class="row" class="cp2">
 
 									<div class="col-sm-6">
@@ -333,12 +428,43 @@
 
 									<div class="col-sm-3">
 
-										<button type="button" class="btn btn-info">등록</button>
+										<button type="button" class="btn btn-info" id="create2" onclick="this.onclick='';" >생성</button>
 
+										<button type="button" class="btn btn-info" data-toggle="modal" data-target="#PayModal2">등록</button>
+										
 									</div>
+									
 
 								</div>
-
+<div id ="createAddr2" style="color:red;"></div>
+	<!-- ========================================================================================== -->
+						<div class="modal fade" id="PayModal2" role="dialog">
+					      <div class="modal-dialog modal-lg">
+					         <!-- Modal content-->
+					      <div class="modal-content">
+					         <div class = "modal-header">
+					         <h3>bitcoin Adress</h3>
+					      </div>
+					        <div class = "modal-body">
+						      <div class="row">
+									<div class="col-lg-12">
+										<span class="label label-info">Bitcoin Adress</span>
+									</div>
+										<div class="col-lg-12">
+											<input type="text" name="btcaddr"  id="btcaddr"/>
+										</div>
+								</div>
+								
+					        </div>	
+					        
+					        <div class="modal-footer">
+								<button type="submit" class="btn btn-lg btn-default" id="email_verify_check">확인</button>
+							</div>
+							
+					      </div>
+					      </div>
+					   </div>
+	
 								<div class="row" class="cp3">
 
 									<div class="col-sm-6">
@@ -355,13 +481,45 @@
 
 									<div class="col-sm-3">
 
-										<button type="button" class="btn btn-info">등록</button>
+										<button type="button" class="btn btn-info" id="create3" onclick="this.onclick='';" >생성</button>
 
+										<button type="button" class="btn btn-info" data-toggle="modal" data-target="#PayModal3">등록</button>
+										
 									</div>
-
+									
 								</div>
+								<div id ="createAddr3" style="color:red;"></div>	
 
-								<div class="row" class="cp4">
+
+	<!-- ========================================================================================== -->
+						<div class="modal fade" id="PayModal3" role="dialog">
+					      <div class="modal-dialog modal-lg">
+					         <!-- Modal content-->
+					      <div class="modal-content">
+					         <div class = "modal-header">
+					         <h3>bitcoin Adress</h3>
+					      </div>
+					        <div class = "modal-body">
+						      <div class="row">
+									<div class="col-lg-12">
+										<span class="label label-info">Bitcoin Adress</span>
+									</div>
+										<div class="col-lg-12">
+											<input type="text" name="btcaddr"  id="btcaddr"/>
+										</div>
+								</div>
+								
+					        </div>	
+					        
+					        <div class="modal-footer">
+								<button type="submit" class="btn btn-lg btn-default" id="email_verify_check">확인</button>
+							</div>
+							
+					      </div>
+					      </div>
+					   </div>
+					   
+						<!-- 		<div class="row" class="cp4">
 
 									<div class="col-sm-6">
 
@@ -447,7 +605,7 @@
 
 									</div>
 
-								</div>
+								</div> -->
 
 							</div>
 

@@ -11,9 +11,6 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 
-
-
-
 	$(document).ready(function() {
 		
 		//check if browser supports file api and filereader features

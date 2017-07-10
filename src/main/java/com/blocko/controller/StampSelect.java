@@ -17,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.blocko.api.API;
 import com.blocko.dto.BitcoinAdressDTO;
@@ -33,7 +34,8 @@ public class StampSelect extends HttpServlet {
 		request.setCharacterEncoding("euc-kr");
 		response.setContentType("text/html;charset=euc-kr");
 		//최종 업로드 버튼 리스트 페이지로 리다이렉트 된다 그리고 리스트를 누르게되면 블록체인 정보가 출력
-		String id= "";
+		HttpSession ses = request.getSession();
+		String id= (String)ses.getAttribute("user"); 
 		try {
 			String musicName =request.getParameter("musicName");
 

@@ -48,8 +48,9 @@ public class BintcoinSend extends HttpServlet {
 			
 			String bitcoinAdress = "";
 			String privatekey = "";
-			
-			BitcoinAdressDTO btcaddr = new BitcoinAdressDTO(id, bitcoinAdress, privatekey);
+			String rightName = "";
+			int percent = 0;
+			BitcoinAdressDTO btcaddr = new BitcoinAdressDTO(id, bitcoinAdress, privatekey,rightName,percent);
 
 			for (int i = 0; i < btcaddrlist.size(); i++) {
 				btcaddr = btcaddrlist.get(i);

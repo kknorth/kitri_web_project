@@ -74,7 +74,7 @@ public class BlockoDAOImpl implements BlockoDAO {
 			rs = ptmt.executeQuery();
 			while(rs.next()){
 				bitaddr =new BitcoinAdressDTO(rs.getString(1),rs.getString(2),
-						rs.getString(3));
+						rs.getString(3),rs.getString(4),rs.getInt(5));
 				bitcoinaddr.add(bitaddr);
 			}
 		} catch (SQLException e) {
