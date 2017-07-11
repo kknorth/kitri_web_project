@@ -1,3 +1,4 @@
+<%@page import="com.blocko.controller.MyBtcAddrReq"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 	<%@ page import="java.util.ArrayList" %>
@@ -6,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<title>Insert title here</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -14,10 +15,38 @@
 <script src="/FairMusic/MusicUpload/js/range.js"></script>
 <link rel="stylesheet" href="/FairMusic/MusicUpload/css/range.css">
 
-
-
-<title>Insert title here</title>
-
+	<style>
+	
+		 div #bg {
+		  position:  absolute; 
+ 		  margin-left: 2%; margin-right: auto; display: block;
+		  min-width: 90%;
+		  min-height: 95.5%;
+		  background-image: url('../images/certificate2.jpg');
+		  background-repeat: no-repeat;
+		 }  
+	
+		.modal-dialog.modal-80size {
+		  width: 80%;
+		  height: 80%;
+		  margin: 0;
+		  padding: 0;
+		}
+		
+		.modal-content.modal-80size {
+		  margin-left: 20%;
+		 /*  height: 10%;
+		   width: 100%;
+		  min-height: 80%; */
+		}
+/* 		.modal-content.modal-80size.modal-body.header{
+		  height: 120%;
+		  min-height: 120%;
+		  text-align: center;
+		  margin-left: 200%;
+		}  */
+		
+	</style>
 
 <script type="text/javascript">
 
@@ -278,6 +307,8 @@ function fakefake(){
 						role="tab" aria-controls="tab2">Music</a></li>
 					<li role="presentation"><a href="#panethree" data-toggle="tab"
 						role="tab" aria-controls="tab3">BlockChain Certificate</a></li>
+						<li role="presentation"><a href="#pane4" data-toggle="tab"
+						role="tab" aria-controls="tab4">My Bitcoin Address</a></li>
 				</ul>
 				<div id="tabContent1" class="tab-content">
 					<div role="tabpanel" class="tab-pane fade in active" id="home1">
@@ -345,6 +376,29 @@ function fakefake(){
 									</div>
 								</div>
 							</div>
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="pane4">
+						<script type="text/javascript">
+						var state = 0;
+						$(document).ready(function() {
+							$("#create").on("click",function() {
+								if (state == 1) {
+										alert("이미 생성했습니다.")
+								} else {
+									$.post("/FairMusic/MyBitcoinAddr",{ },success_run)
+								}
+
+							})
+						})
+
+						function success_run(txt) {
+							state = 1;
+							$("#mybtc").html(txt);
+						}
+						</script>
+						<button type="button" class="btn btn-info btn-lg" id="create">Create Bitcoin</button>
+						<div id = "mybtc" style ="color:red;"></div>
 					</div>
 				</div>
 			</div>

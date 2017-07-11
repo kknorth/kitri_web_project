@@ -12,4 +12,7 @@ public class BlockoQuery {
 	
 	public static String BITCOINADDR_SELECT
 	="select * from bitcoinaddress where artist_code= ?";
+	
+	public static String MYBTC_INSERT
+	="insert into mybtcaddr values(?,?,?)";	
 }

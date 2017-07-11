@@ -10,10 +10,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 
 import com.blocko.dto.BitcoinAdressDTO;
 import com.blocko.dto.MusicStampDTO;
+import com.blocko.dto.MyBTCaddrDTO;
 
 public class BlockoDAOImpl implements BlockoDAO {
 
@@ -124,4 +124,25 @@ public class BlockoDAOImpl implements BlockoDAO {
 		}
 		return Stamp;
 		}
+
+
+	@Override
+	public int mybtcaddr(MyBTCaddrDTO myaddr) {
+		Connection con = null;
+		PreparedStatement ptmt = null;
+		int result= 0;
+		try {
+			con = getConnection();
+			ptmt = con.prepareStatement(MYBTC_INSERT);
+			ptmt.setString(1, myaddr.getArtist());
+			ptmt.setString(2, myaddr.getMypk());
+			ptmt.setString(3, myaddr.getMybtcaddr());
+			result = ptmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(null, ptmt, con);
+		}
+		return result;
+	}
 }

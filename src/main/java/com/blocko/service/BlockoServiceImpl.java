@@ -6,6 +6,7 @@ import com.blocko.dao.BlockoDAO;
 import com.blocko.dao.BlockoDAOImpl;
 import com.blocko.dto.BitcoinAdressDTO;
 import com.blocko.dto.MusicStampDTO;
+import com.blocko.dto.MyBTCaddrDTO;
 
 public class BlockoServiceImpl implements BlockoService{
 
@@ -35,6 +36,13 @@ public class BlockoServiceImpl implements BlockoService{
 		BlockoDAO dao = new BlockoDAOImpl();
 		MusicStampDTO MusicStamp = dao.StampSelect(id, MusicName);
 		return MusicStamp;
+	}
+	
+	@Override
+	public int mybtcaddr(MyBTCaddrDTO myaddr) {
+		BlockoDAO dao = new BlockoDAOImpl();
+		int result = dao.mybtcaddr(myaddr);
+		return result;
 	}
 
 }

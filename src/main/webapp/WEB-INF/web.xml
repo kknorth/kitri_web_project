@@ -60,75 +60,45 @@
     <servlet-name>FacebookJoin</servlet-name>
     <url-pattern>/FacebookJoin</url-pattern>
   </servlet-mapping>
-  
-	<servlet>
-		<description />
-		<display-name>widget</display-name>
-		<servlet-name>widget</servlet-name>
-		<servlet-class>com.fairmusic.audio.controller.widgetServlet</servlet-class>
-	</servlet>
-	
-	<servlet-mapping>
-		<servlet-name>widget</servlet-name>
-		<url-pattern>/widget.do</url-pattern>
-	</servlet-mapping>
-	
-	
-	<servlet>
-		<description />
-		<display-name>serpath</display-name>
-		<servlet-name>serpath</servlet-name>
-		<servlet-class>com.fairmusic.seong.ServerPathServlet</servlet-class>
-	</servlet>
+  <servlet>
+    <description></description>
+    <display-name>widget</display-name>
+    <servlet-name>widget</servlet-name>
+    <servlet-class>com.fairmusic.audio.controller.widgetServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>widget</servlet-name>
+    <url-pattern>/widget.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>serpath</display-name>
+    <servlet-name>serpath</servlet-name>
+    <servlet-class>com.fairmusic.seong.ServerPathServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>serpath</servlet-name>
+    <url-pattern>/serpath.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>audiolist</display-name>
+    <servlet-name>audiolist</servlet-name>
+    <servlet-class>com.fairmusic.audio.controller.myAudioServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>audiolist</servlet-name>
+    <url-pattern>/audiolist.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>myalbum</display-name>
+    <servlet-name>myalbum</servlet-name>
+    <servlet-class>com.fairmusic.album.controller.myAlbumServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>myalbum</servlet-name>
+    <url-pattern>/myalbum.do</url-pattern>
+  </servlet-mapping>
 
-	<servlet-mapping>
-		<servlet-name>serpath</servlet-name>
-		<url-pattern>/serpath.do</url-pattern>
-	</servlet-mapping>
-	
-	
-<servlet>
-
-<description/>
-
-<display-name>audiolist</display-name>
-
-<servlet-name>audiolist</servlet-name>
-
-<servlet-class>com.fairmusic.audio.controller.myAudioServlet</servlet-class>
-
-</servlet>
-
-
-<servlet-mapping>
-
-<servlet-name>audiolist</servlet-name>
-
-<url-pattern>/audiolist.do</url-pattern>
-
-</servlet-mapping>
-
-
-<servlet>
-
-<description/>
-
-<display-name>myalbum</display-name>
-
-<servlet-name>myalbum</servlet-name>
-
-<servlet-class>com.fairmusic.album.controller.myAlbumServlet</servlet-class>
-
-</servlet>
-
-
-<servlet-mapping>
-
-<servlet-name>myalbum</servlet-name>
-
-<url-pattern>/myalbum.do</url-pattern>
-
-</servlet-mapping>
-	
-	
 </web-app>

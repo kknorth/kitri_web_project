@@ -30,12 +30,13 @@ public class BintcoinSend extends HttpServlet {
 		response.setContentType("text/html;charset=euc-kr");
 
 		String audio_code= null;
+		MyBtcAddrReq pk = null;
 		try {
 			BlockoService service = new BlockoServiceImpl();
 			ArrayList<BitcoinAdressDTO> btcaddrlist = service.bitcoinAdressSelect(audio_code);
-			String MyPrivateKey = ECKey.createNewPrivateKey();
-			String MypublicKey = ECKey.deriveAddress(MyPrivateKey);
-			request.setAttribute("MypublicKey", MypublicKey);//내가 보낼 비트코인 주소
+		
+			pk.execute(request, response);//내 비트코인 프라이빗키 받아와
+			String MyPrivateKey = (String) request.getAttribute("Myprivatekey");
 			
 			String[] toAddress = new String[2];
 			//String[] privatekey = new String[2];
