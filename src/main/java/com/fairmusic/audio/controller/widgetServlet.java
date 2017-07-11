@@ -20,8 +20,9 @@ public class widgetServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("euc-kr");
 
+			
 		String audio_code = request.getParameter("audio_code");
-		
+		System.out.println("오디오코드"+audio_code);
 		AudioService audioservice = new AudioServiceimpl();
 		System.out.println("오디오서비스"+audioservice);
 		audioDTO audiodto = audioservice.selectAudio(audio_code);
@@ -29,19 +30,20 @@ public class widgetServlet extends HttpServlet {
 		ArtistServiceimpl artistservice = new ArtistServiceimpl();
 	/*	artistDTO artistdto = artistservice.getArtistDTO(audiodto.getArtist_code());*/
 		/*System.out.println("아티스트디티오"+artistdto);*/
-		String artistName = "공백일단은";/*artistdto.getArtist_id();*/
+		String artistName = "일단 공백";/*artistdto.getArtist_id();*/
 		System.out.println("아티스트네임"+artistName);
-
 		
+		request.setAttribute("audio_code", audio_code);
 		String audioPath = "";
 		String audioImage = "";
 		String audioMovie = "";
 		
 		request.setAttribute("audioDto", audiodto);
+		System.out.println("셋애트리뷰트");
 		request.setAttribute("artistName",artistName);
-/*		RequestDispatcher rd = request
+RequestDispatcher rd = request
 				.getRequestDispatcher("/widget/fmWidget.jsp");
-		rd.forward(request, response);*/
+		rd.include(request, response);
 	}
 
 }

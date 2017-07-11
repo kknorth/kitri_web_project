@@ -11,12 +11,14 @@ public class albumDTO {
 	private String album_image;
 	private String album_date;
 	private String album_dc;
+	private String album_detail;
+	private String album_alive;
 	
 	
 	public albumDTO(){}
 	
 	public albumDTO(String album_code, String album_title, String artist_code,
-			String album_image, String album_date, String album_dc) {
+			String album_image, String album_date, String album_dc,String album_detail,String album_alive) {
 		super();
 		this.album_code = album_code;
 		this.album_title = album_title;
@@ -24,6 +26,8 @@ public class albumDTO {
 		this.album_image = album_image;
 		this.album_date = album_date;
 		this.album_dc = album_dc;
+		this.album_detail= album_detail;
+		this.album_alive = album_alive;
 	}
 
 	public String getAlbum_code() {
@@ -74,14 +78,33 @@ public class albumDTO {
 		this.album_dc = album_dc;
 	}
 
+	
+	public String getAlbum_detail() {
+		return album_detail;
+	}
+
+	public void setAlbum_detail(String album_detail) {
+		this.album_detail = album_detail;
+	}
+
+	
+	public String getAlbum_alive() {
+		return album_alive;
+	}
+
+	public void setAlbum_alive(String album_alive) {
+		this.album_alive = album_alive;
+	}
+
 	@Override
 	public String toString() {
 		return "albumDTO [album_code=" + album_code + ", album_title="
 				+ album_title + ", artist_code=" + artist_code
 				+ ", album_image=" + album_image + ", album_date=" + album_date
-				+ ", album_dc=" + album_dc + "]";
+				+ ", album_dc=" + album_dc + ", album_detail=" + album_detail
+				+ ", album_alive=" + album_alive + "]";
 	}
-	
-	
+
+
 
 }

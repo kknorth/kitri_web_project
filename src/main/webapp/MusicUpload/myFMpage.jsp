@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+	<%@ page import="java.util.ArrayList" %>
+<%@page import="com.fairmusic.dto.albumDTO"%>
+<%@page import="com.fairmusic.dto.audioDTO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,10 +11,30 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/FairMusic/MusicUpload/js/range.js"></script>
+<link rel="stylesheet" href="/FairMusic/MusicUpload/css/range.css">
+
+
 <title>Insert title here</title>
+
+
 <script type="text/javascript">
 
+
+var time;
+function faketime(){
+	alert("냠냠");
+	time = setTimeout(fakefake,10000);
+	
+}
+
+function fakefake(){
+	$('#fakeloadingModal').modal('hide')
+}
+
 	$(document).ready(function() {
+	
+		
 		
 		//check if browser supports file api and filereader features
 		if (window.File && window.FileReader && window.FileList && window.Blob) {
@@ -252,13 +275,28 @@
 						data-toggle="tab" role="tab" aria-controls="tab1">All</a></li>
 					<li role="presentation"><a href="#paneTwo1" data-toggle="tab"
 						role="tab" aria-controls="tab2">Music</a></li>
+					<li role="presentation"><a href="#panethree" data-toggle="tab"
+						role="tab" aria-controls="tab3">BlockChain Certificate</a></li>
 				</ul>
 				<div id="tabContent1" class="tab-content">
 					<div role="tabpanel" class="tab-pane fade in active" id="home1">
 						<p>
-							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-							<button type="button" class="btn btn-info">수박송</button>
-							&nbsp;
+						<div class="myFMContents">
+							<jsp:include page="/audiolist.do"></jsp:include>
+							<%ArrayList<audioDTO> audiolist = (ArrayList<audioDTO>)request.getAttribute("myaudiolist"); %>
+							<%
+							System.out.println(audiolist);
+							if(audiolist!=null){
+
+								for(int i=0;i<audiolist.size();i++){
+									audioDTO dto = audiolist.get(i);
+									%>
+									<input type = "button" value = "<%= dto.getAudio_title()%>"/>
+									<%System.out.println(dto.getAudio_title());
+								}
+							}
+							%>
+						</div>
 						<div class="row">
 							<div class="col-sm-4">
 								<button type="button" class="btn btn-info btn-lg"
@@ -276,6 +314,36 @@
 					</div>
 					<div role="tabpanel" class="tab-pane fade" id="paneTwo1">
 						<p>&nbsp;</p>
+					</div>
+					<div role="tabpanel" class="tab-pane fade" id="panethree">
+						<a class="btn btn-info btn-lg " data-toggle="modal" data-target="#editModal">Certification</a>
+							<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="my80sizeModalLabel">
+							<!-- 모달  -->
+								<div class="modal-dialog modal-80size" role="document">
+									<div class="modal-content modal-80size">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+											<h4 class="modal-title" id="myModalLabel" align="center">BlockChain Certification</h4>
+										</div>
+										
+										<div class="modal-body">
+											<!-- <img src="images/certificate.PNG" id="bg" align="middle"> -->
+											<div id="bg" class="img-thumbnail" alt="Cinque Terre" ><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+											<div class="header">fairMusic은 음원 저작권을 블록체인 상에 보관함으로써 자신들의 권리를 보호해줍니다.</div>
+											<div class= "musicname" id= "musicname"></div>
+											<div class= "musichash" id= "musichash"></div>
+											<div class= "txid" id= "txid"></div>
+											<div class= "timestamp" id= "timestamp"></div>
+											<div class= "username" id= "username"></div>
+											</div>	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+										</div>
+										
+									</div>
+								</div>
+							</div>
 					</div>
 				</div>
 			</div>
@@ -368,22 +436,27 @@
 					<jsp:include page="/MusicUpload/musicupload.jsp"></jsp:include>
 				</div>
 				<div class="modal-footer">
-					<button data-dismiss="modal" aria-hidden="true" id="audiocreate">등록하기</button>
+					<button data-dismiss="modal" aria-hidden="true" id="audiocreate" data-toggle="modal" data-target="#fakeloadingModal"  onclick = "faketime()">등록하기</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	<form id = "albumUploadForm">
-	<div class="modal fade" id="albumModal" role="dialog" width = "800">
+	<form id = "albumUploadForm" enctype="multipart/form-data" method="post" name ="albumUploadForm">
+	<div class="modal fade" id="albumModal" role="dialog" >
 		<div class="modal-dialog modal-lg">
 			<!-- Modal content-->
 			<div class="modal-content">
 				<div class="modal-body">
 					<div class="row">
 							<div class="col-xs-3">
-								<img
-									src="/FairMusic/images/temp.png"
-									class="img-circle img-responsive" alt="Placeholder image">
+								<div id="dropzone">
+
+								<div>dropzone</div>
+
+								<input type="file" accept="image/png, application/pdf"
+									id="album_image_file" name="album_image_file" />
+
+							</div>
 							</div>
 							<div class="col-xs-8">
 								<div class="row">
@@ -391,19 +464,22 @@
 										<span class="label label-info">앨범 명</span>
 									</div>
 									<div class="col-xs-10">
-										<input type="text" name="textfield" id="textfield" required="required">
+										<input type="text" name="album_title" id="album_title" required="required">
 									</div>
 									<div class="col-xs-2">
 										<span class="label label-info">앨범구매 할인가</span>
 									</div>
 									<div class="col-xs-10">
-										<input type="range" min="0" max="10">
+										<div class="range-slider">
+  <input class="range-slider__range" type="range" value="0" min="0" max="10" id = "album_sale" name = "album_sale">
+  <span class="range-slider__value">0</span>
+</div> 
 									</div>
 									<div class="col-xs-2">
 										<span class="label label-info">소개</span>
 									</div>
 									<div class="col-xs-10">
-										<textarea name="textarea" id="textarea"></textarea>
+										<textarea name="album_detail" id="album_detail"></textarea>
 										</div>
 								</div>
 							</div>
@@ -466,6 +542,26 @@
         <div class="modal-footer">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">Cancel</button>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> Save changes</button>      
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="modal fade" id="fakeloadingModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+      	<div class = "modal-header">
+			<h3>UPLOADING</h3>
+		</div>
+
+        <div class = "modal-body">
+			<h3> 로딩중입니다 </h3>
+			
+		</div>
+        <div class="modal-footer">
+        	
         </div>
       </div>
       

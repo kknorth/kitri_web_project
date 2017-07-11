@@ -1,7 +1,8 @@
 package com.fairmusic.artist.dao;
 
-import static com.fairmusic.fw.DBUtil.*;
-
+import static com.fairmusic.fw.DBUtil.close;
+import static com.fairmusic.fw.DBUtil.getConnection;
+import static com.fairmusic.fw.Query.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,8 +10,6 @@ import java.sql.SQLException;
 
 import com.fairmusic.dto.artistDTO;
 import com.fairmusic.fw.DBUtil;
-
-import static com.fairmusic.fw.Query.*;
 public class ArtistDAOimpl implements ArtistDAO{
 
 

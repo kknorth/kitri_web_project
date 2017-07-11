@@ -1,4 +1,4 @@
-<%@page import="com.fairmusic.dto.artistDTO"%>
+<%-- <%@page import="com.fairmusic.dto.artistDTO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
@@ -73,4 +73,4 @@ function signOut() {
 			<script src="assets/js/main.js"></script>						
 							
 </body>
-</html>
+</html> --%>

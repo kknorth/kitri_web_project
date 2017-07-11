@@ -1,4 +1,4 @@
-package com.fairmusic.artist.controller;
+/*package com.fairmusic.artist.controller;
 
 import java.io.IOException;
 
@@ -33,3 +33,4 @@ public class LogoutServlet_Google extends HttpServlet {
 	}
 
 }
+*/

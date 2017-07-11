@@ -4,11 +4,11 @@ import static com.fairmusic.fw.AudioQuery.*;
 import static com.fairmusic.fw.DBUtil.close;
 import static com.fairmusic.fw.DBUtil.getConnection;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.fairmusic.dto.artistDTO;
 import com.fairmusic.dto.audioDTO;
@@ -69,6 +69,34 @@ public class AudioDAOimpl implements AudioDAO{
 			DBUtil.close(rs, ptmt, con);
 		}
 		return dto;
+	}
+
+	@Override
+	public ArrayList<audioDTO> myAudioList(String artist_code) {
+		ArrayList<audioDTO> dtolist = new ArrayList<audioDTO>();
+		audioDTO dto = null;
+		Connection con = null;
+		PreparedStatement ptmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = DBUtil.getConnection();
+			ptmt = con.prepareStatement(select_audiolist);
+			ptmt.setString(1, artist_code);
+
+			rs = ptmt.executeQuery();
+			while (rs.next()) {
+				dto = new audioDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13));
+				dtolist.add(dto);
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			DBUtil.close(rs, ptmt, con);
+		}
+		return dtolist;
 	}
 
 }

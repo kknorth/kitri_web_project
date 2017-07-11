@@ -14,13 +14,14 @@
 <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.5/waves.min.css'>
 <link rel="stylesheet" href="/FairMusic/widget/css/widget.css">
 <title></title>
-<jsp:include page="/widget.do"></jsp:include>
 
+<%String audio_code = (String)request.getAttribute("audio_code"); %>
+<%System.out.println("오디오코드 받아오냐?"+audio_code); %>
 <%audioDTO dto = (audioDTO)request.getAttribute("audioDto"); %>
 <%System.out.println("디티오 받아오냐?"+dto); %>
 
 <%String artistName = (String)request.getAttribute("artistName");%>
-<jsp:include page="/serpath.do"></jsp:include>
+
 
 <%String audioPath = (String)request.getAttribute("filepath");%>
 <%String audioImagePath = (String)request.getAttribute("imagepath");%>

@@ -62,13 +62,39 @@
        <ol class="list-group">
          <li class="list-group-item disabled">조성원님의 최근 게시글</li>
           <li class="list-group-item">
+          
+         <jsp:include page="/widget.do" flush="true">
+		<jsp:param value="e6ddn02ie17ngn4a1l44" name="audio_code"/>
+		</jsp:include>
+		
 <%--<a href= "/FairMusic/widget.do">서블릿->웹</a>
          <jsp:include page ="/widget.do"></jsp:include> --%>
-         
-         <a href= "/widget/fmWidget.jsp">웹->서블릿</a>
-<%--          <jsp:include page ="/widget/fmWidget.jsp">
+ 			<%-- <jsp:include page="<%= application.getContextPath()%>/widget/fmWidget.jsp">
          <jsp:param value="e6ddn02ie17ngn4a1l44" name="audio_code"/>
-         </jsp:include> --%>
+         </jsp:include>  --%>
+         
+<%--          <%
+	RequestDispatcher dispather = request.getRequestDispatcher("/widget.do?audio_code=e6ddn02ie17ngn4a1l44");
+         
+	dispather.include(request,response);
+%> --%>
+<%-- <% if(request.getRequestURL().equals("http://localhost:8088/FairMusic/layout/mainLayout.jsp")){ %>
+<jsp:include page="/widget.do">
+		<jsp:param value="e6ddn02ie17ngn4a1l44" name="audio_code"/>
+		</jsp:include>
+<%} %> --%>
+<%--          <% if(request.getRequestURL().equals("http://localhost:8088/FairMusic/layout/mainLayout.jsp")){ %>
+         <jsp:include page="../widget/fmWidget.jsp">
+         <jsp:param value="e6ddn02ie17ngn4a1l44" name="audio_code"/>
+         </jsp:include>
+         <%}else{ %>
+         <jsp:include page="widget/fmWidget.jsp">
+         <jsp:param value="e6ddn02ie17ngn4a1l44" name="audio_code"/>
+         </jsp:include>
+         <%} %> --%>
+         
+         
+       
          <%-- <jsp:include page="/widget/temp2widget.jsp"></jsp:include> --%>
           </li>
           <li class="list-group-item disabled">한준희님의 최근 게시글</li>

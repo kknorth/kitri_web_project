@@ -10,7 +10,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	</head>
 	<body>
-	<jsp:include page="top.jsp"></jsp:include>
+			<jsp:include page="top.jsp"></jsp:include>
 	<div class="container-fluid text-center">
 		<div class="row">
 				<div class="col-sm-9">

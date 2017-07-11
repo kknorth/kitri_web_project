@@ -41,6 +41,7 @@ public class artistDTO {
 
 
 	public String getArtist_id() {
+		System.out.println("asdfasdfasdfasdfasdf");
 		return artist_id;
 	}
 

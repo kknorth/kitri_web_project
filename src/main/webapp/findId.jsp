@@ -28,11 +28,14 @@
 <body>
 <body>
 <div class="row">
-  <div class="col-lg-12"><span class="label label-info">아이디 찾기</span></div>
+  <div class="col-lg-12">
+  <span class="label label-info">아이디 찾기</span>&nbsp;&nbsp;
+    <span id="artist_email_check" style="color: red"></span>
+  </div>
+
   <div class="col-lg-12">
 <span class="label label-info">이메일</span>
 <input type="text" name="textfield" id="artist_email">
-<span id="artist_email_check"></span>
 &nbsp;</div>
   <div class="col-lg-12">
   

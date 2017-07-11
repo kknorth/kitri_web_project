@@ -23,7 +23,7 @@ public class LoginServlet_Google extends HttpServlet {
 		String rightpath= null;
 		String rdpath = null;
 		if (loginUser_google == null) {
-			rdpath = "login-no-sidebar.jsp";
+			rdpath = "login_failed.jsp";
 		} else {
 			viewpath = "../content.jsp";
 			leftpath="Side_Left.jsp";

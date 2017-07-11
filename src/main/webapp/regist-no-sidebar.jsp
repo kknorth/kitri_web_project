@@ -6,16 +6,12 @@
 <title>FairMusic 회원가입</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="google-signin-scope" content="profile email">
-<meta name="google-signin-client_id"
-	content="858926206600-4civml71qto6t35fd8hvosi4so9ku55e.apps.googleusercontent.com">
 <link rel="stylesheet" href="assets/css/main.css" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
 
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -23,10 +19,10 @@
 			$.post("/FairMusic/emailCheck.do", {"artist_email":$("#artist_email").val()}, success_run)
 		})
 		$("#email_verify").on("click", function(){
-			if($("#artist_email").val()==""){
+			if($("#artist_email").val()==null){
 				alert("이메일을 입력해 주세요")	
 			}else{
-				$.post("/FairMusic/email", {"artist_email": $("#artist_email").val()}, success_email);
+				$.post("/FairMusic/email", {"artist_email": $("#artist_email").val()}, success_email)
 			}
 		})
 		
@@ -60,22 +56,20 @@
 	function success_email(txt){
 	/* 	$("#eamiltest").html("이메일이 전송되었습니다."); */
 	}
+	
 	function success_run(txt){
 		$("#artist_email_check").html(txt)
 	}
 	
-	
+	 <% String authNum = (String)session.getAttribute("authNum"); %>
+	 <% String authNum_check = (String)session.getAttribute("authNum_check"); %>
 	 
-	<% String authNum = (String)session.getAttribute("authNum"); %>
-	<% String authNum_check = (String)session.getAttribute("authNum_check"); %>
 
    function FormSubmit() {
       if (grecaptcha.getResponse() == "") {
          alert("로봇이 아님을 체크해 주세요!");
          return false;
-   	  }else if(<%=authNum.equals(authNum_check)%>==""){
-    	  alert("이메일 인증을 해주세요!!");
-    	  return false; 
+      
       }else {
          return true;
       }
@@ -90,8 +84,6 @@
          return false;
       }
    }
-   
-   
    function CheckForm(Join){ 
 	   var chk1=document.Join.check1.checked;
 	   var chk2=document.Join.check2.checked;
@@ -103,8 +95,11 @@
            return false;
        }else {
 	    return true;
-       }
+	   }
 	}
+   
+ 
+   
    
    	  function timer_start(){ //초기 설정함수
 		  if(artist_email==""){
@@ -159,192 +154,20 @@
                <section class="12u">
                   <form method="post" name ="Join" action="/FairMusic/artistregist.do" onSubmit="return (FormSubmit() && CheckForm(this));">
                      <div class="row 50%">
-                     <script type='text/javascript'>
-/* ############################################페이스북로그인########################################################## */
-	
-			 		function statusChangeCallback(response) {
-					 		console.log('statusChangeCallback'); console.log(response); 
-					 		// response 객체는 현재 로그인 상태를 나타내는 정보를 보여준다. 
-					 		// 앱에서 현재의 로그인 상태에 따라 동작하면 된다. 
-					 		// FB.getLoginStatus().의 레퍼런스에서 더 자세한 내용이 참조 가능하다. 
-					 		if (response.status === 'connected') { 
-					 			// 페이스북을 통해서 로그인이 되어있다. 
-					 			 var accessToken = response.authResponse.accessToken;
-					 			<%--  <%pageContext.forward("/layout/mainLayout.jsp"); %> --%>
-								if(accessToken!=null){alert("logout해주세요")}
-								
-					 			testAPI(); 
-					 			} else if (response.status === 'not_authorized') { 
-					 				// 페이스북에는 로그인 했으나, 앱에는 로그인이 되어있지 않다. 
-					 				document.getElementById('status').innerHTML = 'Please log ' + 'into this app.'; 
-					 			} else { 
-					 					// 페이스북에 로그인이 되어있지 않다. 따라서, 앱에 로그인이 되어있는지 여부가 불확실하다. 
-					 					document.getElementById('status').innerHTML = 'Please log ' + 'into Facebook.'; 
-					 			} 
-					 		} 
-					 		
-
-					 		
-			
-						  function checkLoginState() {
-							    FB.getLoginStatus(function(response) {
-							      statusChangeCallback(response);
-							    });
-							}
-		
-						  window.fbAsyncInit = function() {
-							    FB.init({
-							      appId      : '349635012119334',
-							      cookie     : false,
-							   // 쿠키가 세션을 참조할 수 있도록 허용 
-							      xfbml      : true,
-							   // 소셜 플러그인이 있으면 처리 
-							      version    : 'v2.8'
-							    });
-							    FB.AppEvents.logPageView();   
-							  };
-						
-						  
-						  // SDK를 비동기적으로 호출 
-						  (function(d, s, id) {
-				  			var js, fjs = d.getElementsByTagName(s)[0];
-				 			 if (d.getElementById(id)) return;
-				 			 js = d.createElement(s); js.id = id;
-				 			 js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.9&appId=148079569074801";
-				 			 fjs.parentNode.insertBefore(js, fjs);
-							}(document, 'script', 'facebook-jssdk'));
-						  
-						  
-							// 로그인이 성공한 다음에는 간단한 그래프API를 호출한다. 
-					 		// 이 호출은 statusChangeCallback()에서 이루어진다. 
-					 		 function testAPI() { 
-					 			console.log('Welcome! Fetching your information.... '); 
-					 			FB.api('/me', function(response) { 
-					 				console.log(JSON.stringify(response));
-					 				console.log('아이디 : ' + response.id);
-					 				console.log('Successful login for : ' + response.name); 
-					 				var id = response.id;
-					 				var name = response.name;
-									
-									$.ajax({
-										url:"/FairMusic/FacebookJoin",
-										type:"post",
-										data : {"id":id, "name" : name},
-										dataType :"text",
-										success :success_run,
-										error :err_run
-									});		
-					 			}); 
-					 		} 
-							
-/* #####################################구글 로그인########################################################## */
-					 		function onSignIn(googleUser) {
-						    	var login="";
-						        // Useful data for your client-side scripts:
-						        var profile = googleUser.getBasicProfile();
-						        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-						        console.log('Full Name: ' + profile.getName());
-						        console.log('Given Name: ' + profile.getGivenName());
-						        console.log('Family Name: ' + profile.getFamilyName());
-						        console.log("Image URL: " + profile.getImageUrl());
-						        console.log("Email: " + profile.getEmail());
-							 	name = profile.getGivenName();
-						        Email = profile.getEmail();
-						        id = profile.getId();
-						        if(name!=null && Email!=null && id!=null){
-						        	loginUser_google = "success";
-						        }else{
-						        	loginUser_google = null;
-						        }
-						         
-						   		  /*  document.getElementById('ID').innerHTML = 
-										'Thanks for logging in, ' + profile.getId() + '!'; 
-									document.getElementById('Full Name').innerHTML = 
-										'name, ' + profile.getName() + '!'; 
-									document.getElementById('Email').innerHTML = 
-										'yourEmailID, ' + profile.getEmail() + '!'; 
-						        // The ID token you need to pass to your backend:
-						        var id_token = googleUser.getAuthResponse().id_token;
-						        console.log("ID Token: " + id_token); */
-						        location.href="/FairMusic/login_google.do?loginUser_google="+loginUser_google;
-						      };
-						      function signOut() {
-						  	    var auth2 = gapi.auth2.getAuthInstance();
-						  	    auth2.signOut().then(function () {
-						  	      console.log('User signed out.');
-						  	    });
-						  	  };
-						  	  
-					 		/* ####################################################구글 로그인########################################################## */
-				
-				   			 Kakao.init('2c01299435b34c747838e7271ed23461');
-							    function loginWithKakao() {
-									Kakao.Auth.login({
-										throughTalk : false,
-										success: function(authObj) {
-											/* alert(JSON.stringify(authObj)); */
-									        Kakao.API.request({
-									          url: '/v1/user/me',
-									          success: function(res) {
-									            /* alert(JSON.stringify(res)); */
-									          },
-									          fail: function(error) {
-									            alert(JSON.stringify(error));
-									          }
-									        });
-									         if(authObj){
-								      			 location.href='/FairMusic/view.do?leftpath=Side_Left.jsp&viewpath=../content.jsp&rightpath=Side_Right.jsp';
-								    		}
-									      },
-									      fail: function(err) {
-									        alert(JSON.stringify(err));
-									      }
-									    });
-									};
-								function logoutWithKakao() {
-									Kakao.Auth.logout(function(e){
-							    		if(e){
-							      			 location.href='login-no-sidebar.jsp';
-							    		}
-							    	});
-								};
-								function afterloginfacebook(){
-									/* alert("login facebook?"); */
-									location.href='/FairMusic/view.do?leftpath=Side_Left.jsp&viewpath=../content.jsp&rightpath=Side_Right.jsp';
-								};
-						</script>
-						
-						<!-- facebook########################### -->
-								<div class="fb-login-button" data-max-rows="1" data-size="large"
-									data-button-type="continue_with" data-show-faces="false"
-									data-auto-logout-link="true" data-use-continue-as="false"
-									data-scope="public_profile,email"
-									onlogin="afterloginfacebook();"></div>
-								<!-- kakao########################### -->
-								<div>
-									<a id="custom-login-btn" href="javascript:loginWithKakao()">
-										<img
-										src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg"
-										width="260" />
-									</a>
-								</div>
-								<div>
-									<a href="javascript:logoutWithKakao()">kakao logout</a>
-								</div>
-
-								<!-- google########################### -->
-								<div class="g-signin2" data-onsuccess="onSignIn"
-									data-theme="dark"></div>
-				
-
-								<a href="#" onclick="signOut();">Sign out</a>
-								<!-- google########################### -->
+                        <div class="5u 12u">
+                           <input type="image" src="images/facebookRegister.png"
+                              width="100%">
+                        </div>
+                        <div class="5u 12u">
+                           <input type="image" src="images/googleRegister.png"
+                              width="100%">
+                        </div>
 
                         <div class="9u 12u">
                            <input name="artist_email" placeholder="E-mail" type="email" id = "artist_email" required="required"/>
                         </div>
                         <div class="3u 12u">
-                          <input type="button" value="이메일 인증하기"  data-toggle="modal" data-target="#findidModal" id="email_verify" onclick="timer_start(); this.onclick='';" /><!-- onclick="timer_start(); this.onclick='';" -->
+                          <input type="button" value="이메일 인증하기"  data-toggle="modal" data-target="#findidModal" id="email_verify" onclick="timer_start(); this.onclick='';" />
                         </div>
                          <div class="12u">
                           	<span id="artist_email_check" style="color: red"></span>
@@ -766,7 +589,7 @@ FairMusic은 고객의 개인정보를 매우 중요시하며, 고객의 개인정보를 보호하여 개인정
 			
         </div>
         <div class="modal-footer">
-        	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">검증완료</button>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">검증완료</button>
         </div>
       </div>
       </div>

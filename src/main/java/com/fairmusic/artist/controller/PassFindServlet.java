@@ -27,8 +27,8 @@ public class PassFindServlet extends HttpServlet {
 		String msg = "";
 		EmailLogic logic = new EmailLogic();
 		
-		String newPass = logic.RandomNum();
-		String toName = "우해원 회원님";
+		String newPass = "asdf"+logic.RandomNum();
+		String toName = email;
 		String subject = "FairMusic 임시 비밀번호입니다.";
 		String content = "임시비밀번호 [" + newPass + "]";
 		
@@ -41,7 +41,7 @@ public class PassFindServlet extends HttpServlet {
 			int result = service.pass_update(email, newPass);
 			System.out.println(result+" 암호변경");
 		}else{
-			msg = "일치하는 이메일이 없습니다.";
+			msg = "일치하는 사용자가 없습니다.";
 		}
 		pw.write(msg);
 	}

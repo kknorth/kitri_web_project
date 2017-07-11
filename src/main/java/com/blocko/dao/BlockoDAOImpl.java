@@ -49,8 +49,18 @@ public class BlockoDAOImpl implements BlockoDAO {
 			con = getConnection();
 			ptmt = con.prepareStatement(BITCOINADDR_INSERT);
 			ptmt.setString(1, bitcoinAdress.getId());
-			ptmt.setString(2, bitcoinAdress.getBitcoinAdress());
-			ptmt.setString(3, bitcoinAdress.getPrivatekey());
+			ptmt.setString(2, bitcoinAdress.getBitcoinAdress1());
+			ptmt.setString(3, bitcoinAdress.getPrivatekey1());
+			ptmt.setString(4, bitcoinAdress.getBitcoinAdress2());
+			ptmt.setString(5, bitcoinAdress.getPrivatekey2());
+			ptmt.setString(6, bitcoinAdress.getBitcoinAdress3());
+			ptmt.setString(7, bitcoinAdress.getPrivatekey3());
+			ptmt.setString(8, bitcoinAdress.getRighterName1());
+			ptmt.setLong(9, bitcoinAdress.getRighterVal1());
+			ptmt.setString(10, bitcoinAdress.getRighterName2());
+			ptmt.setLong(11, bitcoinAdress.getRighterVal2());
+			ptmt.setString(12, bitcoinAdress.getRighterName3());
+			ptmt.setLong(13, bitcoinAdress.getRighterVal3());
 			result = ptmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -73,8 +83,9 @@ public class BlockoDAOImpl implements BlockoDAO {
 			ptmt.setString(1,id);
 			rs = ptmt.executeQuery();
 			while(rs.next()){
-				bitaddr =new BitcoinAdressDTO(rs.getString(1),rs.getString(2),
-						rs.getString(3),rs.getString(4),rs.getInt(5));
+				bitaddr =new BitcoinAdressDTO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),
+						rs.getString(7),rs.getString(8),rs.getLong(9),rs.getString(10),
+						rs.getLong(11),rs.getString(12),rs.getLong(13));
 				bitcoinaddr.add(bitaddr);
 			}
 		} catch (SQLException e) {
