@@ -31,7 +31,7 @@ public class BitcoinAdressInsert extends HttpServlet {
 
 		/*HttpSession ses = request.getSession();
 		String audio_code= (String)ses.getAttribute("user");*/
-		String audio_code="";		
+		String audio_code="ww";		
 		String[] righterName ={request.getParameter("cpname")};
 		long[] righterVal ={Long.parseLong((request.getParameter("cprate")))};
 		for (int i = 0; i < righterName.length; i++) {
@@ -41,18 +41,20 @@ public class BitcoinAdressInsert extends HttpServlet {
 
 		try {
 			String[] PrivateKey = {ECKey.createNewPrivateKey()};
-			String[] bitcoinAdress =null;
-			long[] balance =null;
-			for (int j = 0; j < PrivateKey.length; j++) {
+			String[] bitcoinAdress =new String[2];
+			long[] balance = new long[2];
+			BitcoinAdressDTO bitaddr = null;
+			for (int j = 0; j < bitcoinAdress.length; j++) {
 				bitcoinAdress = new String[]{ECKey.deriveAddress(PrivateKey[j])};
 				balance = new long[]{coinstack.getBalance(bitcoinAdress[j])};
 				System.out.println("create privateKey: "+PrivateKey[j]);
 				System.out.println("MusicAddress: "+bitcoinAdress[j]);
+				bitaddr = new BitcoinAdressDTO(audio_code, bitcoinAdress[j], PrivateKey[j],righterName[j], righterVal[j]);
 			}
 			
-			BitcoinAdressDTO bitaddr = new BitcoinAdressDTO(audio_code, bitcoinAdress[0], PrivateKey[0],
+	/*		bitaddr = new BitcoinAdressDTO(audio_code, bitcoinAdress[0], PrivateKey[0],
 					bitcoinAdress[1],PrivateKey[1],bitcoinAdress[2], PrivateKey[2],righterName[0], righterVal[0], 
-					righterName[1], righterVal[1],righterName[2], righterVal[2]);
+					righterName[1], righterVal[1],righterName[2], righterVal[2]);*/
 			BlockoService service = new BlockoServiceImpl();
 			int result = service.bitcoinAdressInsert(bitaddr);
 			for (int i = 0; i < bitcoinAdress.length; i++) {

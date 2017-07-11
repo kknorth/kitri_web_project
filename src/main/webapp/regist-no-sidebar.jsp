@@ -14,56 +14,58 @@
 
 
 <script type="text/javascript">
-	$(document).ready(function(){
-		$("#artist_email").on("keyup", function(){
-			$.post("/FairMusic/emailCheck.do", {"artist_email":$("#artist_email").val()}, success_run)
-		})
-		$("#email_verify").on("click", function(){
-			if($("#artist_email").val()==null){
-				alert("이메일을 입력해 주세요")	
-			}else{
-				$.post("/FairMusic/email", {"artist_email": $("#artist_email").val()}, success_email)
-			}
-		})
-		
-		$("#email_verify_check").on("click", function(){
-			alert($("#authnum_check").val())
-			$.post("/FairMusic/email_check.do", {"authnum_check" : $("#authnum_check").val()}, success_eamil_check)
-			
-		})
-		$("#artist_pass2").on("keyup", function(){
-			if($("#artist_pass").val()!="" && $("#artist_pass").val()!=$("#artist_pass2").val()){
-				$("#artist_pass_check").html("비밀번호가 일치하지 않습니다.")
-			}else{
-				$("#artist_pass_check").html("");
-			}
-		})
-		
-		$("#artist_pass").on("keyup", function(){
-			if($("#artist_pass2").val()!="" && $("#artist_pass").val()!=$("#artist_pass2").val()){
-				$("#artist_pass_check").html("비밀번호가 일치하지 않습니다.")
-			}else{
-				$("#artist_pass_check").html("");
-			}
-		})
-		
+   $(document).ready(function(){
+      $("#artist_email").on("keyup", function(){
+         $.post("/FairMusic/emailCheck.do", {"artist_email":$("#artist_email").val()}, success_run)
+      })
+      $("#email_verify").on("click", function(){
+         if($("#artist_email").val()==null){
+            alert("이메일을 입력해 주세요")   
+         }else{
+            $.post("/FairMusic/email", {"artist_email": $("#artist_email").val()}, success_email)
+         }
+      })
+      
+      $("#email_verify_check").on("click", function(){
+         alert($("#authnum_check").val())
+         $.post("/FairMusic/email_check.do", {"authnum_check" : $("#authnum_check").val()}, success_eamil_check)
+         
+      })
+      $("#artist_pass2").on("keyup", function(){
+         if($("#artist_pass").val()!="" && $("#artist_pass").val()!=$("#artist_pass2").val()){
+            $("#artist_pass_check").html("비밀번호가 일치하지 않습니다.")
+         }else{
+            $("#artist_pass_check").html("");
+         }
+      })
+      
+      $("#artist_pass").on("keyup", function(){
+         if($("#artist_pass2").val()!="" && $("#artist_pass").val()!=$("#artist_pass2").val()){
+            $("#artist_pass_check").html("비밀번호가 일치하지 않습니다.")
+         }else{
+            $("#artist_pass_check").html("");
+         }
+      })
+      
 
-	})
-	
-	function success_eamil_check(txt){
-		$("#email_verify_result").html(txt);
-	}
-	function success_email(txt){
-	/* 	$("#eamiltest").html("이메일이 전송되었습니다."); */
-	}
-	
-	function success_run(txt){
-		$("#artist_email_check").html(txt)
-	}
-	
-	 <% String authNum = (String)session.getAttribute("authNum"); %>
-	 <% String authNum_check = (String)session.getAttribute("authNum_check"); %>
-	 
+   })
+   
+   var msg = "";
+   var result = "";
+   
+   function success_eamil_check(txt){
+      data = txt.split("/");
+      msg = data[0]; 
+      result = data[1];
+      $("#email_verify_result").html(msg);   
+   }
+   function success_email(txt){
+   /*    $("#eamiltest").html("이메일이 전송되었습니다."); */
+   }
+   
+   function success_run(txt){
+      $("#artist_email_check").html(txt)
+   }
 
    function FormSubmit() {
       if (grecaptcha.getResponse() == "") {
@@ -85,47 +87,59 @@
       }
    }
    function CheckForm(Join){ 
-	   var chk1=document.Join.check1.checked;
-	   var chk2=document.Join.check2.checked;
-	   if(!chk1){
+      var chk1=Join.check1.checked;
+      var chk2=Join.check2.checked;
+      if(!chk1){
            alert('약관1에 동의해 주세요');
            return false;
        }else if(!chk2) {
            alert('약관2에 동의해 주세요');
            return false;
        }else {
-	    return true;
-	   }
-	}
+       return true;
+      }
+   }
    
  
    
    
-   	  function timer_start(){ //초기 설정함수
-		  if(artist_email==""){
-			  alert("email을 입력해주세요");
-		  }else{
-			 tcounter=180; //3분설정 
-			 t1=setInterval(Timer,1000);  
-		  }
-	  }
+        function timer_start(){ //초기 설정함수
+        if(artist_email==""){
+           alert("email을 입력해주세요");
+        }else{
+          tcounter=180; //3분설정 
+          t1=setInterval(Timer,1000);  
+        }
+     }
 
-	  function Timer(){     //시간표및 조건검사
-	   tcounter=tcounter-1;   
-	   temp=Math.floor(tcounter/60); 
-	   if ( Math.floor(tcounter/60) < 10 ) { temp = '0'+temp; }
-	    temp = temp + ":";   
-	   if ( (tcounter%60) < 10 ) { temp = temp + '0'; } 
-	    temp = temp + (tcounter%60);
-	    document.getElementById("timer_s").innerHTML=temp;    
-	   if(tcounter<0) {tstop(); alert("이메일 인증 버튼을 다시 눌러주세요")}
-	  }
-	  
-	  function tstop(){ 
-	   clearInterval(t1);
-	   document.getElementById("timer_s").innerHTML="인증시간이 초과되었습니다.";
-	  }
-  
+     function Timer(){     //시간표및 조건검사
+      tcounter=tcounter-1;   
+      temp=Math.floor(tcounter/60); 
+      if ( Math.floor(tcounter/60) < 10 ) { temp = '0'+temp; }
+       temp = temp + ":";   
+      if ( (tcounter%60) < 10 ) { temp = temp + '0'; } 
+       temp = temp + (tcounter%60);
+       document.getElementById("timer_s").innerHTML=temp;    
+      if(tcounter<0) {tstop(); alert("이메일 인증 버튼을 다시 눌러주세요")}
+     }
+     
+     function tstop(){ 
+      clearInterval(t1);
+      document.getElementById("timer_s").innerHTML="인증시간이 초과되었습니다.";
+     }
+   
+        function test(myform){
+           //이메일인증 서블릿에서 setAttribute하는 값을 자바스크립트 변수에 저장
+           if(result!="1"){
+              alert("이메일인증을 해주세요!")
+           }else{
+              resultsub1 = FormSubmit()
+              resultsub2 = CheckForm(myform)
+              if(resultsub1 && resultsub2){
+                 myform.submit();   
+           }
+        }
+     }
 </script>
 
 </head>
@@ -152,7 +166,8 @@
 
             <div class="row">
                <section class="12u">
-                  <form method="post" name ="Join" action="/FairMusic/artistregist.do" onSubmit="return (FormSubmit() && CheckForm(this));">
+                  <form method="post" action="/FairMusic/artistregist.do" >
+                  
                      <div class="row 50%">
                         <div class="5u 12u">
                            <input type="image" src="images/facebookRegister.png"
@@ -164,30 +179,32 @@
                         </div>
 
                         <div class="9u 12u">
-                           <input name="artist_email" placeholder="E-mail" type="email" id = "artist_email" required="required"/>
+                           <input name="artist_email" placeholder="E-mail" type="email" id = "artist_email" required/>
                         </div>
                         <div class="3u 12u">
-                          <input type="button" value="이메일 인증하기"  data-toggle="modal" data-target="#findidModal" id="email_verify" onclick="timer_start(); this.onclick='';" />
+                          <input type="button" value="이메일 인증하기"  data-toggle="modal" 
+                          data-target="#findidModal" id="email_verify" 
+                          onclick="timer_start(); this.onclick='';" />
                         </div>
                          <div class="12u">
-                          	<span id="artist_email_check" style="color: red"></span>
+                             <span id="artist_email_check" style="color: red"></span>
                         </div>
 
                         <div class="12u">
-                           <input name="artist_pass" placeholder="비밀번호" type="password" id = "artist_pass" minlength="9" required="required"/>
+                           <input name="artist_pass" placeholder="비밀번호" type="password" id = "artist_pass" minlength="9" required/>
                         </div>
                         <div class="12u">
-                           <input name="passverify" placeholder="비밀번호 확인" type="password" id="artist_pass2" minlength="9" required="required"/>
+                           <input name="passverify" placeholder="비밀번호 확인" type="password" id="artist_pass2" minlength="9" required/>
                         </div>
                         <div id="artist_pass_check" style= "color: red"></div>
                         <div class="12u">
                            <input name="artist_id" placeholder="이름" type="text" id = "artist_id" required="required"/>
                         </div>
                         
-                        	<!-- 이용약관   -->
+                           <!-- 이용약관   -->
                         <div>
-                        	약관(1)동의하기 : <input id="check1" name="check1" type="checkbox"/><br/>
-                        	<textarea rows="5" cols="70">
+                           약관(1)동의하기 : <input id="check1" name="check1" type="checkbox"/><br/>
+                           <textarea rows="5" cols="70">
 제1장 총칙
 
 제1조 목적
@@ -491,14 +508,14 @@ FairMusic거래소에 등록된 가상화폐의 내용은 각 회원이 등록한 것으로 회사는 등록내
 이 약관은 2015년 5월 25일부터 적용됩니다. 
 이 약관은 2015년 11월 26일부터 적용됩니다. 
 이 약관은 2016년 6월 07일부터 적용됩니다. 
-							</textarea>
-                        		
+                     </textarea>
+                              
                        
                         </div>
-						
-						<div>
-							약관(2)동의하기 : <input id="check2" name="check2" type="checkbox"/><br/>
-                      	 	<textarea rows="5" cols="70">
+                  
+                  <div>
+                     약관(2)동의하기 : <input id="check2" name="check2" type="checkbox"/><br/>
+                             <textarea rows="5" cols="70">
 개인정보 취급방침
 
 FairMusic은 고객의 개인정보를 매우 중요시하며, 고객의 개인정보를 보호하여 개인정보 유출로 인한 피해가 발생하지 않도록 하기 위하여 '정보통신망 이용촉진 및 정보보호에 관한 법률' 및 '개인정보 보호법' 등 정보통신 서비스 제공자가 준수하여야 할 관련 법령상의 규정을 준수하며, 이를 바탕으로 다음과 같은 개인정보취급방침을 작성하여 고객님들의 개인정보가 어떠한 용도와 방식으로 이용되고 있으며, 개인정보보호를 위해 어떠한 조치가 이루어지고 있는지 알려드립니다. 
@@ -524,7 +541,7 @@ FairMusic은 고객의 개인정보를 매우 중요시하며, 고객의 개인정보를 보호하여 개인정
 - 대금결제 및 재화등의 공급에 관한 기록 : 5년
 - 소비자의 불만 또는 분쟁처리에 관한 기록 : 3년 
 이용자의 동의를 받아 보유하고 있는 거래정보 등을 이용자가 열람을 요구하는 경우 회사는 지체 없이 그 열람, 확인할 수 있도록 조치합니다 
-							</textarea>
+                     </textarea>
                         </div>
                      </div>
                      <br />
@@ -532,7 +549,7 @@ FairMusic은 고객의 개인정보를 매우 중요시하며, 고객의 개인정보를 보호하여 개인정
                         <div class="12u" align="right">
                            <ul class="actions">
 
-                              <li><input type="submit" name="submit" value="회원 가입"/></li>
+                              <li><input type="button" onclick="test(this.form)" value="회원 가입"/></li>
                               <li>
                               <input type="button" value="가입 취소" onclick="location.href='/FairMusic/view.do?leftpath=Side_Left.jsp&viewpath=../content.jsp&rightpath=Side_Right.jsp'"/>
                               </li>
@@ -566,27 +583,27 @@ FairMusic은 고객의 개인정보를 매우 중요시하며, 고객의 개인정보를 보호하여 개인정
          <h3>이메일이 전송되었습니다.</h3>
       </div>
         <div class = "modal-body">
-	      <div class="row">
-				<div class="col-lg-12">
-					<span class="label label-info">이메일 검증</span>
-					<span id="email_verify_result" style="color: red"></span>
-				</div>
-				
-				<div class="col-lg-12">
-					<div id="timer_s" style="color: red"></div>
-				</div>
-				
-				<div class="col-lg-12">
-					<span class="label label-info">인증번호 7자리를 입력하세요</span> 
-					<input type="text" name="authnum"  id="authnum_check"/>
-					<span id="authnum_check_result"></span>
-				</div>
-				<div class="col-lg-12">
-					<button type="submit" class="btn btn-lg btn-default" id="email_verify_check">확인</button>
-				</div>
-				
-			</div>
-			
+         <div class="row">
+            <div class="col-lg-12">
+               <span class="label label-info">이메일 검증</span>
+               <span id="email_verify_result" style="color: red"></span>
+            </div>
+            
+            <div class="col-lg-12">
+               <div id="timer_s" style="color: red"></div>
+            </div>
+            
+            <div class="col-lg-12">
+               <span class="label label-info">인증번호 7자리를 입력하세요</span> 
+               <input type="text" name="authnum"  id="authnum_check"/>
+               <span id="authnum_check_result"></span>
+            </div>
+            <div class="col-lg-12">
+               <button type="submit" class="btn btn-lg btn-default" id="email_verify_check">확인</button>
+            </div>
+            
+         </div>
+         
         </div>
         <div class="modal-footer">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">검증완료</button>

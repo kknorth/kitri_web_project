@@ -1,6 +1,7 @@
 package com.blocko.controller;
 
 import io.blocko.coinstack.CoinStackClient;
+import io.blocko.coinstack.ECKey;
 import io.blocko.coinstack.TransactionBuilder;
 import io.blocko.coinstack.TransactionUtil;
 import io.blocko.coinstack.exception.CoinStackException;
@@ -32,47 +33,38 @@ public class BintcoinSend extends HttpServlet {
 		try {
 			BlockoService service = new BlockoServiceImpl();
 			ArrayList<BitcoinAdressDTO> btcaddrlist = service.bitcoinAdressSelect(audio_code);
-			request.setAttribute("btcaddrlist", btcaddrlist); //어드레스 리스트에서 내가 보낼 주소와 프라이빗키를 보여준뒤 클릭
+			String MyPrivateKey = ECKey.createNewPrivateKey();
+			String MypublicKey = ECKey.deriveAddress(MyPrivateKey);
+			request.setAttribute("MypublicKey", MypublicKey);//내가 보낼 비트코인 주소
 			
-			String bitcoinAdress1 = "";
-			String privatekey1 = "";
-			String bitcoinAdress2 = "";
-			String privatekey2 = "";
-			String bitcoinAdress3 = "";
-			String privatekey3 = "";
-			String righterName1 = "";
-			long righterVal1 = 0;
-			String righterName2 = "";
-			long righterVal2 = 0;
-			String righterName3 = "";
-			long righterVal3 = 0;
-			
-			BitcoinAdressDTO btcaddr = new BitcoinAdressDTO(audio_code, bitcoinAdress1, privatekey1, bitcoinAdress2, privatekey2, bitcoinAdress3, privatekey3, righterName1, righterVal1, righterName2, righterVal2, righterName3, righterVal3);
-			for (int i = 0; i < btcaddrlist.size(); i++) {
-				btcaddr = btcaddrlist.get(i);
-			}
-			String[] privatekey = {btcaddr.getPrivatekey1(),btcaddr.getPrivatekey2(),btcaddr.getPrivatekey3()};			
-			String[] rawSignedTx = null;
-			String[] transactionId = null;
-			long[] righterVal = {btcaddr.getRighterVal1(),btcaddr.getRighterVal2(),btcaddr.getRighterVal3()};
-			long[] amount = null; 
-			//long[] fee =null; 
-			
-			String[] toAddress ={btcaddr.getBitcoinAdress1(),btcaddr.getBitcoinAdress2(),btcaddr.getBitcoinAdress3()};
+			String[] toAddress = new String[2];
+			//String[] privatekey = new String[2];
+			long[] righterVal = new long[2];
+			String[] rawSignedTx = new String[2];
+			String[] transactionId = new String[2];
+			long[] amount = new long[2];
 			TransactionBuilder builder = new TransactionBuilder();
-			
-			for (int i = 0; i < 2; i++) {		
+			for (int i = 0; i < btcaddrlist.size(); i++) {
+				toAddress[i]= (btcaddrlist.get(i).getBitcoinAdress());
+				//privatekey[i] = (btcaddrlist.get(i).getPrivatekey());
+				righterVal[i] = (btcaddrlist.get(i).getRighterVal());
 				String RVAL = Long.toString(righterVal[i]);
 				amount[i] = io.blocko.coinstack.Math.convertToSatoshi(RVAL);
-				//fee =io.blocko.coinstack.Math.convertToSatoshi("fee[i]");
 				builder.addOutput(toAddress[i], amount[i]);
-				//builder.setFee(fee);
-				rawSignedTx[i] = coinstack.createSignedTransaction(builder, privatekey[i]);
+				rawSignedTx[i] = coinstack.createSignedTransaction(builder, MyPrivateKey);
 				System.out.println(rawSignedTx[i]);
 				transactionId[i] = TransactionUtil.getTransactionHash(rawSignedTx[i]);
 				System.out.println(transactionId[i]);
 				request.setAttribute("transactionId"+i, transactionId[i]);
 			}
+			
+			//String[] privatekey = {btcaddr.getPrivatekey()};
+			//long[] righterVal = {btcaddr.getRighterVal()};
+			//String[] toAddress ={btcaddr.getBitcoinAdress()};
+			//long[] fee =null; 
+			//fee =io.blocko.coinstack.Math.convertToSatoshi("fee[i]");
+			//builder.setFee(fee);
+			
 		} catch (MalformedInputException e) {
 			e.printStackTrace();
 		} catch (CoinStackException e) {

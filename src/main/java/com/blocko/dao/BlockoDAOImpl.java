@@ -42,13 +42,14 @@ public class BlockoDAOImpl implements BlockoDAO {
 
 	@Override
 	public int bitcoinAdressInsert(BitcoinAdressDTO bitcoinAdress) {
+		System.out.println(bitcoinAdress);
 		Connection con = null;
 		PreparedStatement ptmt = null;
 		int result= 0;
 		try {
 			con = getConnection();
 			ptmt = con.prepareStatement(BITCOINADDR_INSERT);
-			ptmt.setString(1, bitcoinAdress.getId());
+			/*ptmt.setString(1, bitcoinAdress.getId());
 			ptmt.setString(2, bitcoinAdress.getBitcoinAdress1());
 			ptmt.setString(3, bitcoinAdress.getPrivatekey1());
 			ptmt.setString(4, bitcoinAdress.getBitcoinAdress2());
@@ -60,7 +61,13 @@ public class BlockoDAOImpl implements BlockoDAO {
 			ptmt.setString(10, bitcoinAdress.getRighterName2());
 			ptmt.setLong(11, bitcoinAdress.getRighterVal2());
 			ptmt.setString(12, bitcoinAdress.getRighterName3());
-			ptmt.setLong(13, bitcoinAdress.getRighterVal3());
+			ptmt.setLong(13, bitcoinAdress.getRighterVal3());*/
+			ptmt.setString(1, bitcoinAdress.getAudio_code());
+			ptmt.setString(2, bitcoinAdress.getBitcoinAdress());
+			ptmt.setString(3, bitcoinAdress.getPrivatekey());
+			ptmt.setString(4, bitcoinAdress.getRighterName());
+			//int data=(int)bitcoinAdress.getRighterVal();
+			ptmt.setLong(5, bitcoinAdress.getRighterVal());
 			result = ptmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -71,7 +78,7 @@ public class BlockoDAOImpl implements BlockoDAO {
 	}
 
 	@Override
-	public ArrayList<BitcoinAdressDTO> bitcoinAdressSelect(String id) {
+	public ArrayList<BitcoinAdressDTO> bitcoinAdressSelect(String audio_code) {
 		ArrayList<BitcoinAdressDTO> bitcoinaddr = new ArrayList<BitcoinAdressDTO>();
 		Connection con = null;
 		PreparedStatement ptmt = null;
@@ -80,12 +87,10 @@ public class BlockoDAOImpl implements BlockoDAO {
 		try {
 			con = getConnection();
 			ptmt = con.prepareStatement(BITCOINADDR_SELECT);
-			ptmt.setString(1,id);
+			ptmt.setString(1,audio_code);
 			rs = ptmt.executeQuery();
 			while(rs.next()){
-				bitaddr =new BitcoinAdressDTO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),
-						rs.getString(7),rs.getString(8),rs.getLong(9),rs.getString(10),
-						rs.getLong(11),rs.getString(12),rs.getLong(13));
+				bitaddr =new BitcoinAdressDTO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getLong(5));
 				bitcoinaddr.add(bitaddr);
 			}
 		} catch (SQLException e) {

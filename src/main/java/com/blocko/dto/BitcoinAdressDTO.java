@@ -3,7 +3,11 @@ package com.blocko.dto;
 public class BitcoinAdressDTO {
 	
 	String audio_code;
-	String bitcoinAdress1;
+	String bitcoinAdress;
+	String privatekey;
+	String righterName;
+	long righterVal;
+	/*String bitcoinAdress1;
 	String privatekey1;
 	String bitcoinAdress2;
 	String privatekey2;
@@ -14,133 +18,76 @@ public class BitcoinAdressDTO {
 	String righterName2;
 	long righterVal2;
 	String righterName3;
-	long righterVal3;
+	long righterVal3;*/
 
 	public BitcoinAdressDTO(){}
 
-	public BitcoinAdressDTO(String audio_code, String bitcoinAdress1,
-			String privatekey1, String bitcoinAdress2, String privatekey2,
-			String bitcoinAdress3, String privatekey3, String righterName1,
-			long righterVal1, String righterName2, long righterVal2,
-			String righterName3, long righterVal3) {
-		super();
-		this.audio_code = audio_code;
-		this.bitcoinAdress1 = bitcoinAdress1;
-		this.privatekey1 = privatekey1;
-		this.bitcoinAdress2 = bitcoinAdress2;
-		this.privatekey2 = privatekey2;
-		this.bitcoinAdress3 = bitcoinAdress3;
-		this.privatekey3 = privatekey3;
-		this.righterName1 = righterName1;
-		this.righterVal1 = righterVal1;
-		this.righterName2 = righterName2;
-		this.righterVal2 = righterVal2;
-		this.righterName3 = righterName3;
-		this.righterVal3 = righterVal3;
+	@Override
+	public String toString() {
+		return "BitcoinAdressDTO [audio_code=" + audio_code
+				+ ", bitcoinAdress=" + bitcoinAdress + ", privatekey="
+				+ privatekey + ", righterName=" + righterName + ", righterVal="
+				+ righterVal + "]";
 	}
 
-	public String getId() {
+	public BitcoinAdressDTO(String audio_code, String bitcoinAdress,
+			String privatekey, long righterVal) {
+		super();
+		this.audio_code = audio_code;
+		this.bitcoinAdress = bitcoinAdress;
+		this.privatekey = privatekey;
+		this.righterVal = righterVal;
+	}
+
+	public BitcoinAdressDTO(String audio_code, String bitcoinAdress,
+			String privatekey, String righterName, long righterVal) {
+		super();
+		this.audio_code = audio_code;
+		this.bitcoinAdress = bitcoinAdress;
+		this.privatekey = privatekey;
+		this.righterName = righterName;
+		this.righterVal = righterVal;
+	}
+
+	public String getAudio_code() {
 		return audio_code;
 	}
 
-	public void setId(String id) {
-		this.audio_code = id;
+	public void setAudio_code(String audio_code) {
+		this.audio_code = audio_code;
 	}
 
-	public String getBitcoinAdress1() {
-		return bitcoinAdress1;
+	public String getBitcoinAdress() {
+		return bitcoinAdress;
 	}
 
-	public void setBitcoinAdress1(String bitcoinAdress1) {
-		this.bitcoinAdress1 = bitcoinAdress1;
+	public void setBitcoinAdress(String bitcoinAdress) {
+		this.bitcoinAdress = bitcoinAdress;
 	}
 
-	public String getPrivatekey1() {
-		return privatekey1;
+	public String getPrivatekey() {
+		return privatekey;
 	}
 
-	public void setPrivatekey1(String privatekey1) {
-		this.privatekey1 = privatekey1;
+	public void setPrivatekey(String privatekey) {
+		this.privatekey = privatekey;
 	}
 
-	public String getBitcoinAdress2() {
-		return bitcoinAdress2;
+	public String getRighterName() {
+		return righterName;
 	}
 
-	public void setBitcoinAdress2(String bitcoinAdress2) {
-		this.bitcoinAdress2 = bitcoinAdress2;
+	public void setRighterName(String righterName) {
+		this.righterName = righterName;
 	}
 
-	public String getPrivatekey2() {
-		return privatekey2;
+	public long getRighterVal() {
+		return righterVal;
 	}
 
-	public void setPrivatekey2(String privatekey2) {
-		this.privatekey2 = privatekey2;
+	public void setRighterVal(long righterVal) {
+		this.righterVal = righterVal;
 	}
 
-	public String getBitcoinAdress3() {
-		return bitcoinAdress3;
-	}
-
-	public void setBitcoinAdress3(String bitcoinAdress3) {
-		this.bitcoinAdress3 = bitcoinAdress3;
-	}
-
-	public String getPrivatekey3() {
-		return privatekey3;
-	}
-
-	public void setPrivatekey3(String privatekey3) {
-		this.privatekey3 = privatekey3;
-	}
-
-	public String getRighterName1() {
-		return righterName1;
-	}
-
-	public void setRighterName1(String righterName1) {
-		this.righterName1 = righterName1;
-	}
-
-	public long getRighterVal1() {
-		return righterVal1;
-	}
-
-	public void setRighterVal1(long righterVal1) {
-		this.righterVal1 = righterVal1;
-	}
-
-	public String getRighterName2() {
-		return righterName2;
-	}
-
-	public void setRighterName2(String righterName2) {
-		this.righterName2 = righterName2;
-	}
-
-	public long getRighterVal2() {
-		return righterVal2;
-	}
-
-	public void setRighterVal2(long righterVal2) {
-		this.righterVal2 = righterVal2;
-	}
-
-	public String getRighterName3() {
-		return righterName3;
-	}
-
-	public void setRighterName3(String righterName3) {
-		this.righterName3 = righterName3;
-	}
-
-	public long getRighterVal3() {
-		return righterVal3;
-	}
-
-	public void setRighterVal3(long righterVal3) {
-		this.righterVal3 = righterVal3;
-	}
-
+	
 }

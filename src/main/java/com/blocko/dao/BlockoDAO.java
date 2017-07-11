@@ -6,7 +6,7 @@ import com.blocko.dto.MusicStampDTO;
 public interface BlockoDAO {
 	int insert(MusicStampDTO stamp);
 	int bitcoinAdressInsert(BitcoinAdressDTO bitcoinAdress);
-	ArrayList<BitcoinAdressDTO> bitcoinAdressSelect(String id);
+	ArrayList<BitcoinAdressDTO> bitcoinAdressSelect(String audio_code);
 	MusicStampDTO StampSelect(String id, String MusicName);	
 }
 
