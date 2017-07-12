@@ -32,14 +32,15 @@ public class BitcoinAdressInsert extends HttpServlet {
 		/*HttpSession ses = request.getSession();
 		String audio_code= (String)ses.getAttribute("user");*/
 		String audio_code="ww";		
-		String[] righterName ={request.getParameter("cpname")};
-		long[] righterVal ={Long.parseLong((request.getParameter("cprate")))};
-		for (int i = 0; i < righterName.length; i++) {
-			System.out.println(righterName[i]);
-			System.out.println((righterVal[i] *0.01));
-		}
-
 		try {
+			
+			String[] righterName ={request.getParameter("cpname")};
+			long[] righterVal ={Long.parseLong((request.getParameter("cprate")))};
+
+			for (int i = 0; i < righterName.length; i++) {
+				System.out.println(righterName[i]);
+				System.out.println((righterVal[i] *0.01));
+			}
 			String[] PrivateKey = {ECKey.createNewPrivateKey()};
 			String[] bitcoinAdress =new String[2];
 			long[] balance = new long[2];
@@ -51,10 +52,6 @@ public class BitcoinAdressInsert extends HttpServlet {
 				System.out.println("MusicAddress: "+bitcoinAdress[j]);
 				bitaddr = new BitcoinAdressDTO(audio_code, bitcoinAdress[j], PrivateKey[j],righterName[j], righterVal[j]);
 			}
-			
-	/*		bitaddr = new BitcoinAdressDTO(audio_code, bitcoinAdress[0], PrivateKey[0],
-					bitcoinAdress[1],PrivateKey[1],bitcoinAdress[2], PrivateKey[2],righterName[0], righterVal[0], 
-					righterName[1], righterVal[1],righterName[2], righterVal[2]);*/
 			BlockoService service = new BlockoServiceImpl();
 			int result = service.bitcoinAdressInsert(bitaddr);
 			for (int i = 0; i < bitcoinAdress.length; i++) {
@@ -65,21 +62,6 @@ public class BitcoinAdressInsert extends HttpServlet {
 		}finally{
 			coinstack.close();
 		}
-		
-		/*RequestDispatcher rd =
-				request.getRequestDispatcher("/bitcoinAddress/bitcoinAddress.jsp");
-		rd.forward(request, response);*/
-		
+
 	}
-	/*public String PrivateKey() throws CoinStackException {
-		String newPrivateKey ="";
-		newPrivateKey = ECKey.createNewPrivateKey();
-		return newPrivateKey;
-	}
-	public String MusicAddress() throws CoinStackException {
-		String MusicAddress ="";
-		String newPrivateKey = PrivateKey();
-		MusicAddress = ECKey.deriveAddress(newPrivateKey);
-		return MusicAddress;
-	}*/
 }

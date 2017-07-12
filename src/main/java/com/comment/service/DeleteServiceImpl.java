@@ -3,7 +3,7 @@ package com.comment.service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.command.dao.BDao;
+import com.commant.dao.BDao;
 
 public class DeleteServiceImpl implements CommentService {
 

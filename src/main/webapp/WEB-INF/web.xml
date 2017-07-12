@@ -100,5 +100,5 @@
     <servlet-name>myalbum</servlet-name>
     <url-pattern>/myalbum.do</url-pattern>
   </servlet-mapping>
-
+  
 </web-app>

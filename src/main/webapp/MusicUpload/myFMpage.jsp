@@ -307,9 +307,11 @@ function fakefake(){
 						role="tab" aria-controls="tab2">Music</a></li>
 					<li role="presentation"><a href="#panethree" data-toggle="tab"
 						role="tab" aria-controls="tab3">BlockChain Certificate</a></li>
-						<li role="presentation"><a href="#pane4" data-toggle="tab"
+						<li role="presentation" id ="btcaddr"><a href="#pane4" data-toggle="tab"
 						role="tab" aria-controls="tab4">My Bitcoin Address</a></li>
+						
 				</ul>
+		
 				<div id="tabContent1" class="tab-content">
 					<div role="tabpanel" class="tab-pane fade in active" id="home1">
 						<p>
@@ -390,6 +392,12 @@ function fakefake(){
 								}
 
 							})
+							
+							$("#btcaddr").on("click",function() {
+								if (state == 1){
+									$.post("/FairMusic/MyBitcoinAddrSelect",{ },success_run)
+								}
+							})
 						})
 
 						function success_run(txt) {
@@ -397,6 +405,7 @@ function fakefake(){
 							$("#mybtc").html(txt);
 						}
 						</script>
+						
 						<button type="button" class="btn btn-info btn-lg" id="create">Create Bitcoin</button>
 						<div id = "mybtc" style ="color:red;"></div>
 					</div>

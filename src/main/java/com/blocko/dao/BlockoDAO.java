@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import com.blocko.dto.BitcoinAdressDTO;
 import com.blocko.dto.MusicStampDTO;
 import com.blocko.dto.MyBTCaddrDTO;
+
+
 public interface BlockoDAO {
 	int insert(MusicStampDTO stamp);
 	int bitcoinAdressInsert(BitcoinAdressDTO bitcoinAdress);
@@ -11,6 +13,7 @@ public interface BlockoDAO {
 	MusicStampDTO StampSelect(String id, String MusicName);	
 	
 	int mybtcaddr(MyBTCaddrDTO myaddr);
+	MyBTCaddrDTO read(String artist);
 }
 
 

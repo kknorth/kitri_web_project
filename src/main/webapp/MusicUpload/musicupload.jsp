@@ -321,17 +321,54 @@
 									<div class="col-sm-3">
 										<script type="text/javascript">
 											var state1 = 0;
+											var state2 = 0;
+											var state3 = 0;
 											$(document).ready(function() {
-													$("#create1").on("click",function() {				
-											if (state1 == 1) {
-													alert("이미 생성했습니다.")
-											} else {
-											$.post("/FairMusic/bitcoinaddr",{
-													"cpname" : $("#cp1name").val(),
-														"cprate" : $("#cp1rate").val()*$("#btc_value").val()
-														},success_run1)
-													}
-												})
+													$("#create1").on("click",function() {	
+														if($("#cp1name").val()=="" || $("#cp1rate").val()=="" || $("#btc_value").val()==""){
+															alert("값을 모두 입력해 주세요! 값이 없을 경우 0 입력")
+														}else{
+															if (state1 == 1) {
+																alert("이미 생성했습니다.")
+															}else{
+																$.post("/FairMusic/bitcoinaddr",{
+																	"cpname" : $("#cp1name").val(),
+																		"cprate" : $("#cp1rate").val()*$("#btc_value").val()
+																		},success_run1);
+															}
+														}
+													})
+													$("#create2").on("click",function() {	
+														if($("#cp2name").val()=="" || $("#cp2rate").val()=="" ||
+																$("#btc_value").val()==""){
+															alert("값을 모두 입력해 주세요! 값이 없을 경우 0 입력")
+														}else{
+															if (state2 == 1) {
+																alert("이미 생성했습니다.")
+															}else{
+																$.post("/FairMusic/bitcoinaddr",{
+																	"cpname" : $("#cp2name").val(),
+																		"cprate" : $("#cp2rate").val()*$("#btc_value").val()
+																		},success_run2);
+															}
+														}
+													})
+													$("#create3").on("click",function() {
+												
+														if($("#cp3name").val()=="" || $("#cp3rate").val()=="" ||
+																$("#btc_value").val()==""){
+															alert("값을 모두 입력해 주세요! 값이 없을 경우 0 입력")
+														}else{
+															if (state3 == 1) {
+																alert("이미 생성했습니다.")
+															}else{
+																$.post("/FairMusic/bitcoinaddr",{
+																	"cpname" : $("#cp3name").val(),
+																		"cprate" : $("#cp3rate").val()*$("#btc_value").val()
+																		},success_run3);
+															}
+														}
+													})
 											})
 
 											function success_run1(txt) {
@@ -339,11 +376,13 @@
 												$("#createAddr1").html(txt);
 											}
 
-											var state2 = 0;
+										/* 	var state2 = 0;
 											$(document).ready(function() {
 													$("#create2").on("click",function() {
 											if (state2 == 1) {
 													alert("이미 생성했습니다.")
+											}else if($("#cp2name").val()==null || $("#cp2rate").val()==null || $("#btc_value").val()==null ){
+												alert("값을 모두 입력해 주세요! 값이 없을 경우 0 입력")
 											} else {
 												$.post("/FairMusic/bitcoinaddr",{
 							  							"cpname" : $("#cp2name").val(),
@@ -351,18 +390,20 @@
 														},success_run2)
 													}
 												})
-											})
+											}) */
 
 											function success_run2(txt) {
 												state2 = 1;
 												$("#createAddr2").html(txt);
 											}
 											
-											var state3 = 0;
-											$(document).ready(function() {
+										
+											/* $(document).ready(function() {
 												$("#create3").on("click",function() {
 													if (state3 == 1) {
 															alert("이미 생성했습니다.")
+													}else if($("#cp3name").val()==null || $("#cp3rate").val()==null || $("#btc_value").val()==null ){
+														alert("값을 모두 입력해 주세요! 값이 없을 경우 0 입력")
 													} else {
 														$.post("/FairMusic/bitcoinaddr",{
 															"cpname" : $("#cp3name").val(),
@@ -371,7 +412,7 @@
 													}
 
 												})
-											})
+											}) */
 
 											function success_run3(txt) {
 												state3 = 1;

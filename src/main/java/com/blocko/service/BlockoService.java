@@ -12,4 +12,5 @@ public interface BlockoService {
 	ArrayList<BitcoinAdressDTO> bitcoinAdressSelect(String id);
 	MusicStampDTO StampSelect(String id,String MusicName);
 	int mybtcaddr(MyBTCaddrDTO myaddr);
+	MyBTCaddrDTO read(String artist);
 }

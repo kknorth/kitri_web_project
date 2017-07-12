@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import com.blocko.dto.MyBTCaddrDTO;
 import com.blocko.service.BlockoService;
 import com.blocko.service.BlockoServiceImpl;
+import com.fairmusic.dto.artistDTO;
 
 @WebServlet(name = "MyBitcoinAddr", urlPatterns = { "/MyBitcoinAddr" })
 public class MyBitcoinAddr extends HttpServlet implements MyBtcAddrReq{
@@ -28,7 +29,9 @@ public class MyBitcoinAddr extends HttpServlet implements MyBtcAddrReq{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession ses = request.getSession();
-		String artist = (String)ses.getAttribute("user");
+		artistDTO artist= (artistDTO)ses.getAttribute("user"); 
+		String artist_code = artist.getArtist_code();
+		System.out.println("artist_code :"+artist_code);
 		try {
 			String Myprivatekey = PrivateKey();
 			String MybitcoinAddr = btcAddress();
@@ -40,7 +43,7 @@ public class MyBitcoinAddr extends HttpServlet implements MyBtcAddrReq{
 			request.setAttribute("MybitcoinAddr", MybitcoinAddr);
 			pw.print("BitcoinAddress : "+MybitcoinAddr);
 			
-			MyBTCaddrDTO myaddr = new MyBTCaddrDTO(artist, Myprivatekey, MybitcoinAddr);
+			MyBTCaddrDTO myaddr = new MyBTCaddrDTO(artist_code, Myprivatekey, MybitcoinAddr);
 			BlockoService service = new BlockoServiceImpl();
 			int result = service.mybtcaddr(myaddr);
 			

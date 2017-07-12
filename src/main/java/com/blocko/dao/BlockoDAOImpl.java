@@ -1,6 +1,11 @@
 package com.blocko.dao;
 
 
+import static com.fairmusic.fw.BlockoQuery.BITCOINADDR_INSERT;
+import static com.fairmusic.fw.BlockoQuery.BITCOINADDR_SELECT;
+import static com.fairmusic.fw.BlockoQuery.MYBTC_INSERT;
+import static com.fairmusic.fw.BlockoQuery.STAMP_INSERT;
+import static com.fairmusic.fw.BlockoQuery.STAMP_SELECT;
 import static com.fairmusic.fw.BlockoQuery.*;
 import static com.fairmusic.fw.DBUtil.close;
 import static com.fairmusic.fw.DBUtil.getConnection;
@@ -144,5 +149,25 @@ public class BlockoDAOImpl implements BlockoDAO {
 			close(null, ptmt, con);
 		}
 		return result;
+	}
+
+	@Override
+	public MyBTCaddrDTO read(String artist) {
+		Connection con = null;
+		PreparedStatement ptmt = null;
+		ResultSet rs = null;
+		MyBTCaddrDTO addr = null;
+		try {
+			con = getConnection();
+			ptmt = con.prepareStatement(MYBTC_SELECT);
+			if(rs.next()){
+				addr = new MyBTCaddrDTO(rs.getString(1),rs.getString(2));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(null, ptmt, con);
+		}
+		return addr;
 	}
 }

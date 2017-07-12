@@ -52,6 +52,29 @@
 	cursor: pointer;
 }
 </style>
+
+<script type="text/javascript">
+	
+	$(document).ready(function() {
+		for (var i = 0; i < 10; i++) {
+			$("<h1>무한 스크롤</h1>").appendTo("div#mainview");
+		}
+	});
+	
+	$(document).ready(function() {
+		//스크롤 이벤트 발생 시
+		$(window).scroll(function() {
+			var scrollHeight = $(window).scrollTop() + $(window).height();
+			var documentHeight = $(document).height();
+			if (scrollHeight = documentHeight) {
+				for (var i = 0; i < 20; i++) {
+					$("<h2>무한 스크롤2 </h2>").appendTo("div#mainview");
+				}
+			}
+		});
+	});
+	
+</script>
 </head>
 <body>
 
@@ -96,7 +119,7 @@
          
        
          <%-- <jsp:include page="/widget/temp2widget.jsp"></jsp:include> --%>
-          </li>
+<!--           </li>
           <li class="list-group-item disabled">한준희님의 최근 게시글</li>
           <li class="list-group-item">
           <a href="#"><img src="/FairMusic/images/M.PNG" class="img-thumbnail" alt="Cinque Terre" width="200" height="200"></a>
@@ -112,7 +135,7 @@
           <a href="#"><img src="/FairMusic/images/like.PNG" class="img-thumbnail" alt="Cinque Terre" width="20" height="20"></a>
           <a href="#"><img src="/FairMusic/images/like.PNG" class="img-thumbnail" alt="Cinque Terre" width="20" height="20"></a>
           <a href="#"><img src="/FairMusic/images/like.PNG" class="img-thumbnail" alt="Cinque Terre" width="20" height="20"></a>
-          </li>      
+          </li>    -->   
           
       </ol>
       </div>

@@ -14,5 +14,8 @@ public class BlockoQuery {
 	="select * from bitcoinaddress where artist_code= ?";
 	
 	public static String MYBTC_INSERT
-	="insert into mybtcaddr values(?,?,?)";	
+	="insert into mybtc values(?,?,?)";	
+	
+	public static String MYBTC_SELECT
+	="select * from mybtc where artist_code =?";	
 }

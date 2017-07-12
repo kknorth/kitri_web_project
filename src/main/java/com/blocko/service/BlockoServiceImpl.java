@@ -45,4 +45,11 @@ public class BlockoServiceImpl implements BlockoService{
 		return result;
 	}
 
+	@Override
+	public MyBTCaddrDTO read(String artist) {
+		BlockoDAO dao = new BlockoDAOImpl();
+		MyBTCaddrDTO addr = dao.read(artist);
+		return addr;
+	}
+
 }

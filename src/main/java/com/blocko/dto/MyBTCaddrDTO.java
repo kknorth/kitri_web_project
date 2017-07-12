@@ -5,6 +5,13 @@ public class MyBTCaddrDTO {
 	String mypk;
 	String mybtcaddr;
 	public MyBTCaddrDTO(){}
+	
+	public MyBTCaddrDTO(String mypk, String mybtcaddr) {
+		super();
+		this.mypk = mypk;
+		this.mybtcaddr = mybtcaddr;
+	}
+
 	public MyBTCaddrDTO(String artist, String mypk, String mybtcaddr) {
 		super();
 		this.artist = artist;

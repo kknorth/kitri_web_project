@@ -36,8 +36,8 @@ public class BintcoinSend extends HttpServlet {
 			ArrayList<BitcoinAdressDTO> btcaddrlist = service.bitcoinAdressSelect(audio_code);
 		
 			pk.execute(request, response);//내 비트코인 프라이빗키 받아와
-			String MyPrivateKey = (String) request.getAttribute("Myprivatekey");
-			
+			String MyPrivateKey = (String) request.getAttribute("pk");
+		
 			String[] toAddress = new String[2];
 			//String[] privatekey = new String[2];
 			long[] righterVal = new long[2];
@@ -51,12 +51,13 @@ public class BintcoinSend extends HttpServlet {
 				righterVal[i] = (btcaddrlist.get(i).getRighterVal());
 				String RVAL = Long.toString(righterVal[i]);
 				amount[i] = io.blocko.coinstack.Math.convertToSatoshi(RVAL);
+				builder.allowDustyOutput(true);
 				builder.addOutput(toAddress[i], amount[i]);
 				rawSignedTx[i] = coinstack.createSignedTransaction(builder, MyPrivateKey);
 				System.out.println(rawSignedTx[i]);
 				transactionId[i] = TransactionUtil.getTransactionHash(rawSignedTx[i]);
 				System.out.println(transactionId[i]);
-				request.setAttribute("transactionId"+i, transactionId[i]);
+				request.setAttribute("transactionId", transactionId[i]);
 			}
 			
 			//String[] privatekey = {btcaddr.getPrivatekey()};

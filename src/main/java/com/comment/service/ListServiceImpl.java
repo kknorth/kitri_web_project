@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.command.dao.BDao;
-import com.command.dto.BDto;
+import com.commant.dao.BDao;
+import com.commant.dto.BDto;
 
 public class ListServiceImpl implements CommentService {
 
