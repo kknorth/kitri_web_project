@@ -308,8 +308,12 @@ function fakefake(){
 						role="tab" aria-controls="tab2">Music</a></li>
 					<li role="presentation"><a href="#panethree" data-toggle="tab"
 						role="tab" aria-controls="tab3">BlockChain Certificate</a></li>
-						<li role="presentation" id ="btcaddr"><a href="#pane4" data-toggle="tab"
-						role="tab" aria-controls="tab4">My Bitcoin Address</a></li>
+					<li role="presentation" id ="btcaddr"><a href="#pane4" data-toggle="tab"
+					role="tab" aria-controls="tab4">My Bitcoin Address</a></li>
+					<li role="presentation" id ="btcsearch"><a href="#pane5" data-toggle="tab"
+						role="tab" aria-controls="tab5">BlockChainSearch</a></li>
+					<li role="presentation" id ="BlockStatus"><a href="#pane6" data-toggle="tab"
+					role="tab" aria-controls="tab6">BlockStatus</a></li>
 						
 				</ul>
 		
@@ -395,21 +399,51 @@ function fakefake(){
 							})
 							
 							$("#btcaddr").on("click",function() {
-								
 									$.post("/FairMusic/MyBitcoinAddrSelect",{ },success_run)
-									
-								
 							})
+							
+							$("#search").on("click",function() {
+									$.post("/FairMusic/BlockChainSearch",{"btcval" : $("#btcval").val()},success_search)
+							})
+							
+							$("#BlockStatus").on("click",function() {
+									$.post("/FairMusic/BlockChainStatus",{ },success_status)
+							})
+		
 						})
 
 						function success_run(txt) {
 							state = 1;
 							$("#mybtc").html("Bitcoin Address : "+txt);
 						}
+						
+						function success_search(txt) {
+							 data = txt.split(",");
+						      balance = data[0]; 
+						      txid = data[1];
+							$("#btc").html("ÀÜ¾× : "+balance+"<br/>"+"°Å·¡µÈ Æ®·£Àè¼Ç ID : "+txid);
+						}
+						
+						function success_status(txt) {
+							 data = txt.split(",");
+						      balance = data[0]; 
+						      txid = data[1];
+							$("#block").html("ÀÜ¾× : "+balance+"<br/>"+"°Å·¡µÈ Æ®·£Àè¼Ç ID : "+txid);
+						}
 						</script>
 						
 						<button type="button" class="btn btn-info btn-lg" id="create">Create Bitcoin</button>
 						<div id = "mybtc" style ="color:red;"></div>
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="pane5">
+						<button type="button" class="btn btn-info btn-lg" id="search">Search</button>
+						<input type="text" name="btcval" id="btcval">
+						<div id = "btc" style ="color:red;"></div>
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="pane6">
+						<div id = "block" style ="color:red;"></div>
 					</div>
 				</div>
 			</div>

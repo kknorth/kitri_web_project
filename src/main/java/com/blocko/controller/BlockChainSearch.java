@@ -30,9 +30,9 @@ public class BlockChainSearch extends HttpServlet {
 			
 			for (String txId : txIds) {
 				System.out.println("  txIds[]: "+txId);
-				
+				pw.print(balance+","+txIds);
 			}
-			pw.print(balance);
+			
 		
 		} catch (CoinStackException e) {
 			// TODO Auto-generated catch block
