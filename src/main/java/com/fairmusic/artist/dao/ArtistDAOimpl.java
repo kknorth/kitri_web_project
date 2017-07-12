@@ -3,6 +3,7 @@ package com.fairmusic.artist.dao;
 import static com.fairmusic.fw.DBUtil.close;
 import static com.fairmusic.fw.DBUtil.getConnection;
 import static com.fairmusic.fw.Query.*;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,17 +22,15 @@ public class ArtistDAOimpl implements ArtistDAO{
 		int result= 0;
 		try {
 			con = getConnection();
-			ptmt = con.prepareStatement("insert into fm_artist values(?,?,?,?,?,?,?,?,?,?)");
+			ptmt = con.prepareStatement(Regist);
 			ptmt.setString(1, artist.getArtist_code());
-			ptmt.setString(2, artist.getArtist_id());
+			ptmt.setString(2, artist.getArtist_email());
 			ptmt.setString(3, artist.getArtist_pass());
-			ptmt.setString(4, artist.getArtist_grade());
-			ptmt.setString(5, artist.getArtist_balance());
-			ptmt.setString(6, artist.getArtist_email());
-			ptmt.setString(7, artist.getArtist_image());
-			ptmt.setString(8, artist.getArtist_bit_address());
-			ptmt.setString(9, artist.getArtist_self_introduction());
-			ptmt.setString(10, artist.getArtist_alive());
+			ptmt.setString(4, artist.getArtist_name());
+			ptmt.setString(5, artist.getArtist_image());
+			ptmt.setString(6, artist.getArtist_self_introduction());
+			ptmt.setString(7, artist.getArtist_alive());
+			
 			result = ptmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -84,10 +83,8 @@ public class ArtistDAOimpl implements ArtistDAO{
 			rs = ptmt.executeQuery();
 			if (rs.next()) {
 				dto = new artistDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
-						rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9),rs.getString(10));
-
+						rs.getString(6), rs.getString(7));
 			}
-
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -130,7 +127,7 @@ public class ArtistDAOimpl implements ArtistDAO{
 			rs = ptmt.executeQuery();
 			if (rs.next()) {
 				dto = new artistDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
-						rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9),rs.getString(10));
+						rs.getString(6), rs.getString(7));
 
 			}
 
@@ -141,6 +138,8 @@ public class ArtistDAOimpl implements ArtistDAO{
 			DBUtil.close(rs, ptmt, con);
 		}
 		return dto;
-	}	
+	}
+
+
 	
 }

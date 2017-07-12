@@ -17,16 +17,21 @@
   		})
   	})
   	
+  	code = "";
   	function success_run(text){
   		$("#result").html(text);
   	}
   	
   	function ajax(dm_code){
-  	 	var code = dm_code;
+  	 	code = dm_code;
   		$.post("/FairMusic/message_read.do", {"dm_code":dm_code}, success_read) 
   	}
   	function success_read(txt){
   		$("#read").html(txt);
+  	}
+  	
+  	function send(){
+  		location.href="/FairMusic/message_delete.do?dm_code="+code+"&state=0";
   	}
   </script>
 </head>
@@ -60,9 +65,13 @@
  	</ul>
  	</div>
 	<div class="col-sm-9">
-	<br/><br/><br/><br/><br/>
- 	<div id="read">
- 	</div>
+		 <ol class="list-group">
+			<li class="list-group-item disabled">내용 </li>
+		    <li class="list-group-item">
+		     	<div id="read"></div>
+		    </li>	
+		 </ol>	
+		 <button value="삭제" id="msg_delete" onclick="send();">삭제</button>
  	</div>
  	</div>
  	</div>
@@ -88,7 +97,8 @@
     </div>
       </div>
         <div class="modal-footer">
-			<span id="result" style="color: red"></span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="send" id="send"/>
+			<span id="result" style="color: red"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="button" class="close" data-dismiss="modal" aria-hidden="true" value="send" id="send"/>
         </div>
       </div>
       </form>

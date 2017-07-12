@@ -24,7 +24,7 @@ public class ArtistRegist extends HttpServlet {
 		String randomcode = (r.nextInt(98)+1) + getRandomString(2)+ (r.nextInt(98)+1) + getRandomString(2)+ (r.nextInt(98)+1) + getRandomString(2)+(r.nextInt(98)+1) + getRandomString(2)+ (r.nextInt(98)+1) + getRandomString(2);
 		System.out.println(randomcode);
 
-		artistDTO artist = new artistDTO(randomcode, request.getParameter("artist_id"), request.getParameter("artist_pass"), "C", "0", request.getParameter("artist_email"), null, null, null, "1");
+		artistDTO artist = new artistDTO(randomcode, request.getParameter("artist_email"), request.getParameter("artist_pass"), request.getParameter("artist_name"), null, null, "1");
 		 
 	
 		ArtistServiceimpl service = new ArtistServiceimpl();

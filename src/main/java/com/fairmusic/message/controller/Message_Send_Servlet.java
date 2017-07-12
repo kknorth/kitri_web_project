@@ -21,8 +21,8 @@ public class Message_Send_Servlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setCharacterEncoding("euc-kr");
-		response.setContentType("text/html;charset=euc-kr");
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
 		PrintWriter pw = response.getWriter();
 		
 		Random r = new Random();

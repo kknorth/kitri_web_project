@@ -9,6 +9,7 @@ import static com.fairmusic.fw.MessageQuery.Message_Select;
 import static com.fairmusic.fw.MessageQuery.Message_Send;
 import static com.fairmusic.fw.MessageQuery.NewMessage;
 import static com.fairmusic.fw.MessageQuery.Send_Message_Select;
+import static com.fairmusic.fw.MessageQuery.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -183,6 +184,25 @@ public class MessageDAOImpl implements MessageDAO {
 		
 		System.out.println("dao : "+MessageList);
 		return MessageList;
+	}
+
+
+	@Override
+	public int Message_Delete(String dm_code) {
+		Connection con = null;
+		PreparedStatement ptmt = null;
+		int result= 0;
+		try {
+			con = getConnection();
+			ptmt = con.prepareStatement(Message_Delete);
+			ptmt.setString(1, dm_code);
+			result = ptmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(null, ptmt, con);
+		}
+		return result;
 	}
 
 }

@@ -8,74 +8,92 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet" href="assets/css/main.css" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<meta name="google-signin-scope" content="profile email">
+<meta name="google-signin-client_id" content="858926206600-4civml71qto6t35fd8hvosi4so9ku55e.apps.googleusercontent.com">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
+<script src="https://apis.google.com/js/platform.js" async defer></script> 
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 <script type="text/javascript">
-   $(document).ready(function(){
-      $("#artist_email").on("keyup", function(){
-         $.post("/FairMusic/emailCheck.do", {"artist_email":$("#artist_email").val()}, success_run)
-      })
-      $("#email_verify").on("click", function(){
-         if($("#artist_email").val()==null){
-            alert("이메일을 입력해 주세요")   
-         }else{
-            $.post("/FairMusic/email", {"artist_email": $("#artist_email").val()}, success_email)
-         }
-      })
-      
-      $("#email_verify_check").on("click", function(){
-         alert($("#authnum_check").val())
-         $.post("/FairMusic/email_check.do", {"authnum_check" : $("#authnum_check").val()}, success_eamil_check)
-         
-      })
-      $("#artist_pass2").on("keyup", function(){
-         if($("#artist_pass").val()!="" && $("#artist_pass").val()!=$("#artist_pass2").val()){
-            $("#artist_pass_check").html("비밀번호가 일치하지 않습니다.")
-         }else{
-            $("#artist_pass_check").html("");
-         }
-      })
-      
-      $("#artist_pass").on("keyup", function(){
-         if($("#artist_pass2").val()!="" && $("#artist_pass").val()!=$("#artist_pass2").val()){
-            $("#artist_pass_check").html("비밀번호가 일치하지 않습니다.")
-         }else{
-            $("#artist_pass_check").html("");
-         }
-      })
-      
+var msg = "";
+var result = "";
+var state = "";
+var pass;
+var pass2;
+	window.onload = Page_load;
+	  function Page_load(){
+		displayCookie();
+	  }
+	
+	$(document).ready(function(){
+		$("#artist_email").on("keyup", function(){
+			$.post("/FairMusic/emailCheck.do", {"artist_email":$("#artist_email").val()}, success_run)
+		})
+		$("#email_verify").on("click", function(){
+			if($("#artist_email").val()==null){
+				alert("이메일을 입력해 주세요")	
+			}else{
+				$.post("/FairMusic/email", {"artist_email": $("#artist_email").val()}, success_email)
+			}
+		})
+		
+		$("#email_verify_check").on("click", function(){
+			$.post("/FairMusic/email_check.do", {"authnum_check" : $("#authnum_check").val()}, success_eamil_check)
+			
+		})
+		$("#artist_pass2").on("keyup", function(){
+			data = $("#artist_pass2").val();
+			 pass2 = data.length;
+			if($("#artist_pass").val()!="" && $("#artist_pass").val()!=$("#artist_pass2").val()){
+				$("#artist_pass_check").html("비밀번호가 일치하지 않습니다.")
+				state="0";
+			} else{
+				$("#artist_pass_check").html("");
+				state="1";
+			} 
+		})
+		
+		$("#artist_pass").on("keyup", function(){
+			data2 = $("#artist_pass").val();
+			pass = data2.length;
+			if($("#artist_pass2").val()!="" && $("#artist_pass").val()!=$("#artist_pass2").val()){
+				$("#artist_pass_check").html("비밀번호가 일치하지 않습니다.")
+				state="0";
+			}else{
+				$("#artist_pass_check").html("");
+				state="1";
+			}
+		})
+	})
+	
 
-   })
-   
-   var msg = "";
-   var result = "";
-   
-   function success_eamil_check(txt){
-      data = txt.split("/");
-      msg = data[0]; 
-      result = data[1];
-      $("#email_verify_result").html(msg);   
-   }
-   function success_email(txt){
-   /*    $("#eamiltest").html("이메일이 전송되었습니다."); */
-   }
-   
-   function success_run(txt){
-      $("#artist_email_check").html(txt)
-   }
-
-   function FormSubmit() {
-      if (grecaptcha.getResponse() == "") {
-         alert("로봇이 아님을 체크해 주세요!");
-         return false;
-      
-      }else {
-         return true;
-      }
-
+	
+	
+	 function success_eamil_check(txt){
+	      data = txt.split("/");
+	      msg = data[0]; 
+	      result = data[1];
+	      $("#email_verify_result").html(msg);   
+	   }
+	 
+	function success_email(txt){
+	/* 	$("#eamiltest").html("이메일이 전송되었습니다."); */
+	}
+	
+	function success_run(txt){
+		$("#artist_email_check").html(txt)
+	}
+	   function FormSubmit() {
+		      if (grecaptcha.getResponse() == "") {
+		         alert("로봇이 아님을 체크해 주세요!");
+		         return false;
+		      
+		      }else {
+		         return true;
+		      }
+		      
       if (typeof (greCAPTCHA != 'undefined')) {
          if (greCAPTCHA.getResponsc() == "") { //서버단에서 한번 더 체크, 
          // 사용자가 인증하는 순간 구글의 서버로 부터 토큰 부여받음 
@@ -86,61 +104,182 @@
          return false;
       }
    }
-   function CheckForm(Join){ 
-      var chk1=Join.check1.checked;
-      var chk2=Join.check2.checked;
-      if(!chk1){
-           alert('약관1에 동의해 주세요');
-           return false;
-       }else if(!chk2) {
-           alert('약관2에 동의해 주세요');
-           return false;
-       }else {
-       return true;
-      }
-   }
-   
- 
    
    
-        function timer_start(){ //초기 설정함수
-        if(artist_email==""){
-           alert("email을 입력해주세요");
-        }else{
-          tcounter=180; //3분설정 
-          t1=setInterval(Timer,1000);  
-        }
-     }
+	   function CheckForm(Join){ 
+		      var chk1=Join.check1.checked;
+		      var chk2=Join.check2.checked;
+		      if(!chk1){
+		           alert('약관1에 동의해 주세요');
+		           return false;
+		       }else if(!chk2) {
+		           alert('약관2에 동의해 주세요');
+		           return false;
+		       }else {
+		       return true;
+		      }
+		   }
+	   
+   	  function timer_start(){ //초기 설정함수
+	   tcounter=180; //3분설정 
+	   t1=setInterval(Timer,1000);
+	  
+	  }
 
-     function Timer(){     //시간표및 조건검사
-      tcounter=tcounter-1;   
-      temp=Math.floor(tcounter/60); 
-      if ( Math.floor(tcounter/60) < 10 ) { temp = '0'+temp; }
-       temp = temp + ":";   
-      if ( (tcounter%60) < 10 ) { temp = temp + '0'; } 
-       temp = temp + (tcounter%60);
-       document.getElementById("timer_s").innerHTML=temp;    
-      if(tcounter<0) {tstop(); alert("이메일 인증 버튼을 다시 눌러주세요")}
-     }
-     
-     function tstop(){ 
-      clearInterval(t1);
-      document.getElementById("timer_s").innerHTML="인증시간이 초과되었습니다.";
-     }
-   
-        function test(myform){
-           //이메일인증 서블릿에서 setAttribute하는 값을 자바스크립트 변수에 저장
-           if(result!="1"){
-              alert("이메일인증을 해주세요!")
-           }else{
-              resultsub1 = FormSubmit()
-              resultsub2 = CheckForm(myform)
-              if(resultsub1 && resultsub2){
-                 myform.submit();   
-           }
-        }
-     }
+	  function Timer(){     //시간표및 조건검사
+	   tcounter=tcounter-1;   
+	   temp=Math.floor(tcounter/60); 
+	   if ( Math.floor(tcounter/60) < 10 ) { temp = '0'+temp; }
+	    temp = temp + ":";   
+	   if ( (tcounter%60) < 10 ) { temp = temp + '0'; } 
+	    temp = temp + (tcounter%60);
+	    document.getElementById("timer_s").innerHTML=temp;    
+	   if(tcounter<0) {tstop(); alert("이메일 인증 버튼을 다시 눌러주세요")}
+	  }
+	  
+	  function tstop(){ 
+	   clearInterval(t1);
+	   document.getElementById("timer_s").innerHTML="인증시간이 초과되었습니다.";
+	  }
+	  
+	        function test(myform){
+	            //이메일인증 서블릿에서 setAttribute하는 값을 자바스크립트 변수에 저장
+	             if(result!="1"){
+	               alert("이메일인증을 해주세요!")
+	            }else if(state!="1"){
+	 			  alert("비밀번호를 다시 확인해주세요!")
+	            }else if(pass<8 || pass2<8){
+	            	alert("비밀번호는 8자 이상입니다.")
+	            }else{
+	                resultsub1 = FormSubmit()
+	                resultsub2 = CheckForm(myform)
+	                if(resultsub1 && resultsub2){
+	                   myform.submit();   
+	          		   }
+	                }
+	            }
+	  
+  
 </script>
+
+<!-- 카카오톡 시작 -->
+<script type='text/javascript'>
+    Kakao.init('2c01299435b34c747838e7271ed23461');
+    function loginWithKakao() {
+		Kakao.Auth.login({
+			throughTalk : false,
+			success: function(authObj) {
+				/* alert(JSON.stringify(authObj)); */
+		        Kakao.API.request({
+		          url: '/v1/user/me',
+		          success: function(res) {
+		        	  code = res.id;
+		        	  name = res.properties.nickname;
+		        	  
+		        	  if(code!=null){
+		        		  location.href="/FairMusic/compare_kk.do?code="+code+"&name="+encodeURIComponent(name);
+		        	  }
+		            /* alert(JSON.stringify(res)); */
+		          },
+		          fail: function(error) {
+		            alert(JSON.stringify(error));
+		          }
+		        });
+		         if(authObj){
+	      			 location.href='/FairMusic/view.do?viewpath=../content.jsp&rightpath=Side_Right.jsp';
+	    		}
+		      },
+		      fail: function(err) {
+		        alert(JSON.stringify(err));
+		      }
+		    });
+		};
+	function logoutWithKakao() {
+		Kakao.Auth.logout(function(e){
+    		if(e){
+      			 location.href='login-no-sidebar.jsp';
+    		}
+    	});
+	};
+	function afterloginfacebook(){
+		/* alert("login facebook?"); */
+		location.href='/FairMusic/view.do?viewpath=../content.jsp&rightpath=Side_Right.jsp';
+	};
+</script>
+
+  <script>
+      /* ####################################################페이스북로그인########################################################## */
+      
+		function statusChangeCallback(response) {
+	 		console.log('statusChangeCallback'); console.log(response); 
+	 		// response 객체는 현재 로그인 상태를 나타내는 정보를 보여준다. 
+	 		// 앱에서 현재의 로그인 상태에 따라 동작하면 된다. 
+	 		// FB.getLoginStatus().의 레퍼런스에서 더 자세한 내용이 참조 가능하다. 
+	 		if (response.status === 'connected') { 
+	 			// 페이스북을 통해서 로그인이 되어있다. 
+	 			<%-- <%pageContext.forward("/layout/mainLayout.jsp"); %> --%>
+	 			testAPI(); 
+	 			} else if (response.status === 'not_authorized') { 
+	 				// 페이스북에는 로그인 했으나, 앱에는 로그인이 되어있지 않다. 
+	 				document.getElementById('status').innerHTML = 'Please log ' + 'into this app.'; 
+	 			} else { 
+	 					// 페이스북에 로그인이 되어있지 않다. 따라서, 앱에 로그인이 되어있는지 여부가 불확실하다. 
+	 					document.getElementById('status').innerHTML = 'Please log ' + 'into Facebook.'; 
+	 			} 
+	 		}
+		  function checkLoginState() {
+			    FB.getLoginStatus(function(response) {
+			      statusChangeCallback(response);
+			    });
+			}
+		  
+		  window.fbAsyncInit = function() {
+			    FB.init({
+			      appId      : '148079569074801',
+			      cookie     : false,
+			   // 쿠키가 세션을 참조할 수 있도록 허용 
+			      xfbml      : true,
+			   // 소셜 플러그인이 있으면 처리 
+			      version    : 'v2.9'
+			    });
+			    FB.AppEvents.logPageView();   
+			  };
+		
+		  
+		  // SDK를 비동기적으로 호출 
+		  (function(d, s, id) {
+  			var js, fjs = d.getElementsByTagName(s)[0];
+ 			 if (d.getElementById(id)) return;
+ 			 js = d.createElement(s); js.id = id;
+ 			 js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.9&appId=148079569074801";
+ 			 fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+		  
+		  
+			// 로그인이 성공한 다음에는 간단한 그래프API를 호출한다. 
+	 		// 이 호출은 statusChangeCallback()에서 이루어진다. 
+	 		function testAPI() { 
+	 			console.log('Welcome! Fetching your information.... '); 
+	 			FB.api('/me', function(response) { 
+	 				console.log(JSON.stringify(response));
+	 				console.log('아이디 : ' + response.id);
+	 				console.log('Successful login for : ' + response.name); 
+	 				
+/* 	 				document.getElementById('name').innerHTML = 
+	 					'Thanks for logging in, ' + response.name + '!'; 
+	 				document.getElementById('id').innerHTML = 
+	 					'yourID, ' + response.id + '!';  */
+	 			code = response.id;
+	 			name = response.name;
+	 			if(code!=null){
+	 				location.href="/FairMusic/compare_fb.do?code="+code+"&name="+encodeURIComponent(name);
+	 				}
+
+	 			}); 
+	 			
+	 		}
+
+	</script>
 
 </head>
 <body class="no-sidebar">
@@ -166,41 +305,67 @@
 
             <div class="row">
                <section class="12u">
-                  <form method="post" action="/FairMusic/artistregist.do" >
-                  
+                  <form method="post" action="/FairMusic/artistregist.do">
                      <div class="row 50%">
-                        <div class="5u 12u">
-                           <input type="image" src="images/facebookRegister.png"
-                              width="100%">
-                        </div>
-                        <div class="5u 12u">
-                           <input type="image" src="images/googleRegister.png"
-                              width="100%">
-                        </div>
-
-                        <div class="9u 12u">
-                           <input name="artist_email" placeholder="E-mail" type="email" id = "artist_email" required/>
+                     	
+                        <div class="2u 12u">
+                        <!-- #######################페이스북 & 구글로 회원가입 하기 ############################  -->
+                          <!--  <a href="#" onclick="test()"><img src="images/facebookRegister.png" width="100%" ></a> -->
+                          	<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+                          	<script type="text/javascript">
+								      function onSignIn(googleUser) {
+								    	var login="";
+								        // Useful data for your client-side scripts:
+								        var profile = googleUser.getBasicProfile();
+								        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+								        console.log('Full Name: ' + profile.getName());
+								        console.log('Given Name: ' + profile.getGivenName());
+								        console.log('Family Name: ' + profile.getFamilyName());
+								        console.log("Image URL: " + profile.getImageUrl());
+								        console.log("Email: " + profile.getEmail());
+								        code = profile.getId();
+								        name = profile.getName();
+								        if(code!=null){
+								        	location.href="/FairMusic/compare_gg.do?code="+code+"&name="+encodeURIComponent(name);
+								        }
+								      }
+							</script>
                         </div>
                         <div class="3u 12u">
-                          <input type="button" value="이메일 인증하기"  data-toggle="modal" 
-                          data-target="#findidModal" id="email_verify" 
-                          onclick="timer_start(); this.onclick='';" />
+                          	<div>
+								<a id="custom-login-btn" href="javascript:loginWithKakao()">
+										<img
+										src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg"
+										width="260" />
+								</a>
+							</div>
+                        </div>
+                        <div class="3u 12u">
+								<div class="fb-login-button" data-max-rows="1" data-size="large"
+									data-button-type="continue_with" data-show-faces="false"
+									data-auto-logout-link="true" data-use-continue-as="false" data-scope="public_profile,email" onlogin="afterloginfacebook();">
+						</div>
+                        </div>
+                        <div class="9u 12u">
+                           <input name="artist_email" placeholder="E-mail" type="email" id = "artist_email" required="required"/>
+                        </div>
+                        <div class="3u 12u">
+                          <input type="button" value="이메일 인증하기"  data-toggle="modal" data-target="#findidModal" id="email_verify" onclick="timer_start(); this.onclick='';" />
                         </div>
                          <div class="12u">
-                             <span id="artist_email_check" style="color: red"></span>
+                          	<span id="artist_email_check" style="color: red"></span>
                         </div>
 
                         <div class="12u">
-                           <input name="artist_pass" placeholder="비밀번호" type="password" id = "artist_pass" minlength="9" required/>
+                           <input name="artist_pass" placeholder="비밀번호" type="password" id = "artist_pass" required="required"/>
                         </div>
                         <div class="12u">
-                           <input name="passverify" placeholder="비밀번호 확인" type="password" id="artist_pass2" minlength="9" required/>
+                           <input name="passverify" placeholder="비밀번호 확인" type="password" id="artist_pass2" required="required"/>
                         </div>
                         <div id="artist_pass_check" style= "color: red"></div>
                         <div class="12u">
-                           <input name="artist_id" placeholder="이름" type="text" id = "artist_id" required="required"/>
+                           <input name="artist_id" placeholder="이름" type="text" id = "artist_name" required="required"/>
                         </div>
-                        
                            <!-- 이용약관   -->
                         <div>
                            약관(1)동의하기 : <input id="check1" name="check1" type="checkbox"/><br/>
@@ -542,7 +707,7 @@ FairMusic은 고객의 개인정보를 매우 중요시하며, 고객의 개인정보를 보호하여 개인정
 - 소비자의 불만 또는 분쟁처리에 관한 기록 : 3년 
 이용자의 동의를 받아 보유하고 있는 거래정보 등을 이용자가 열람을 요구하는 경우 회사는 지체 없이 그 열람, 확인할 수 있도록 조치합니다 
                      </textarea>
-                        </div>
+                     </div>
                      </div>
                      <br />
                      <div class="row 50%" style="float: left;">
@@ -551,7 +716,7 @@ FairMusic은 고객의 개인정보를 매우 중요시하며, 고객의 개인정보를 보호하여 개인정
 
                               <li><input type="button" onclick="test(this.form)" value="회원 가입"/></li>
                               <li>
-                              <input type="button" value="가입 취소" onclick="location.href='/FairMusic/view.do?leftpath=Side_Left.jsp&viewpath=../content.jsp&rightpath=Side_Right.jsp'"/>
+                              <input type="button" value="가입 취소" onclick="location.href='/FairMusic/index.jsp'"/>
                               </li>
                            </ul>
                         </div>
@@ -583,30 +748,30 @@ FairMusic은 고객의 개인정보를 매우 중요시하며, 고객의 개인정보를 보호하여 개인정
          <h3>이메일이 전송되었습니다.</h3>
       </div>
         <div class = "modal-body">
-         <div class="row">
-            <div class="col-lg-12">
-               <span class="label label-info">이메일 검증</span>
-               <span id="email_verify_result" style="color: red"></span>
-            </div>
-            
-            <div class="col-lg-12">
-               <div id="timer_s" style="color: red"></div>
-            </div>
-            
-            <div class="col-lg-12">
-               <span class="label label-info">인증번호 7자리를 입력하세요</span> 
-               <input type="text" name="authnum"  id="authnum_check"/>
-               <span id="authnum_check_result"></span>
-            </div>
-            <div class="col-lg-12">
-               <button type="submit" class="btn btn-lg btn-default" id="email_verify_check">확인</button>
-            </div>
-            
-         </div>
-         
+	      <div class="row">
+				<div class="col-lg-12">
+					<span class="label label-info">이메일 검증</span>
+					<span id="email_verify_result" style="color: red"></span>
+				</div>
+				
+				<div class="col-lg-12">
+					<div id="timer_s" style="color: red"></div>
+				</div>
+				
+				<div class="col-lg-12">
+					<span class="label label-info">인증번호 7자리를 입력하세요</span> 
+					<input type="text" name="authnum"  id="authnum_check"/>
+					<span id="authnum_check_result"></span>
+				</div>
+				<div class="col-lg-12">
+					<button type="submit" class="btn btn-lg btn-default" id="email_verify_check">확인</button>
+				</div>
+				
+			</div>
+			
         </div>
         <div class="modal-footer">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">검증완료</button>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">확인</button>
         </div>
       </div>
       </div>

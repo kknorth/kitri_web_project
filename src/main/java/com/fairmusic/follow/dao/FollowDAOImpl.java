@@ -1,12 +1,15 @@
 package com.fairmusic.follow.dao;
 
+import static com.fairmusic.fw.DBUtil.*;
+import static com.fairmusic.fw.Follow_Query.*;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
-import static com.fairmusic.fw.Follow_Query.*;
-import static com.fairmusic.fw.DBUtil.*;
-
-import java.sql.*;
-
+import com.fairmusic.dto.artistDTO;
 import com.fairmusic.dto.followDTO;
 
 public class FollowDAOImpl implements FollowDAO {
@@ -113,7 +116,7 @@ public class FollowDAOImpl implements FollowDAO {
 			while (rs.next()) {
 
 				dto = new followDTO(rs.getString(1), rs.getString(2),
-						rs.getString(3));
+						rs.getString(3),rs.getString(4));
 				list.add(dto);
 			}
 			System.out.println("FOLLOW_SEARCH_FOLLOWING : " + list.size()+"개 행 조회 성공");
@@ -140,7 +143,7 @@ public class FollowDAOImpl implements FollowDAO {
 			while (rs.next()) {
 
 				dto = new followDTO(rs.getString(1), rs.getString(2),
-						rs.getString(3));
+						rs.getString(3),rs.getString(4));
 				list.add(dto);
 			}
 			System.out.println("FOLLOW_SEARCH_FOLLOWER : " + list.size()+"개 행 조회 성공");
@@ -150,6 +153,29 @@ public class FollowDAOImpl implements FollowDAO {
 			close(rs, ptmt, con);
 		}
 		return list;
+	}
+
+	@Override
+	public artistDTO FOLLOW_GETID_BYCODE(String code) {
+		Connection con = null;
+		PreparedStatement ptmt = null;
+		artistDTO dto = null;
+		ResultSet rs = null;
+		try {
+			con = getConnection();
+			ptmt = con.prepareStatement(FOLLOW_GETID_BYCODE);
+			ptmt.setString(1, code);
+			rs = ptmt.executeQuery();
+			if (rs.next()) {
+				dto = new artistDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
+			}
+			System.out.println("FOLLOW_GETID_BYCODE(DAO) : "+dto);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs, ptmt, con);
+		}
+		return dto;
 	}
 
 }

@@ -15,18 +15,18 @@ public class LogoutServlet extends HttpServlet {
 
 		
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+			System.out.println("·Î±×¾Æ¿ô¼­ºí¸´~");
 			HttpSession ses = request.getSession(false);
 			if(ses!=null){
 				ses.invalidate();
 			}
-			request.setAttribute("viewpath", "../content.jsp" );
-			request.setAttribute("leftpath", "Side_Left.jsp");
-			request.setAttribute("rightpath", "Side_Right.jsp");
+		/*	request.setAttribute("viewpath", "../content.jsp" );
+			request.setAttribute("rightpath", "Side_Right.jsp");*/
 			
-			RequestDispatcher rd = request
+	/*		RequestDispatcher rd = request
 					.getRequestDispatcher("/layout/mainLayout.jsp");
-			rd.forward(request, response);
+			rd.forward(request, response);*/
+			response.sendRedirect("/FairMusic/index.jsp");
 	}
 
 }

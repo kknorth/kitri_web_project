@@ -2,6 +2,7 @@ package com.fairmusic.follow.service;
 
 import java.util.ArrayList;
 
+import com.fairmusic.dto.artistDTO;
 import com.fairmusic.dto.followDTO;
 import com.fairmusic.follow.dao.FollowDAO;
 import com.fairmusic.follow.dao.FollowDAOImpl;
@@ -48,6 +49,13 @@ public class FollowServiceImpl implements FollowService {
 		FollowDAO dao = new FollowDAOImpl();
 		ArrayList<followDTO> vector = dao.FOLLOW_SEARCH_FOLLOWER(follower);
 		return vector;
+	}
+
+	@Override
+	public artistDTO FOLLOW_GETID_BYCODE(String code) {
+		FollowDAO dao = new FollowDAOImpl();
+		artistDTO dto = dao.FOLLOW_GETID_BYCODE(code);
+		return dto;
 	}
 
 	

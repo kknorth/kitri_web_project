@@ -16,33 +16,32 @@ import com.fairmusic.dto.MessageDTO;
 import com.fairmusic.dto.artistDTO;
 import com.fairmusic.message.service.MessageServiceImpl;
 
-@WebServlet(name = "login_google", urlPatterns = { "/login_google.do" })
-public class LoginServlet_Google extends HttpServlet {
+@WebServlet(name = "login_fb", urlPatterns = { "/login_fb.do" })
+public class LoginServlet_FB extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
-		
-		String loginUser_google = request.getParameter("loginUser_google");
 		String artist_code = request.getParameter("code");
 		String name = request.getParameter("name");
-		System.out.println("구글 로그인서블릿  loginUser_google : "+ loginUser_google);
-		System.out.println("구글 로그인서블릿  artist_code : "+ artist_code);
-		System.out.println("구글 로그인서블릿 이름 : "+name);
+		String state = request.getParameter("state");
 		
+		System.out.println("페북 로그인서블릿  artist_code : "+ artist_code);
+		System.out.println("페북 로그인서블릿 이름 : "+name);
+		System.out.println("페북 state : "+state);
 		
 		ArtistServiceimpl service = new ArtistServiceimpl();
 		artistDTO user = service.getArtistDTO(artist_code);
 		HttpSession ses = request.getSession();
 		
-		System.out.println("구글 로그인서블릿  user : "+ user);
+		System.out.println("페북 로그인서블릿  user : "+ user);
 		
 		String viewpath = "";
 		String leftpath= null;
 		String rightpath= null;
 		String rdpath = null;
 		
-		if(loginUser_google.equals("success")&& user!=null){
+		if(state.equals("success")&& user!=null){
 			MessageServiceImpl M_service = new MessageServiceImpl();
 			ArrayList<MessageDTO> newMessageList = M_service.NewMessage(artist_code);
 			ses.setAttribute("newMessageList", newMessageList);

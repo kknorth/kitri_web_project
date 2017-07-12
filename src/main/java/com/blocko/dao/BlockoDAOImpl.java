@@ -160,8 +160,10 @@ public class BlockoDAOImpl implements BlockoDAO {
 		try {
 			con = getConnection();
 			ptmt = con.prepareStatement(MYBTC_SELECT);
+			ptmt.setString(1,artist);
+			rs = ptmt.executeQuery();
 			if(rs.next()){
-				addr = new MyBTCaddrDTO(rs.getString(1),rs.getString(2));
+				addr = new MyBTCaddrDTO(rs.getString(1),rs.getString(2),rs.getString(3));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

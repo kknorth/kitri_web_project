@@ -373,7 +373,11 @@
 
 											function success_run1(txt) {
 												state1 = 1;
-												$("#createAddr1").html(txt);
+												 data = txt.split(",");
+											      addr = data[0]; 
+											      val = data[1];
+											         
+												$("#createAddr1").html(addr+"<br/>"+val);
 											}
 
 										/* 	var state2 = 0;
@@ -394,7 +398,10 @@
 
 											function success_run2(txt) {
 												state2 = 1;
-												$("#createAddr2").html(txt);
+												data = txt.split(",");
+											      addr = data[0]; 
+											      val = data[1];
+												$("#createAddr2").html(addr+"<br/>"+val);
 											}
 											
 										
@@ -416,7 +423,10 @@
 
 											function success_run3(txt) {
 												state3 = 1;
-												$("#createAddr3").html(txt);
+												data = txt.split(",");
+											      addr = data[0]; 
+											      val = data[1];
+												$("#createAddr3").html(addr+"<br/>"+val);
 											}
 										</script>
 										<button type="button" class="btn btn-info" id="create1">»ı¼º</button>

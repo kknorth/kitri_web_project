@@ -19,7 +19,7 @@ import com.blocko.service.BlockoServiceImpl;
 import com.fairmusic.dto.artistDTO;
 
 @WebServlet(name = "MyBitcoinAddr", urlPatterns = { "/MyBitcoinAddr" })
-public class MyBitcoinAddr extends HttpServlet implements MyBtcAddrReq{
+public class MyBitcoinAddrInsert extends HttpServlet implements MyBtcAddrReq{
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("doPost");

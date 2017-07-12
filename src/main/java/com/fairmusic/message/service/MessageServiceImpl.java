@@ -58,4 +58,11 @@ public class MessageServiceImpl implements MessageService {
 		return newMessage;
 	}
 
+	@Override
+	public int Message_Delete(String dm_code) {
+		MessageDAOImpl dao = new MessageDAOImpl();
+		int result = dao.Message_Delete(dm_code);
+		return result;
+	}
+
 }

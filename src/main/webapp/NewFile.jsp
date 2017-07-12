@@ -7,11 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-   <div class="aritcleView">
-         <div>1</div>
-         <div>2</div>
-         <div>3</div> 
-   </div>
+
    <div id="mainview">
       <div class="row">
       <div class="12u">
@@ -39,7 +35,7 @@
 							$.ajax({
 								url:"/widget.do",
 								type:"get",
-								dataType :"text",
+								dataType :"html",
 								success :success_run,
 								error :err_run
 							})

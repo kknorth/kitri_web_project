@@ -17,8 +17,8 @@ import com.fairmusic.message.service.MessageServiceImpl;
 public class Message_Read_Servlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Message_Read_Servlet ¼­ºí¸´ ");
-		request.setCharacterEncoding("euc-kr");
-		response.setContentType("text/html;charset=euc-kr");
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
 		PrintWriter pw = response.getWriter();
 		
 		String dm_code = request.getParameter("dm_code");

@@ -32,7 +32,6 @@ public class MyBitcoinAddrSelect extends HttpServlet implements MyBtcAddrReq{
 			artistDTO artist= (artistDTO)ses.getAttribute("user"); 
 			String artist_code = artist.getArtist_code();
 			BlockoService service = new BlockoServiceImpl();
-			System.out.println("artist_code :"+artist_code);
 			MyBTCaddrDTO addr = service.read(artist_code);
 			request.setAttribute("pk", addr.getMybtcaddr());
 			PrintWriter pw = response.getWriter();

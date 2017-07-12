@@ -31,7 +31,7 @@
 	
 </script>
 <body>
-<!-- <div class="wrdLastest" id=1>能掸明</div>
+ <div class="wrdLastest" id=1>能掸明</div>
 <div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div>
 
 
@@ -53,6 +53,6 @@
 		        }
 		});
 
-</script> -->
+</script> 
 </body>
 </html>

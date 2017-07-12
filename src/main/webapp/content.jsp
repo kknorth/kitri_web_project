@@ -6,6 +6,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 <meta charset="utf-8">
+<!-- fbshare -->
+  <meta property="og:url"           content="http://naver.com" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="FairMusic" />
+  <meta property="og:description"   content="Your description" />
+  <meta property="og:image"         content="http://localhost:8088/FairMusic/images/M.PNG" />
+  <!-- tweetshare -->
+  <script type="text/javascript">
+		function sharetwitter(url,text) {
+			window.open("https://twitter.com/intent/tweet?text="+ text + "&url=" + url);
+		}
+	</script>
+	
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -86,9 +99,9 @@
          <li class="list-group-item disabled">조성원님의 최근 게시글</li>
           <li class="list-group-item">
           
-         <jsp:include page="/widget.do" flush="true">
+   <%--       <jsp:include page="/widget.do" flush="true">
 		<jsp:param value="e6ddn02ie17ngn4a1l44" name="audio_code"/>
-		</jsp:include>
+		</jsp:include> --%>
 		
 <%--<a href= "/FairMusic/widget.do">서블릿->웹</a>
          <jsp:include page ="/widget.do"></jsp:include> --%>
@@ -140,6 +153,24 @@
       </ol>
       </div>
       </div>
+      	<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+			  var js, fjs = d.getElementsByTagName(s)[0];
+				  if (d.getElementById(id)) return;
+				  js = d.createElement(s); js.id = id;
+				  js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.9&appId=349635012119334";
+				  fjs.parentNode.insertBefore(js, fjs);
+				}
+				(document, 'script', 'facebook-jssdk'));
+		</script>
+		
+		  <span><a href ="javascript:sharetwitter('http://localhost:8088/FairMusic/index.jsp','share')" ><img src="/FairMusic/images/tweet.PNG"></a> </span>
+		  
+		  <div class="fb-share-button" data-href="http://naver.com" 
+		  data-layout="box_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" 
+		  href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">공유하기</a>
+		  </div>
+		  
    </div>
 </body>
 </html>

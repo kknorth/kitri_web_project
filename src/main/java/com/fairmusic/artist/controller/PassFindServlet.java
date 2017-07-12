@@ -21,7 +21,7 @@ public class PassFindServlet extends HttpServlet {
 		response.setHeader("cache-control", "no-cache, no-store");
 		PrintWriter pw = response.getWriter();
 		String email = request.getParameter("artist_email");
-		System.out.println("이메일"+email);
+		System.out.println("비밀번호찾기 이메일 : "+email);
 		ArtistServiceimpl service = new ArtistServiceimpl();
 		boolean check = service.emailCheck(email);
 		String msg = "";

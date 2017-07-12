@@ -20,8 +20,10 @@ import javax.servlet.http.HttpSession;
 
 import com.blocko.api.API;
 import com.blocko.dto.BitcoinAdressDTO;
+import com.blocko.dto.MyBTCaddrDTO;
 import com.blocko.service.BlockoService;
 import com.blocko.service.BlockoServiceImpl;
+import com.fairmusic.dto.artistDTO;
 @WebServlet(name = "bitcoinsend", urlPatterns = { "/bitcoinsend" })
 public class BintcoinSend extends HttpServlet {
 	CoinStackClient coinstack = API.createNewCoinStackClient();
@@ -30,16 +32,18 @@ public class BintcoinSend extends HttpServlet {
 		response.setContentType("text/html;charset=euc-kr");
 
 		String audio_code= null;
-		MyBtcAddrReq pk = null;
+		
 		try {
 			BlockoService service = new BlockoServiceImpl();
 			ArrayList<BitcoinAdressDTO> btcaddrlist = service.bitcoinAdressSelect(audio_code);
 		
-			pk.execute(request, response);//내 비트코인 프라이빗키 받아와
-			String MyPrivateKey = (String) request.getAttribute("pk");
-		
+			HttpSession ses = request.getSession();
+			artistDTO artist= (artistDTO)ses.getAttribute("user"); 
+			String artist_code = artist.getArtist_code();
+			System.out.println("artist_code :"+artist_code);
+			MyBTCaddrDTO addr = service.read(artist_code);
+			String MyPrivateKey=addr.getMypk();
 			String[] toAddress = new String[2];
-			//String[] privatekey = new String[2];
 			long[] righterVal = new long[2];
 			String[] rawSignedTx = new String[2];
 			String[] transactionId = new String[2];

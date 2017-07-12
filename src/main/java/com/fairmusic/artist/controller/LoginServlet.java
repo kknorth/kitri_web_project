@@ -25,34 +25,35 @@ public class LoginServlet extends HttpServlet {
 			String email = request.getParameter("email");
 			String pass = request.getParameter("pass");
 			
+			/* 로그인 */
 			ArtistServiceimpl service = new ArtistServiceimpl();
 			artistDTO loginUser = service.login(email, pass);
 			System.out.println("로그인서블릿 : "+ email+pass);
-			String artist_code = loginUser.getArtist_code();
-			System.out.println("로그인서블릿 articode : "+artist_code);
-			
-			MessageServiceImpl M_service = new MessageServiceImpl();
-			ArrayList<MessageDTO> newMessageList = M_service.NewMessage(artist_code);
-			
 			
 			String viewpath = "";
 			String leftpath= null;
 			String rightpath= null;
 			String rdpath = null;
-			if (loginUser == null) {
-				rdpath = "login_failed.jsp";
-			} else {
-				viewpath = "../content.jsp";
-				leftpath="Side_Left.jsp";
-				rightpath="Side_Right.jsp";
-				rdpath="/layout/mainLayout.jsp";
+			String artist_code ="";
+			ArrayList<MessageDTO> newMessageList = null;
+			
+			if(loginUser==null){
+				rdpath="/FairMusic/login_failed.jsp";
+			}else{
+				artist_code = loginUser.getArtist_code();
+				MessageServiceImpl M_service = new MessageServiceImpl();
+				newMessageList = M_service.NewMessage(artist_code);
+				rdpath="/FairMusic/view.do?leftpath=Side_Left.jsp&viewpath=../content.jsp&rightpath=Side_Right.jsp";
+				HttpSession ses = request.getSession();
+				ses.setAttribute("user", loginUser);
+				ses.setAttribute("newMessageList", newMessageList);
 			}
-
+			
+			System.out.println("로그인서블릿 articode : "+artist_code);
 			System.out.println("로그인서블릿 newMessageList : "+newMessageList);
 			System.out.println("로그인서블릿 loginUser : "+loginUser);
-			HttpSession ses = request.getSession();
-			ses.setAttribute("user", loginUser);
-			ses.setAttribute("newMessageList", newMessageList);
+
+			
 			/*request.setAttribute("viewpath", viewpath);
 			request.setAttribute("leftpath", leftpath);
 			request.setAttribute("rightpath", rightpath);
@@ -60,8 +61,8 @@ public class LoginServlet extends HttpServlet {
 			RequestDispatcher rd = request
 					.getRequestDispatcher(rdpath);
 			rd.forward(request, response);*/
-
-			response.sendRedirect("/FairMusic/view.do?leftpath=Side_Left.jsp&viewpath=../content.jsp&rightpath=Side_Right.jsp");
+			
+			response.sendRedirect(rdpath);
 		}
 	}
 

@@ -20,7 +20,7 @@ public class EmailVerify extends HttpServlet {
 		
 		// 받는 사람 이메일 주소 
 		String toEmail = request.getParameter("artist_email");  //request.getParameter("artist_id");
-		String toName = "우해원 회원님";
+		String toName = toEmail;
 		String subject = "FairMusic 이메일 인증입니다.";
 		String content = "인증번호 [" + authNum + "]";
 		String authnum_check = request.getParameter("authnum_check");

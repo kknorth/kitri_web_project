@@ -7,25 +7,10 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script type="text/javascript">
-	/* $(document).ready(function(){
-  		$("#email_verify_pass").on("click", function(){
-  		  	if($("#artist_email").val()==""){
-  				alert("이메일을 입력해 주세요")	
-  			}else{
-  				 $.post("/FairMusic/passFind.do", {"artist_email": $("#artist_email").val()}, success_email) 
-  			}  
-  		})
-  	}) */
-  	function success_email(text){
-  		$("#artist_email_check").html(text);
-  	}
-
-  </script>
 </head>
 <body>
 <body>
-<form id="passform">
+<form id="passform" >
 <div class="row">
   <div class="col-lg-12">
   <span class="label label-info">비밀번호 찾기</span>
@@ -34,7 +19,7 @@
   <div class="col-lg-12">
 <span class="label label-info">이메일</span>
 <input type="text" name="textfield" id="artist_email">
-<button type="submit" class="btn btn btn-default" id="email_verify_pass"  >임시비밀번호 전송하기</button>
+<button type="button" class="btn btn btn-default" id="email_verify_pass"  >임시비밀번호 전송하기</button>
 &nbsp;</div>
  <div class="col-lg-12">
  <br/>

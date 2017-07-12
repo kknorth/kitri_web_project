@@ -1,3 +1,4 @@
+<%@page import="com.fairmusic.dto.followDTO"%>
 <%@page import="com.blocko.controller.MyBtcAddrReq"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
@@ -394,15 +395,16 @@ function fakefake(){
 							})
 							
 							$("#btcaddr").on("click",function() {
-								if (state == 1){
+								
 									$.post("/FairMusic/MyBitcoinAddrSelect",{ },success_run)
-								}
+									
+								
 							})
 						})
 
 						function success_run(txt) {
 							state = 1;
-							$("#mybtc").html(txt);
+							$("#mybtc").html("My Bincoin Address : "+txt);
 						}
 						</script>
 						
@@ -412,27 +414,38 @@ function fakefake(){
 				</div>
 			</div>
 		</div>
+		
+		<%
+					ArrayList<followDTO> followinglist = (ArrayList<followDTO>)request.getAttribute("followinglist");
+					ArrayList<followDTO> followerlist = (ArrayList<followDTO>)request.getAttribute("followerlist");
+					int followinglistsize=followinglist.size();
+					int followerlistsize=followerlist.size();
+				%>
 		<div class="col-sm-3">
 			<div role="tabpanel">
 				<ul class="nav nav-tabs" role="tablist">
 					<li role="presentation" class="active"><a href="#home2"
-						data-toggle="tab" role="tab" aria-controls="tab1">ÆÈ·ÎÀ×</a></li>
+						data-toggle="tab" role="tab" aria-controls="tab1">ÆÈ·ÎÀ× (<%=followinglistsize %>¸í)</a></li>
 					<li role="presentation"><a href="#paneTwo2" data-toggle="tab"
-						role="tab" aria-controls="tab2">ÆÈ·Î¿ö</a></li>
+						role="tab" aria-controls="tab2">ÆÈ·Î¿ö (<%=followerlistsize %>¸í)</a></li>
 					<li role="presentation" class="dropdown"></li>
 				</ul>
 				<div id="tabContent2" class="tab-content">
 					<div role="tabpanel" class="tab-pane fade in active" id="home2">
-						<p>
-							<img src="/FairMusic/images/temp.png"
-								class="img-circle img-responsive" alt="Placeholder image"
-								width="40">
-						</p>
+						<%
+							for (int i = 0; i < followinglistsize; i++) {
+								followDTO record = followinglist.get(i);
+										%>
+								<p><%=record.getArtist_id()%></p>
+							<% } %>
 					</div>
 					<div role="tabpanel" class="tab-pane fade" id="paneTwo2">
-						<p>
-							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-						</p>
+						<%
+							for (int i = 0; i < followerlistsize; i++) {
+								followDTO record = followerlist.get(i);
+										%>
+								<p><%=record.getArtist_id()%></p>
+							<% } %>
 					</div>
 				</div>
 			</div>
