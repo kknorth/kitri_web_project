@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+    	<%@ page import="java.util.ArrayList" %>
+<%@page import="com.fairmusic.dto.audioDTO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -102,20 +104,26 @@
        <ol class="list-group">
          <li class="list-group-item disabled">조성원님의 최근 게시글</li>
           <li class="list-group-item">
-  
-        
-
+ 
+<jsp:include page="/ten.do"></jsp:include>
+        <%ArrayList<audioDTO> dtolist = (ArrayList<audioDTO>)request.getAttribute("recent10"); %>
+        <%int size = dtolist.size(); %>
+        <%if(size!=0){ %>
+        <%for(int i = 0; i < size;i++){ %>
+        <%audioDTO dto = dtolist.get(i); %>
         <jsp:include page="/widget.do">
-		<jsp:param value="4gw235p8w754lm140062" name="audio_code"/>
-		<jsp:param value="0" name="audioindex"/>
+		<jsp:param value="<%=dto.getAudio_code()%>" name="audio_code"/>
+		<jsp:param value="<%=i %>" name="audioindex"/>
 		</jsp:include>  
-		
-		<button type = "button" onclick ="window.open('/FairMusic/audiopage.do?audio_code=4gw235p8w754lm140062')"> 상세페이지 이동 </button>
+		<button type = "button" onclick ="window.open('/FairMusic/audiopage.do?audio_code=<%=dto.getAudio_code()%>')"> 상세페이지 이동 </button>
 <hr/>
-		<jsp:include page="/widget.do">
+		<%} %>
+		<%} %>
+	
+<%-- 		<jsp:include page="/widget.do">
 		<jsp:param value="33857szat02s2q8h21l3" name="audio_code"/>
 		<jsp:param value="1" name="audioindex"/>
-		</jsp:include>  
+		</jsp:include>   --%>
 		
 
 		

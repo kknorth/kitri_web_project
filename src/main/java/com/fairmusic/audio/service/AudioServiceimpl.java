@@ -52,4 +52,11 @@ public class AudioServiceimpl implements AudioService{
 		return result;
 	}
 
+	@Override
+	public ArrayList<audioDTO> select10audio(String state) {
+		AudioDAO dao = new AudioDAOimpl();
+		ArrayList<audioDTO> dtolist = dao.select10audio(state);
+		return dtolist;
+	}
+
 }

@@ -11,5 +11,6 @@ public interface AudioDAO {
 	public ArrayList<audioDTO> myAudioList(String artist_code);
 	public int audioDelete(String audio_code);
 	public ArrayList<audiobuyDTO> havingAudio(String artist_code);
-	public int audiopurchase(String artist_code,String audio_code); 
+	public int audiopurchase(String artist_code,String audio_code);
+	public ArrayList<audioDTO> select10audio(String state);
 }

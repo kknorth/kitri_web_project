@@ -170,4 +170,14 @@
     <servlet-name>audiobuy</servlet-name>
     <url-pattern>/audiobuy.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ten</display-name>
+    <servlet-name>ten</servlet-name>
+    <servlet-class>com.fairmusic.seong.TenServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ten</servlet-name>
+    <url-pattern>/ten.do</url-pattern>
+  </servlet-mapping>
 </web-app>
