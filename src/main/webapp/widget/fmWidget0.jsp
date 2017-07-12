@@ -46,9 +46,9 @@ background-image: URL(<%= audioImagePath%>)">
     <ul class="player-info info-two">
       <li><%= dto.getAudio_title() %></li>
       <li><%= artistName%></li>
-      <li><span id="duration"></span><i> / </i>01:00</li>
+      <li><span id="duration" class="durationlist"></span><i> / </i>01:00</li>
     </ul>
-    <div id="play-button" class="unchecked">
+    <div class="play-button" name = "<%=audio_code%>" class="unchecked">
       <i class="icon icon-play"></i>
     </div>
     <div class="control-row">
@@ -58,18 +58,18 @@ background-image: URL(<%= audioImagePath%>)">
         <i class="icon"></i>
       </div>
       <div class="seek-field">
-        <input id="audioSeekBar" min="0" max="334" step="1" value="0" type="range" oninput="audioSeekBar()" onchange="this.oninput()">
+        <input id="audioSeekBar" class="audioSeekBarlist" min="0" max="334" step="1" value="0" type="range" oninput="audioSeekBar(<%=audioindex%>)" onchange="this.oninput(<%=audioindex%>)">
       </div>
       <div class="volume-icon">
         <i class="icon-volume-up"></i>
       </div>
       <div class="volume-field">
-        <input type="range" min="0" max="100" value="100" step="1" oninput="audio.volume = this.value/100" onchange="this.oninput()">
+        <input type="range" min="0" max="100" value="100" step="1" oninput="audio.volume = this.value/100" onchange="this.oninput(<%=audioindex%>)">
       </div>
     </div>
   </div>
 </div>
-<audio id="audio-player" ontimeupdate="SeekBar()" ondurationchange="CreateSeekBar()" preload="auto" loop>
+<audio id="audio-player" class = "varaudio" ontimeupdate="SeekBar(<%=audioindex%>)" ondurationchange="CreateSeekBar(<%=audioindex%>)" preload="auto" loop>
 <% System.out.println("오디오패스"+audioPath); %>
 <%= "file:///"+audioPath %> 
   <source src=" <%= audio_code %>.mp3" type="audio/mpeg">
@@ -78,7 +78,7 @@ background-image: URL(<%= audioImagePath%>)">
 </div>
 <script src='https://code.jquery.com/jquery-2.1.1.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.5/waves.min.js'></script>
-<script src = '/FairMusic/widget/js/widget.js'></script>
+
 <%}%>
 </body>
 

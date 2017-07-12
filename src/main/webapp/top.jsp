@@ -46,6 +46,7 @@
 					<ul>
 						<!-- <li><a href="/FairMusic/followingList.do">Mypage</a></li> -->
 						<li><a href="/FairMusic/second.do">Mypage</a></li>
+						<li><a href="/FairMusic/have.do">HavingMusic</a></li>
 						<li><a href="/FairMusic/view.do?viewpath=../Collection/Likes.jsp">Likes</a></li>
 						<li><a href="/FairMusic/view.do?viewpath=../Collection/Playlists.jsp">PlayList</a></li>
 						<li><a href="/FairMusic/view.do?viewpath=../Collection/Following.jsp">Following</a></li>

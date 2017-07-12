@@ -305,9 +305,9 @@ function fakefake(){
 			<div role="tabpanel">
 				<ul class="nav nav-tabs" role="tablist">
 					<li role="presentation" class="active"><a href="#home1"
-						data-toggle="tab" role="tab" aria-controls="tab1">All</a></li>
+						data-toggle="tab" role="tab" aria-controls="tab1">ÀüÃ¼ °î</a></li>
 					<li role="presentation"><a href="#paneTwo1" data-toggle="tab"
-						role="tab" aria-controls="tab2">Music</a></li>
+						role="tab" aria-controls="tab2">°î °ü¸®</a></li>
 					<li role="presentation"><a href="#panethree" data-toggle="tab"
 						role="tab" aria-controls="tab3">BlockChain Certificate</a></li>
 						<li role="presentation" id ="btcaddr"><a href="#pane4" data-toggle="tab"
@@ -328,7 +328,7 @@ function fakefake(){
 								for(int i=0;i<audiolist.size();i++){
 									audioDTO dto = audiolist.get(i);
 									%>
-									<input type = "button" value = "<%= dto.getAudio_title()%>"/>
+									<input type = "button" value = "<%= dto.getAudio_title()%>" name="<%=dto.getAudio_code()%>" onclick ="window.open('/FairMusic/audiopage.do?audio_code=<%=dto.getAudio_code()%>')"/>
 									<%System.out.println(dto.getAudio_title());
 								}
 							}
@@ -340,20 +340,47 @@ function fakefake(){
 									data-toggle="modal" data-target="#agreeModal">upload</button>
 
 							</div>
-							<div class="col-sm-4">
-								<button type="button" class="btn btn-warning">update</button>
-							</div>
-							<div class="col-sm-4">
-								<button type="button" class="btn btn-warning">delete</button>
-							</div>
+							
 						</div>
-						</p>
+						
 					</div>
 					<div role="tabpanel" class="tab-pane fade" id="paneTwo1">
-						<p>&nbsp;</p>
+						<div class="myFMContentss">
+					
+				
+							<%
+							System.out.println(audiolist);
+							if(audiolist!=null){
+
+								for(int i=0;i<audiolist.size();i++){
+									audioDTO dto = audiolist.get(i);
+									%>
+									<input type = "button" value = "<%= dto.getAudio_title()%>" name="<%=dto.getAudio_code()%>" onclick ="window.open('/FairMusic/audiomanage.do?audio_code=<%=dto.getAudio_code()%>')"/>
+									<%System.out.println(dto.getAudio_title());
+								}
+							}
+							%>
+						</div>
 					</div>
 					<div role="tabpanel" class="tab-pane fade" id="panethree">
 						<a class="btn btn-info btn-lg " data-toggle="modal" data-target="#editModal">Certification</a>
+							<div class="myFMContentss">
+					
+				
+							<%
+							System.out.println(audiolist);
+							if(audiolist!=null){
+
+								for(int i=0;i<audiolist.size();i++){
+									audioDTO dto = audiolist.get(i);
+									%>
+									<input type = "button" value = "<%= dto.getAudio_title()%>" name="<%=dto.getAudio_code()%>" onclick ="window.open('/FairMusic/audiomanage.do?audio_code=<%=dto.getAudio_code()%>')"/>
+									<%System.out.println(dto.getAudio_title());
+								}
+							}
+							%>
+						</div>
+							
 							<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="my80sizeModalLabel">
 							<!-- ¸ð´Þ  -->
 								<div class="modal-dialog modal-80size" role="document">

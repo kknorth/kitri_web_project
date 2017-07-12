@@ -1,5 +1,6 @@
 package com.fairmusic.audio.dao;
 
+
 import static com.fairmusic.fw.AudioQuery.*;
 import static com.fairmusic.fw.DBUtil.close;
 import static com.fairmusic.fw.DBUtil.getConnection;
@@ -10,8 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.fairmusic.dto.artistDTO;
 import com.fairmusic.dto.audioDTO;
+import com.fairmusic.dto.audiobuyDTO;
 import com.fairmusic.fw.DBUtil;
 
 public class AudioDAOimpl implements AudioDAO{
@@ -97,6 +98,78 @@ public class AudioDAOimpl implements AudioDAO{
 			DBUtil.close(rs, ptmt, con);
 		}
 		return dtolist;
+	}
+
+	@Override
+	public int audioDelete(String audio_code) {
+		int result = 0;
+		Connection con = null;
+		PreparedStatement ptmt = null;
+
+
+		try {
+			con = DBUtil.getConnection();
+			ptmt = con.prepareStatement(delete_audio);
+			ptmt.setString(1, audio_code);
+			
+			result = ptmt.executeUpdate();
+
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			DBUtil.close(null, ptmt, con);
+		}
+		return result;
+	}
+
+	@Override
+	public ArrayList<audiobuyDTO> havingAudio(String artist_code) {
+		ArrayList<audiobuyDTO> dtolist = new ArrayList<audiobuyDTO>();
+		audiobuyDTO dto = null;
+		Connection con = null;
+		PreparedStatement ptmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = DBUtil.getConnection();
+			ptmt = con.prepareStatement(select_audiolist);
+			ptmt.setString(1, artist_code);
+
+			rs = ptmt.executeQuery();
+			while (rs.next()) {
+				dto = new audiobuyDTO(rs.getString(1), rs.getString(2));
+				dtolist.add(dto);
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			DBUtil.close(rs, ptmt, con);
+		}
+		return dtolist;
+	}
+
+	@Override
+	public int audiopurchase(String artist_code, String audio_code) {
+		Connection con = null;
+		PreparedStatement ptmt = null;
+		int result= 0;
+		try {	
+			con = getConnection();
+			ptmt = con.prepareStatement(audio_get);
+			ptmt.setString(1, artist_code);
+			ptmt.setString(2, audio_code);
+			
+			result = ptmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(null, ptmt, con);
+		}
+		return result;
 	}
 
 }

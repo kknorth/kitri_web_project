@@ -154,11 +154,9 @@ public class audioServlet extends HttpServlet {
       request.setCharacterEncoding("utf-8");
       response.setHeader("cache-control", "no-cache,no-store");
       response.setContentType("text/html;charset=utf-8");
-      
-      fm_Code code = new fm_Code();
-      
-      audio_code = code.uniqueCode(20);
-      System.out.println("¿Àµð¿À ÄÚµå"+audio_code);
+
+      audio_code = (String)request.getSession().getAttribute("audio_code");
+      System.out.println("¿Àµð¿À ÄÚµå Q»©¾Þ“£¾Þ"+audio_code);
       Map<String, String> stampDataresult = SeongfileUpload(request,audio_code);
       
       artistDTO loginUser=(artistDTO)request.getSession().getAttribute("user");

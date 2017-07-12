@@ -1,6 +1,7 @@
 package com.fairmusic.audio.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,41 +17,41 @@ import com.fairmusic.audio.service.AudioServiceimpl;
 import com.fairmusic.dto.albumDTO;
 import com.fairmusic.dto.artistDTO;
 import com.fairmusic.dto.audioDTO;
+import com.fairmusic.dto.audiobuyDTO;
 
-/**
- * Servlet implementation class audioPageServlet
- */
-public class audioPageServlet extends HttpServlet {
-	
+
+public class havingAudioServlet extends HttpServlet {
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String audio_code = request.getParameter("audio_code");
+		
+		
+		artistDTO ardto = (artistDTO)request.getSession().getAttribute("user");
+		
+		String artist_code = ardto.getArtist_code();
 		
 		AudioService service = new AudioServiceimpl();
+		ArrayList<audiobuyDTO> havingdto = service.havingAudio(artist_code);
 		
-		audioDTO dto = service.selectAudio(audio_code);
+		ArrayList<audioDTO> havingAudioDTO = new ArrayList<audioDTO>();
 		
-		String album_code = dto.getAlbum_code();
+		int size = havingdto.size();
+		audioDTO tempdto = null;
+		for(int i = 0;i < size;i++){
+			tempdto = service.selectAudio(havingdto.get(i).getAudio_code());
+			if(tempdto!= null){
+				havingAudioDTO.add(tempdto);
+			}
+		}
 		
-		String artist_code = dto.getArtist_code();
-		
-		ArtistServiceimpl artistservice = new ArtistServiceimpl();
-		artistDTO artistdto = artistservice.getArtistDTO(artist_code);
-		
-		AlbumService albumservice = new AlbumServiceimpl();
-		albumDTO albumdto = albumservice.getAlbumDTO(album_code);
-		
-		request.setAttribute("audioDTO", dto);
-		request.setAttribute("albumDTO", albumdto);
-		request.setAttribute("artistDTO", artistdto);
-		
-		request.setAttribute("viewpath", "../MusicDetail/MusicPage.jsp");
+		request.setAttribute("havingAudioDTO", havingAudioDTO);
+
+		request.setAttribute("viewpath", "../MusicDownload/havingMusic.jsp");
 		
 		
 		//4. 요청재지정
 		RequestDispatcher rd =
 				request.getRequestDispatcher("/layout/mainLayout.jsp");
 		rd.forward(request, response);
-		
 	}
 
 }

@@ -31,7 +31,8 @@ public class BitcoinAdressInsert extends HttpServlet {
 
 		/*HttpSession ses = request.getSession();
 		String audio_code= (String)ses.getAttribute("user");*/
-		String audio_code="ww";		
+		
+		String audio_code= (String)request.getSession().getAttribute("audio_code");	
 		try {
 			
 			String[] righterName ={request.getParameter("cpname")};

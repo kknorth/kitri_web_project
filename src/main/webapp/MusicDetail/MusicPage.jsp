@@ -88,7 +88,8 @@
   </div>
   <div class="row">
     <div class="col-lg-4">
-    <button type = "button">결제하기</button>
+    <% String file_name = audiodto.getAudio_code()+"."+audiodto.getAudio_file(); %>
+    <h3><a href = '/FairMusic/audiobuy.do?audio_code=<%= audiodto.getAudio_code()%>'>결제</a></h3>
     </div>
     <div class="col-lg-4">
     홍보

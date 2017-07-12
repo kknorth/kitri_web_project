@@ -1,6 +1,6 @@
 
-.containera {
-
+.container1 {
+  position: absolute;
   width: 100%;
   height: 100%;
   display: -webkit-box;
@@ -17,7 +17,7 @@
   position: relative;
   background-color: #ffffff;
   background-image: url("https://goo.gl/X9j6DR");
-  background-size :550px 375px;
+  background-size : 550px 375px;
   background-repeat : no-repeat;
   width: 550px;
   height: 375px;
