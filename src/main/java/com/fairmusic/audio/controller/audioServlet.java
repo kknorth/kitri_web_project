@@ -162,7 +162,7 @@ public class audioServlet extends HttpServlet {
       Map<String, String> stampDataresult = SeongfileUpload(request,audio_code);
       
       artistDTO loginUser=(artistDTO)request.getSession().getAttribute("user");
-      audioDTO audio = new audioDTO(audio_code, audio_file, audio_image, audio_movie, audio_title, "001"/*loginUser.getArtist_code()*/, audio_jenre, audio_detail, album_code, "sys", audio_copyrighter, audio_price,"1");
+      audioDTO audio = new audioDTO(audio_code, audio_file, audio_image, audio_movie, audio_title,loginUser.getArtist_code(), audio_jenre, audio_detail, album_code, "sysdate", audio_copyrighter, audio_price,"1");
       //여기에서 카피라이터 dto 생성이랑 db에 집어넣기 등등등
       AudioService service = new AudioServiceimpl();
       System.out.println("오디오 되냐"+audio);

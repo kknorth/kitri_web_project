@@ -100,5 +100,24 @@
     <servlet-name>myalbum</servlet-name>
     <url-pattern>/myalbum.do</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+    <description></description>
+    <display-name>second</display-name>
+    <servlet-name>second</servlet-name>
+    <servlet-class>com.fairmusic.seong.secondServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>second</servlet-name>
+    <url-pattern>/second.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>audiopage</display-name>
+    <servlet-name>audiopage</servlet-name>
+    <servlet-class>com.fairmusic.audio.controller.audioPageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>audiopage</servlet-name>
+    <url-pattern>/audiopage.do</url-pattern>
+  </servlet-mapping>
 </web-app>

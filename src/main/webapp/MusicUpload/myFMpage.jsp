@@ -272,6 +272,8 @@ function fakefake(){
 
 </head>
 <body>
+
+
 	<div class="row">
 		<div class="col-sm-3">
 			<img src="/FairMusic/images/temp.png"
@@ -317,7 +319,7 @@ function fakefake(){
 					<div role="tabpanel" class="tab-pane fade in active" id="home1">
 						<p>
 						<div class="myFMContents">
-							<jsp:include page="/audiolist.do"></jsp:include>
+					
 							<%ArrayList<audioDTO> audiolist = (ArrayList<audioDTO>)request.getAttribute("myaudiolist"); %>
 							<%
 							System.out.println(audiolist);
@@ -395,16 +397,15 @@ function fakefake(){
 							})
 							
 							$("#btcaddr").on("click",function() {
-								
+								if (state == 1){
 									$.post("/FairMusic/MyBitcoinAddrSelect",{ },success_run)
-									
-								
+								}
 							})
 						})
 
 						function success_run(txt) {
 							state = 1;
-							$("#mybtc").html("My Bincoin Address : "+txt);
+							$("#mybtc").html(txt);
 						}
 						</script>
 						
@@ -414,20 +415,20 @@ function fakefake(){
 				</div>
 			</div>
 		</div>
-		
-		<%
+				<%
 					ArrayList<followDTO> followinglist = (ArrayList<followDTO>)request.getAttribute("followinglist");
 					ArrayList<followDTO> followerlist = (ArrayList<followDTO>)request.getAttribute("followerlist");
 					int followinglistsize=followinglist.size();
 					int followerlistsize=followerlist.size();
 				%>
+		
 		<div class="col-sm-3">
 			<div role="tabpanel">
 				<ul class="nav nav-tabs" role="tablist">
 					<li role="presentation" class="active"><a href="#home2"
-						data-toggle="tab" role="tab" aria-controls="tab1">ÆÈ·ÎÀ× (<%=followinglistsize %>¸í)</a></li>
+						data-toggle="tab" role="tab" aria-controls="tab1">ÆÈ·ÎÀ×(<%=followinglistsize %>¸í)</a></li>
 					<li role="presentation"><a href="#paneTwo2" data-toggle="tab"
-						role="tab" aria-controls="tab2">ÆÈ·Î¿ö (<%=followerlistsize %>¸í)</a></li>
+						role="tab" aria-controls="tab2">ÆÈ·Î¿ö(<%=followerlistsize %>¸í)</a></li>
 					<li role="presentation" class="dropdown"></li>
 				</ul>
 				<div id="tabContent2" class="tab-content">
@@ -570,6 +571,7 @@ function fakefake(){
 
 		</div>
 	</div>
+
 	</form>
 	
 	<div class="modal fade" id="editModal" role="dialog">
@@ -644,5 +646,6 @@ function fakefake(){
       
     </div>
   </div>
+
 </body>
 </html>

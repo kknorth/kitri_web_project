@@ -67,7 +67,7 @@
 </style>
 
 <script type="text/javascript">
-	
+/* 	
 	$(document).ready(function() {
 		for (var i = 0; i < 10; i++) {
 			$("<h1>무한 스크롤</h1>").appendTo("div#mainview");
@@ -85,7 +85,7 @@
 				}
 			}
 		});
-	});
+	}); */
 	
 </script>
 </head>
@@ -98,10 +98,16 @@
        <ol class="list-group">
          <li class="list-group-item disabled">조성원님의 최근 게시글</li>
           <li class="list-group-item">
-          
-   <%--       <jsp:include page="/widget.do" flush="true">
-		<jsp:param value="e6ddn02ie17ngn4a1l44" name="audio_code"/>
-		</jsp:include> --%>
+ <%--         
+    <jsp:include page="/widget.do">
+		<jsp:param value="4gw235p8w754lm140062" name="audio_code"/>
+		</jsp:include>  
+		 
+	 --%>
+	<%-- 	   <jsp:include page="/widget.do">
+		<jsp:param value="33857szat02s2q8h21l3" name="audio_code"/>
+		</jsp:include>  --%>
+	
 		
 <%--<a href= "/FairMusic/widget.do">서블릿->웹</a>
          <jsp:include page ="/widget.do"></jsp:include> --%>
