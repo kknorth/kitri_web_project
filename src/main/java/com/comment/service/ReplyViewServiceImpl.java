@@ -3,8 +3,8 @@ package com.comment.service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.commant.dao.BDao;
-import com.commant.dto.BDto;
+import com.comment.dao.BDao;
+import com.comment.dto.BDto;
 
 public class ReplyViewServiceImpl implements CommentService {
 

@@ -35,7 +35,7 @@ public class BitcoinAdressInsert extends HttpServlet {
 		try {
 			
 			String[] righterName ={request.getParameter("cpname")};
-			long[] righterVal ={Long.parseLong((request.getParameter("cprate")))};
+			double[] righterVal ={Double.parseDouble((request.getParameter("cprate")))};
 
 			for (int i = 0; i < righterName.length; i++) {
 				System.out.println(righterName[i]);
@@ -43,11 +43,11 @@ public class BitcoinAdressInsert extends HttpServlet {
 			}
 			String[] PrivateKey = {ECKey.createNewPrivateKey()};
 			String[] bitcoinAdress =new String[2];
-			long[] balance = new long[2];
+			double[] balance = new double[2];
 			BitcoinAdressDTO bitaddr = null;
 			for (int j = 0; j < bitcoinAdress.length; j++) {
 				bitcoinAdress = new String[]{ECKey.deriveAddress(PrivateKey[j])};
-				balance = new long[]{coinstack.getBalance(bitcoinAdress[j])};
+				balance = new double[]{coinstack.getBalance(bitcoinAdress[j])};
 				System.out.println("create privateKey: "+PrivateKey[j]);
 				System.out.println("MusicAddress: "+bitcoinAdress[j]);
 				bitaddr = new BitcoinAdressDTO(audio_code, bitcoinAdress[j], PrivateKey[j],righterName[j], righterVal[j]);

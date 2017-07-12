@@ -1,4 +1,4 @@
-package com.commant.dao;
+package com.comment.dao;
 
 import static com.fairmusic.fw.DBUtil.getConnection;
 
@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
-import com.commant.dto.BDto;
+import com.comment.dto.BDto;
 
 public class BDao {
 
@@ -20,7 +20,7 @@ public class BDao {
 		
 		try {
 			con = getConnection();
-			String query = "insert into mvc_board (bId, bName, bTitle, bContent, bHit, bGroup, bStep, bIndent) values (mvc_board_seq.nextval, ?, ?, ?, 0, mvc_board_seq.currval, 0, 0 )";
+			String query = "insert into comm (artist_code, name, title, content, fmdate, hit, fmgroup, indent) values (comm_seq.nextval, ?, ?, ?, 0, comm_seq.currval, 0, 0 )";
 			ptmt = con.prepareStatement(query);
 			ptmt.setString(1, bName);
 			ptmt.setString(2, bTitle);
@@ -50,22 +50,22 @@ public class BDao {
 		
 		try {
 			con = getConnection();
-			String query = "select bId, bName, bTitle, bContent, bDate, bHit, bGroup, bStep, bIndent from mvc_board order by bGroup desc, bStep asc";
+			String query = "select artist_code, name, title, content, fmdate, hit, group, Step, Indent from comm order by bGroup desc, bStep asc";
 			ptmt = con.prepareStatement(query);
 			rs = ptmt.executeQuery();
 			
 			while (rs.next()) {
-				int bId = rs.getInt("bId");
-				String bName = rs.getString("bName");
-				String bTitle = rs.getString("bTitle");
-				String bContent = rs.getString("bContent");
-				Timestamp bDate = rs.getTimestamp("bDate");
-				int bHit = rs.getInt("bHit");
-				int bGroup = rs.getInt("bGroup");
-				int bStep = rs.getInt("bStep");
-				int bIndent = rs.getInt("bIndent");
+				int artist_code = rs.getInt("bId");
+				String name = rs.getString("bName");
+				String title = rs.getString("bTitle");
+				String content = rs.getString("bContent");
+				Timestamp fmdate = rs.getTimestamp("bDate");
+				int hit = rs.getInt("bHit");
+				int fmgroup = rs.getInt("bGroup");
+				int step = rs.getInt("bStep");
+				int indent = rs.getInt("bIndent");
 				
-				BDto dto = new BDto(bId, bName, bTitle, bContent, bDate, bHit, bGroup, bStep, bIndent);
+				BDto dto = new BDto(artist_code, name, title, content, fmdate, hit, fmgroup, step, indent);
 				dtos.add(dto);
 			}
 			
@@ -93,23 +93,23 @@ public class BDao {
 		
 		try {	
 			con = getConnection();
-			String query = "select * from mvc_board where bId = ?";
+			String query = "select * from comm where artist_code = ?";
 			ptmt = con.prepareStatement(query);
 			ptmt.setInt(1, Integer.parseInt(strID));
 			rs = ptmt.executeQuery();
 			
 			if(rs.next()) {
-				int bId = rs.getInt("bId");
-				String bName = rs.getString("bName");
-				String bTitle = rs.getString("bTitle");
-				String bContent = rs.getString("bContent");
-				Timestamp bDate = rs.getTimestamp("bDate");
-				int bHit = rs.getInt("bHit");
-				int bGroup = rs.getInt("bGroup");
-				int bStep = rs.getInt("bStep");
-				int bIndent = rs.getInt("bIndent");
+				int artist_code = rs.getInt("bId");
+				String name = rs.getString("bName");
+				String title = rs.getString("bTitle");
+				String content = rs.getString("bContent");
+				Timestamp fmdate = rs.getTimestamp("bDate");
+				int hit = rs.getInt("bHit");
+				int fmgroup = rs.getInt("bGroup");
+				int step = rs.getInt("bStep");
+				int indent = rs.getInt("bIndent");
 				
-				dto = new BDto(bId, bName, bTitle, bContent, bDate, bHit, bGroup, bStep, bIndent);
+				dto = new BDto(artist_code, name, title, content, fmdate, hit, fmgroup, step, indent);
 			}
 			
 		} catch (Exception e) {
@@ -134,7 +134,7 @@ public class BDao {
 		try {
 			con = getConnection();
 		
-			String query = "update mvc_board set bName = ?, bTitle = ?, bContent = ? where bId = ?";
+			String query = "update comment set Name = ?, Title = ?, Content = ? where artist_code = ?";
 			
 			
 			ptmt = con.prepareStatement(query);
@@ -162,7 +162,7 @@ public class BDao {
 		try {
 			
 			con = getConnection();
-			String query = "delete from mvc_board where bId = ?";
+			String query = "delete from comm where artist_code = ?";
 			
 			ptmt = con.prepareStatement(query);
 			ptmt.setInt(1, Integer.parseInt(bId));
@@ -189,24 +189,24 @@ public class BDao {
 		try {
 			
 			con = getConnection();
-			String query = "select * from mvc_board where bId = ?";
+			String query = "select * from comm where artist_code = ?";
 			
 			ptmt = con.prepareStatement(query);
 			ptmt.setInt(1, Integer.parseInt(str));
 			rs = ptmt.executeQuery();
 			
 			if(rs.next()) {
-				int bId = rs.getInt("bId");
-				String bName = rs.getString("bName");
-				String bTitle = rs.getString("bTitle");
-				String bContent = rs.getString("bContent");
-				Timestamp bDate = rs.getTimestamp("bDate");
-				int bHit = rs.getInt("bHit");
-				int bGroup = rs.getInt("bGroup");
-				int bStep = rs.getInt("bStep");
-				int bIndent = rs.getInt("bIndent");
+				int artist_code = rs.getInt("bId");
+				String name = rs.getString("bName");
+				String title = rs.getString("bTitle");
+				String content = rs.getString("bContent");
+				Timestamp fmdate = rs.getTimestamp("bDate");
+				int hit = rs.getInt("bHit");
+				int fmgroup = rs.getInt("bGroup");
+				int step = rs.getInt("bStep");
+				int indent = rs.getInt("bIndent");
 				
-				dto = new BDto(bId, bName, bTitle, bContent, bDate, bHit, bGroup, bStep, bIndent);
+				dto = new BDto(artist_code, name, title, content, fmdate, hit, fmgroup, step, indent);
 			}
 			
 		} catch (Exception e) {
@@ -230,7 +230,7 @@ public class BDao {
 		
 		try {
 			con = getConnection();
-			String query = "insert into mvc_board (bId, bName, bTitle, bContent, bGroup, bStep, bIndent) values (mvc_board_seq.nextval, ?, ?, ?, ?, ?, ?)";
+			String query = "insert into comm (artist_code, name, Title,Content, fmGroup, Step, Indent) values (comm_seq.nextval, ?, ?, ?, ?, ?, ?)";
 			
 	
 			ptmt = con.prepareStatement(query);
@@ -261,7 +261,7 @@ public class BDao {
 		
 		try {
 			con = getConnection();
-			String query = "update mvc_board set bStep = bStep + 1 where bGroup = ? and bStep > ?";
+			String query = "update comm set Step = Step + 1 where fmGroup = ? and Step > ?";
 		
 			ptmt = con.prepareStatement(query);
 			ptmt.setInt(1, Integer.parseInt(strGroup));
@@ -287,7 +287,7 @@ public class BDao {
 		
 		try {
 			con = getConnection();
-			String query = "update mvc_board set bHit = bHit + 1 where bId = ?";
+			String query = "update comm set Hit = Hit + 1 where artist_code = ?";
 			ptmt = con.prepareStatement(query);
 			ptmt.setString(1, bId);
 			int rn = ptmt.executeUpdate();

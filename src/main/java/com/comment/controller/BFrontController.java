@@ -1,4 +1,4 @@
-package com.commant.controller;
+package com.comment.controller;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;

@@ -41,7 +41,7 @@ public class MyBitcoinAddrInsert extends HttpServlet implements MyBtcAddrReq{
 			ses.setAttribute("Myprivatekey", Myprivatekey);
 
 			request.setAttribute("MybitcoinAddr", MybitcoinAddr);
-			pw.print("BitcoinAddress : "+MybitcoinAddr);
+			pw.print(MybitcoinAddr);
 			
 			MyBTCaddrDTO myaddr = new MyBTCaddrDTO(artist_code, Myprivatekey, MybitcoinAddr);
 			BlockoService service = new BlockoServiceImpl();

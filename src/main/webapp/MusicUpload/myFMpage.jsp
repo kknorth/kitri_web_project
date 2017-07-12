@@ -404,7 +404,7 @@ function fakefake(){
 
 						function success_run(txt) {
 							state = 1;
-							$("#mybtc").html("My Bincoin Address : "+txt);
+							$("#mybtc").html("Bitcoin Address : "+txt);
 						}
 						</script>
 						

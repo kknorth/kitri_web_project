@@ -6,7 +6,7 @@ public class BitcoinAdressDTO {
 	String bitcoinAdress;
 	String privatekey;
 	String righterName;
-	long righterVal;
+	double righterVal;
 	/*String bitcoinAdress1;
 	String privatekey1;
 	String bitcoinAdress2;
@@ -31,7 +31,7 @@ public class BitcoinAdressDTO {
 	}
 
 	public BitcoinAdressDTO(String audio_code, String bitcoinAdress,
-			String privatekey, long righterVal) {
+			String privatekey, double righterVal) {
 		super();
 		this.audio_code = audio_code;
 		this.bitcoinAdress = bitcoinAdress;
@@ -40,7 +40,7 @@ public class BitcoinAdressDTO {
 	}
 
 	public BitcoinAdressDTO(String audio_code, String bitcoinAdress,
-			String privatekey, String righterName, long righterVal) {
+			String privatekey, String righterName, double righterVal) {
 		super();
 		this.audio_code = audio_code;
 		this.bitcoinAdress = bitcoinAdress;
@@ -81,11 +81,11 @@ public class BitcoinAdressDTO {
 		this.righterName = righterName;
 	}
 
-	public long getRighterVal() {
+	public double getRighterVal() {
 		return righterVal;
 	}
 
-	public void setRighterVal(long righterVal) {
+	public void setRighterVal(double righterVal) {
 		this.righterVal = righterVal;
 	}
 

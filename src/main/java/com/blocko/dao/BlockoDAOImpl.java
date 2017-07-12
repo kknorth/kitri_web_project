@@ -72,7 +72,7 @@ public class BlockoDAOImpl implements BlockoDAO {
 			ptmt.setString(3, bitcoinAdress.getPrivatekey());
 			ptmt.setString(4, bitcoinAdress.getRighterName());
 			//int data=(int)bitcoinAdress.getRighterVal();
-			ptmt.setLong(5, bitcoinAdress.getRighterVal());
+			ptmt.setDouble(5, bitcoinAdress.getRighterVal());
 			result = ptmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -95,7 +95,7 @@ public class BlockoDAOImpl implements BlockoDAO {
 			ptmt.setString(1,audio_code);
 			rs = ptmt.executeQuery();
 			while(rs.next()){
-				bitaddr =new BitcoinAdressDTO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getLong(5));
+				bitaddr =new BitcoinAdressDTO(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDouble(5));
 				bitcoinaddr.add(bitaddr);
 			}
 		} catch (SQLException e) {

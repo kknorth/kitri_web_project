@@ -44,19 +44,19 @@ public class BintcoinSend extends HttpServlet {
 			MyBTCaddrDTO addr = service.read(artist_code);
 			String MyPrivateKey=addr.getMypk();
 			String[] toAddress = new String[2];
-			long[] righterVal = new long[2];
+			double[] righterVal = new double[2];
 			String[] rawSignedTx = new String[2];
 			String[] transactionId = new String[2];
-			long[] amount = new long[2];
+			double[] amount = new double[2];
 			TransactionBuilder builder = new TransactionBuilder();
 			for (int i = 0; i < btcaddrlist.size(); i++) {
 				toAddress[i]= (btcaddrlist.get(i).getBitcoinAdress());
 				//privatekey[i] = (btcaddrlist.get(i).getPrivatekey());
 				righterVal[i] = (btcaddrlist.get(i).getRighterVal());
-				String RVAL = Long.toString(righterVal[i]);
+				String RVAL = Double.toString(righterVal[i]);
 				amount[i] = io.blocko.coinstack.Math.convertToSatoshi(RVAL);
 				builder.allowDustyOutput(true);
-				builder.addOutput(toAddress[i], amount[i]);
+				builder.addOutput(toAddress[i], (long) amount[i]);
 				rawSignedTx[i] = coinstack.createSignedTransaction(builder, MyPrivateKey);
 				System.out.println(rawSignedTx[i]);
 				transactionId[i] = TransactionUtil.getTransactionHash(rawSignedTx[i]);
