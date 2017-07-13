@@ -3,6 +3,7 @@ package com.fairmusic.audio.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,5 +28,9 @@ public class myAudioServlet extends HttpServlet {
 		ArrayList<audioDTO> dtolist =service.myAudioList(artist_code);
 		
 		request.setAttribute("myaudiolist", dtolist);
+
+
+
+		
 	}
 }

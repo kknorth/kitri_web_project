@@ -100,5 +100,86 @@
     <servlet-name>myalbum</servlet-name>
     <url-pattern>/myalbum.do</url-pattern>
   </servlet-mapping>
-  
+
+  <servlet>
+    <description></description>
+    <display-name>second</display-name>
+    <servlet-name>second</servlet-name>
+    <servlet-class>com.fairmusic.seong.secondServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>second</servlet-name>
+    <url-pattern>/second.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>audiopage</display-name>
+    <servlet-name>audiopage</servlet-name>
+    <servlet-class>com.fairmusic.audio.controller.audioPageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>audiopage</servlet-name>
+    <url-pattern>/audiopage.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>audiodel</display-name>
+    <servlet-name>audiodel</servlet-name>
+    <servlet-class>com.fairmusic.audio.controller.audioDeleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>audiodel</servlet-name>
+    <url-pattern>/audiodel.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>audiomanage</display-name>
+    <servlet-name>audiomanage</servlet-name>
+    <servlet-class>com.fairmusic.audio.controller.audioManageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>audiomanage</servlet-name>
+    <url-pattern>/audiomanage.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>have</display-name>
+    <servlet-name>have</servlet-name>
+    <servlet-class>com.fairmusic.audio.controller.havingAudioServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>have</servlet-name>
+    <url-pattern>/have.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>audiodown</display-name>
+    <servlet-name>audiodown</servlet-name>
+    <servlet-class>com.fairmusic.audio.controller.audioDownloadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>audiodown</servlet-name>
+    <url-pattern>/audiodown.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>audiobuy</display-name>
+    <servlet-name>audiobuy</servlet-name>
+    <servlet-class>com.fairmusic.audio.controller.audioBuyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>audiobuy</servlet-name>
+    <url-pattern>/audiobuy.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ten</display-name>
+    <servlet-name>ten</servlet-name>
+    <servlet-class>com.fairmusic.seong.TenServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ten</servlet-name>
+    <url-pattern>/ten.do</url-pattern>
+  </servlet-mapping>
+
 </web-app>

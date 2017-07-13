@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ page import="java.util.ArrayList"%>
+<%@page import = "com.fairmusic.seong.fm_Code"%>
 <%@page import="com.fairmusic.dto.albumDTO"%>
 <%@page import="com.fairmusic.dto.audioDTO"%>
 <!DOCTYPE html>
@@ -113,9 +114,13 @@
 
 
 <body>
+<% fm_Code code = new fm_Code();
 
+String audio_code = code.uniqueCode(20);
+%>
+<% session.setAttribute("audio_code", audio_code);%>
 
-	<jsp:include page="/myalbum.do"></jsp:include>
+	
 	<form id="audioUploadForm" name="audioUploadForm" method="post"
 		enctype="multipart/form-data" action="/FairMusic/audio.do">
 

@@ -272,6 +272,8 @@ function fakefake(){
 
 </head>
 <body>
+
+
 	<div class="row">
 		<div class="col-sm-3">
 			<img src="/FairMusic/images/temp.png"
@@ -303,9 +305,9 @@ function fakefake(){
 			<div role="tabpanel">
 				<ul class="nav nav-tabs" role="tablist">
 					<li role="presentation" class="active"><a href="#home1"
-						data-toggle="tab" role="tab" aria-controls="tab1">All</a></li>
+						data-toggle="tab" role="tab" aria-controls="tab1">ÀüÃ¼ °î</a></li>
 					<li role="presentation"><a href="#paneTwo1" data-toggle="tab"
-						role="tab" aria-controls="tab2">Music</a></li>
+						role="tab" aria-controls="tab2">°î °ü¸®</a></li>
 					<li role="presentation"><a href="#panethree" data-toggle="tab"
 						role="tab" aria-controls="tab3">BlockChain Certificate</a></li>
 					<li role="presentation" id ="btcaddr"><a href="#pane4" data-toggle="tab"
@@ -321,7 +323,7 @@ function fakefake(){
 					<div role="tabpanel" class="tab-pane fade in active" id="home1">
 						<p>
 						<div class="myFMContents">
-							<jsp:include page="/audiolist.do"></jsp:include>
+					
 							<%ArrayList<audioDTO> audiolist = (ArrayList<audioDTO>)request.getAttribute("myaudiolist"); %>
 							<%
 							System.out.println(audiolist);
@@ -330,7 +332,7 @@ function fakefake(){
 								for(int i=0;i<audiolist.size();i++){
 									audioDTO dto = audiolist.get(i);
 									%>
-									<input type = "button" value = "<%= dto.getAudio_title()%>"/>
+									<input type = "button" value = "<%= dto.getAudio_title()%>" name="<%=dto.getAudio_code()%>" onclick ="window.open('/FairMusic/audiopage.do?audio_code=<%=dto.getAudio_code()%>')"/>
 									<%System.out.println(dto.getAudio_title());
 								}
 							}
@@ -342,20 +344,47 @@ function fakefake(){
 									data-toggle="modal" data-target="#agreeModal">upload</button>
 
 							</div>
-							<div class="col-sm-4">
-								<button type="button" class="btn btn-warning">update</button>
-							</div>
-							<div class="col-sm-4">
-								<button type="button" class="btn btn-warning">delete</button>
-							</div>
+							
 						</div>
-						</p>
+						
 					</div>
 					<div role="tabpanel" class="tab-pane fade" id="paneTwo1">
-						<p>&nbsp;</p>
+						<div class="myFMContentss">
+					
+				
+							<%
+							System.out.println(audiolist);
+							if(audiolist!=null){
+
+								for(int i=0;i<audiolist.size();i++){
+									audioDTO dto = audiolist.get(i);
+									%>
+									<input type = "button" value = "<%= dto.getAudio_title()%>" name="<%=dto.getAudio_code()%>" onclick ="window.open('/FairMusic/audiomanage.do?audio_code=<%=dto.getAudio_code()%>')"/>
+									<%System.out.println(dto.getAudio_title());
+								}
+							}
+							%>
+						</div>
 					</div>
 					<div role="tabpanel" class="tab-pane fade" id="panethree">
 						<a class="btn btn-info btn-lg " data-toggle="modal" data-target="#editModal">Certification</a>
+							<div class="myFMContentss">
+					
+				
+							<%
+							System.out.println(audiolist);
+							if(audiolist!=null){
+
+								for(int i=0;i<audiolist.size();i++){
+									audioDTO dto = audiolist.get(i);
+									%>
+									<input type = "button" value = "<%= dto.getAudio_title()%>" name="<%=dto.getAudio_code()%>" onclick ="window.open('/FairMusic/audiomanage.do?audio_code=<%=dto.getAudio_code()%>')"/>
+									<%System.out.println(dto.getAudio_title());
+								}
+							}
+							%>
+						</div>
+							
 							<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="my80sizeModalLabel">
 							<!-- ¸ð´Þ  -->
 								<div class="modal-dialog modal-80size" role="document">
@@ -399,7 +428,15 @@ function fakefake(){
 							})
 							
 							$("#btcaddr").on("click",function() {
+<<<<<<< HEAD
+=======
+								if (state == 1){
+>>>>>>> refs/remotes/origin/seongseong
 									$.post("/FairMusic/MyBitcoinAddrSelect",{ },success_run)
+<<<<<<< HEAD
+=======
+								}
+>>>>>>> refs/remotes/origin/seongseong
 							})
 							
 							$("#search").on("click",function() {
@@ -414,6 +451,7 @@ function fakefake(){
 
 						function success_run(txt) {
 							state = 1;
+<<<<<<< HEAD
 							$("#mybtc").html("Bitcoin Address : "+txt);
 						}
 						
@@ -429,6 +467,9 @@ function fakefake(){
 						      balance = data[0]; 
 						      txid = data[1];
 							$("#block").html("ÀÜ¾× : "+balance+"<br/>"+"°Å·¡µÈ Æ®·£Àè¼Ç ID : "+txid);
+=======
+							$("#mybtc").html(txt);
+>>>>>>> refs/remotes/origin/seongseong
 						}
 						</script>
 						
@@ -448,20 +489,20 @@ function fakefake(){
 				</div>
 			</div>
 		</div>
-		
-		<%
+				<%
 					ArrayList<followDTO> followinglist = (ArrayList<followDTO>)request.getAttribute("followinglist");
 					ArrayList<followDTO> followerlist = (ArrayList<followDTO>)request.getAttribute("followerlist");
 					int followinglistsize=followinglist.size();
 					int followerlistsize=followerlist.size();
 				%>
+		
 		<div class="col-sm-3">
 			<div role="tabpanel">
 				<ul class="nav nav-tabs" role="tablist">
 					<li role="presentation" class="active"><a href="#home2"
-						data-toggle="tab" role="tab" aria-controls="tab1">ÆÈ·ÎÀ× (<%=followinglistsize %>¸í)</a></li>
+						data-toggle="tab" role="tab" aria-controls="tab1">ÆÈ·ÎÀ×(<%=followinglistsize %>¸í)</a></li>
 					<li role="presentation"><a href="#paneTwo2" data-toggle="tab"
-						role="tab" aria-controls="tab2">ÆÈ·Î¿ö (<%=followerlistsize %>¸í)</a></li>
+						role="tab" aria-controls="tab2">ÆÈ·Î¿ö(<%=followerlistsize %>¸í)</a></li>
 					<li role="presentation" class="dropdown"></li>
 				</ul>
 				<div id="tabContent2" class="tab-content">
@@ -604,6 +645,7 @@ function fakefake(){
 
 		</div>
 	</div>
+
 	</form>
 	
 	<div class="modal fade" id="editModal" role="dialog">
@@ -678,5 +720,6 @@ function fakefake(){
       
     </div>
   </div>
+
 </body>
 </html>

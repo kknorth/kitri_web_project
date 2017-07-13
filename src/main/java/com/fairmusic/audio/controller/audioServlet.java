@@ -154,15 +154,13 @@ public class audioServlet extends HttpServlet {
       request.setCharacterEncoding("utf-8");
       response.setHeader("cache-control", "no-cache,no-store");
       response.setContentType("text/html;charset=utf-8");
-      
-      fm_Code code = new fm_Code();
-      
-      audio_code = code.uniqueCode(20);
-      System.out.println("오디오 코드"+audio_code);
+
+      audio_code = (String)request.getSession().getAttribute("audio_code");
+      System.out.println("오디오 코드 Q빼앵뱽앵"+audio_code);
       Map<String, String> stampDataresult = SeongfileUpload(request,audio_code);
       
       artistDTO loginUser=(artistDTO)request.getSession().getAttribute("user");
-      audioDTO audio = new audioDTO(audio_code, audio_file, audio_image, audio_movie, audio_title, "001"/*loginUser.getArtist_code()*/, audio_jenre, audio_detail, album_code, "sys", audio_copyrighter, audio_price,"1");
+      audioDTO audio = new audioDTO(audio_code, audio_file, audio_image, audio_movie, audio_title,loginUser.getArtist_code(), audio_jenre, audio_detail, album_code, "sysdate", audio_copyrighter, audio_price,"1");
       //여기에서 카피라이터 dto 생성이랑 db에 집어넣기 등등등
       AudioService service = new AudioServiceimpl();
       System.out.println("오디오 되냐"+audio);

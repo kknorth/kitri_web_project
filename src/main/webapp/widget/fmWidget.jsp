@@ -7,7 +7,7 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400'>
@@ -23,12 +23,14 @@
 <%String artistName = (String)request.getAttribute("artistName");%>
 
 
-<%String audioPath = (String)request.getAttribute("filepath");%>
-<%String audioImagePath = (String)request.getAttribute("imagepath");%>
+<%String audioPath = (String)request.getAttribute("audioPath");%>
+<%String audioImagePath = (String)request.getAttribute("audioImage");%>
+<% String audioindex = request.getParameter("audioindex"); %>
 </head>
 <body>
 <%System.out.println(dto.getAudio_alive()); %>
 <%if(dto.getAudio_alive().equals("1")){ %>
+<div class = "widgetindex">
 <div class="container">
   <div class="player" style="
 background-image: URL(<%= audioImagePath%>)">
@@ -68,13 +70,15 @@ background-image: URL(<%= audioImagePath%>)">
   </div>
 </div>
 <audio id="audio-player" ontimeupdate="SeekBar()" ondurationchange="CreateSeekBar()" preload="auto" loop>
-  <source src="<%= audioPath %>" type="audio/mpeg">
+<% System.out.println("오디오패스"+audioPath); %>
+<%= "file:///"+audioPath %> 
+  <source src=" <%= audio_code %>.mp3" type="audio/mpeg">
 </audio>
 
-
+</div>
 <script src='https://code.jquery.com/jquery-2.1.1.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.5/waves.min.js'></script>
-<script src="/FairMusic/widget/js/widget.js"></script>
+<script src = '/FairMusic/widget/js/widget.js'></script>
 <%}%>
 </body>
 

@@ -1,7 +1,7 @@
 package com.fairmusic.album.dao;
 
 import static com.fairmusic.fw.AlbumQuery.*;
-
+import static com.fairmusic.fw.AudioQuery.select_audio;
 import static com.fairmusic.fw.DBUtil.*;
 
 import java.sql.Connection;
@@ -68,6 +68,32 @@ public class AlbumDAOimpl implements AlbumDAO{
 			DBUtil.close(rs, ptmt, con);
 		}
 		return dtolist;
+	}
+
+	@Override
+	public albumDTO getAlbumDTO(String album_code) {
+		albumDTO dto = null;
+		Connection con = null;
+		PreparedStatement ptmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = DBUtil.getConnection();
+			ptmt = con.prepareStatement(select_album);
+			ptmt.setString(1, album_code);
+
+			rs = ptmt.executeQuery();
+			if (rs.next()) {
+				dto = new albumDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),rs.getString(7),rs.getString(8));
+			}
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			DBUtil.close(rs, ptmt, con);
+		}
+		return dto;
 	}
 
 }

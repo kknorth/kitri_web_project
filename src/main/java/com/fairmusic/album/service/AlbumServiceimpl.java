@@ -23,6 +23,13 @@ public class AlbumServiceimpl implements AlbumService{
 		return dtolist;
 	}
 
+	@Override
+	public albumDTO getAlbumDTO(String album_code) {
+		AlbumDAO dao = new AlbumDAOimpl();
+		albumDTO dto = dao.getAlbumDTO(album_code);
+		return dto;
+	}
+
 	
 
 }

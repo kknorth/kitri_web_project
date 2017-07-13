@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+    	<%@ page import="java.util.ArrayList" %>
+<%@page import="com.fairmusic.dto.audioDTO"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
+
+
+
 <meta charset="utf-8">
 <!-- fbshare -->
   <meta property="og:url"           content="http://naver.com" />
@@ -13,6 +18,7 @@
   <meta property="og:description"   content="Your description" />
   <meta property="og:image"         content="http://localhost:8088/FairMusic/images/M.PNG" />
   <!-- tweetshare -->
+  
   <script type="text/javascript">
 		function sharetwitter(url,text) {
 			window.open("https://twitter.com/intent/tweet?text="+ text + "&url=" + url);
@@ -23,7 +29,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
+	<script src="/FairMusic/widget/js/widget.js"></script>
 	<style>
 .dropdown {
 	position: relative;
@@ -67,7 +73,7 @@
 </style>
 
 <script type="text/javascript">
-	
+/* 	
 	$(document).ready(function() {
 		for (var i = 0; i < 10; i++) {
 			$("<h1>무한 스크롤</h1>").appendTo("div#mainview");
@@ -85,7 +91,7 @@
 				}
 			}
 		});
-	});
+	}); */
 	
 </script>
 </head>
@@ -98,10 +104,34 @@
        <ol class="list-group">
          <li class="list-group-item disabled">조성원님의 최근 게시글</li>
           <li class="list-group-item">
-          
-   <%--       <jsp:include page="/widget.do" flush="true">
-		<jsp:param value="e6ddn02ie17ngn4a1l44" name="audio_code"/>
-		</jsp:include> --%>
+ 
+<jsp:include page="/ten.do"></jsp:include>
+        <%ArrayList<audioDTO> dtolist = (ArrayList<audioDTO>)request.getAttribute("recent10"); %>
+        <% if(dtolist!=null){%>
+        <%int size = dtolist.size(); %>
+        <%if(size!=0){ %>
+        <%for(int i = 0; i < size;i++){ %>
+        <%audioDTO dto = dtolist.get(i); %>
+        <jsp:include page="/widget.do">
+		<jsp:param value="<%=dto.getAudio_code()%>" name="audio_code"/>
+		<jsp:param value="<%=i %>" name="audioindex"/>
+		</jsp:include>  
+		<button type = "button" onclick ="window.open('/FairMusic/audiopage.do?audio_code=<%=dto.getAudio_code()%>')"> 상세페이지 이동 </button>
+<hr/>
+		<%} %>
+		<%} %>
+	<%} %>
+<%-- 		<jsp:include page="/widget.do">
+		<jsp:param value="33857szat02s2q8h21l3" name="audio_code"/>
+		<jsp:param value="1" name="audioindex"/>
+		</jsp:include>   --%>
+		
+
+		
+
+		 
+ 	 	   
+	 
 		
 <%--<a href= "/FairMusic/widget.do">서블릿->웹</a>
          <jsp:include page ="/widget.do"></jsp:include> --%>
@@ -172,5 +202,6 @@
 		  </div>
 		  
    </div>
+   
 </body>
 </html>
