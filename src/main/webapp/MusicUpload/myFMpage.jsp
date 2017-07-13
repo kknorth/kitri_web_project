@@ -63,6 +63,7 @@ function fakefake(){
 	$('#fakeloadingModal').modal('hide')
 }
 
+
 	$(document).ready(function() {
 	
 		
@@ -249,6 +250,9 @@ function fakefake(){
 			    }
 			  });
 			});
+
+			
+			
 		/* 
 		alert("도큐먼트 대기중");
 		$("#uploadagreechk").on("click",function(){
@@ -267,13 +271,35 @@ function fakefake(){
 		  $("#selectModal").modal("hide");
 		  $("#myModal2").modal("show");
 		}); */
+		
+		$("#edit").on("click", function(){
+			pass = $("#artist_pass").val();
+			if(pass.length<8){
+				alert("비밀번호를 8자리 이상 입력해주세요!")
+			}else{
+			$.post("/FairMusic/edit.do", {"artist_pass":$("#artist_pass").val(), "artist_name":$("#artist_name").val()}, success_run)
+			}
+		})
+			function success_run(text){
+			alert(text)
+			}
+		
+		$("#drop").on("click", function(){
+			test = $("#dropcheck").is(":checked");
+			if(test==true){
+				location.href="/FairMusic/drop.do";
+			}else{
+				alert("체크박스를 확인해주세요!")
+			}
+		})
+		
 	});
+	
+
 </script>
 
 </head>
 <body>
-
-
 	<div class="row">
 		<div class="col-sm-3">
 			<img src="/FairMusic/images/temp.png"
@@ -305,9 +331,9 @@ function fakefake(){
 			<div role="tabpanel">
 				<ul class="nav nav-tabs" role="tablist">
 					<li role="presentation" class="active"><a href="#home1"
-						data-toggle="tab" role="tab" aria-controls="tab1">전체 곡</a></li>
+						data-toggle="tab" role="tab" aria-controls="tab1">All</a></li>
 					<li role="presentation"><a href="#paneTwo1" data-toggle="tab"
-						role="tab" aria-controls="tab2">곡 관리</a></li>
+						role="tab" aria-controls="tab2">Music</a></li>
 					<li role="presentation"><a href="#panethree" data-toggle="tab"
 						role="tab" aria-controls="tab3">BlockChain Certificate</a></li>
 					<li role="presentation" id ="btcaddr"><a href="#pane4" data-toggle="tab"
@@ -323,7 +349,7 @@ function fakefake(){
 					<div role="tabpanel" class="tab-pane fade in active" id="home1">
 						<p>
 						<div class="myFMContents">
-					
+							<jsp:include page="/audiolist.do"></jsp:include>
 							<%ArrayList<audioDTO> audiolist = (ArrayList<audioDTO>)request.getAttribute("myaudiolist"); %>
 							<%
 							System.out.println(audiolist);
@@ -332,7 +358,7 @@ function fakefake(){
 								for(int i=0;i<audiolist.size();i++){
 									audioDTO dto = audiolist.get(i);
 									%>
-									<input type = "button" value = "<%= dto.getAudio_title()%>" name="<%=dto.getAudio_code()%>" onclick ="window.open('/FairMusic/audiopage.do?audio_code=<%=dto.getAudio_code()%>')"/>
+									<input type = "button" value = "<%= dto.getAudio_title()%>"/>
 									<%System.out.println(dto.getAudio_title());
 								}
 							}
@@ -344,48 +370,21 @@ function fakefake(){
 									data-toggle="modal" data-target="#agreeModal">upload</button>
 
 							</div>
-							
+							<div class="col-sm-4">
+								<button type="button" class="btn btn-warning">update</button>
+							</div>
+							<div class="col-sm-4">
+								<button type="button" class="btn btn-warning">delete</button>
+							</div>
 						</div>
-						
+						</p>
 					</div>
 					<div role="tabpanel" class="tab-pane fade" id="paneTwo1">
-						<div class="myFMContentss">
-					
-				
-							<%
-							System.out.println(audiolist);
-							if(audiolist!=null){
-
-								for(int i=0;i<audiolist.size();i++){
-									audioDTO dto = audiolist.get(i);
-									%>
-									<input type = "button" value = "<%= dto.getAudio_title()%>" name="<%=dto.getAudio_code()%>" onclick ="window.open('/FairMusic/audiomanage.do?audio_code=<%=dto.getAudio_code()%>')"/>
-									<%System.out.println(dto.getAudio_title());
-								}
-							}
-							%>
-						</div>
+						<p>&nbsp;</p>
 					</div>
 					<div role="tabpanel" class="tab-pane fade" id="panethree">
-						<a class="btn btn-info btn-lg " data-toggle="modal" data-target="#editModal">Certification</a>
-							<div class="myFMContentss">
-					
-				
-							<%
-							System.out.println(audiolist);
-							if(audiolist!=null){
-
-								for(int i=0;i<audiolist.size();i++){
-									audioDTO dto = audiolist.get(i);
-									%>
-									<input type = "button" value = "<%= dto.getAudio_title()%>" name="<%=dto.getAudio_code()%>" onclick ="window.open('/FairMusic/audiomanage.do?audio_code=<%=dto.getAudio_code()%>')"/>
-									<%System.out.println(dto.getAudio_title());
-								}
-							}
-							%>
-						</div>
-							
-							<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="my80sizeModalLabel">
+						<a class="btn btn-info btn-lg " data-toggle="modal" data-target="#editModal2">Certification</a>
+							<div class="modal fade" id="editModal2" tabindex="-1" role="dialog" aria-labelledby="my80sizeModalLabel">
 							<!-- 모달  -->
 								<div class="modal-dialog modal-80size" role="document">
 									<div class="modal-content modal-80size">
@@ -428,15 +427,7 @@ function fakefake(){
 							})
 							
 							$("#btcaddr").on("click",function() {
-<<<<<<< HEAD
-=======
-								if (state == 1){
->>>>>>> refs/remotes/origin/seongseong
 									$.post("/FairMusic/MyBitcoinAddrSelect",{ },success_run)
-<<<<<<< HEAD
-=======
-								}
->>>>>>> refs/remotes/origin/seongseong
 							})
 							
 							$("#search").on("click",function() {
@@ -451,7 +442,6 @@ function fakefake(){
 
 						function success_run(txt) {
 							state = 1;
-<<<<<<< HEAD
 							$("#mybtc").html("Bitcoin Address : "+txt);
 						}
 						
@@ -467,9 +457,6 @@ function fakefake(){
 						      balance = data[0]; 
 						      txid = data[1];
 							$("#block").html("잔액 : "+balance+"<br/>"+"거래된 트랜잭션 ID : "+txid);
-=======
-							$("#mybtc").html(txt);
->>>>>>> refs/remotes/origin/seongseong
 						}
 						</script>
 						
@@ -489,20 +476,20 @@ function fakefake(){
 				</div>
 			</div>
 		</div>
-				<%
+		
+		<%
 					ArrayList<followDTO> followinglist = (ArrayList<followDTO>)request.getAttribute("followinglist");
 					ArrayList<followDTO> followerlist = (ArrayList<followDTO>)request.getAttribute("followerlist");
 					int followinglistsize=followinglist.size();
 					int followerlistsize=followerlist.size();
 				%>
-		
 		<div class="col-sm-3">
 			<div role="tabpanel">
 				<ul class="nav nav-tabs" role="tablist">
 					<li role="presentation" class="active"><a href="#home2"
-						data-toggle="tab" role="tab" aria-controls="tab1">팔로잉(<%=followinglistsize %>명)</a></li>
+						data-toggle="tab" role="tab" aria-controls="tab1">팔로잉 (<%=followinglistsize %>명)</a></li>
 					<li role="presentation"><a href="#paneTwo2" data-toggle="tab"
-						role="tab" aria-controls="tab2">팔로워(<%=followerlistsize %>명)</a></li>
+						role="tab" aria-controls="tab2">팔로워 (<%=followerlistsize %>명)</a></li>
 					<li role="presentation" class="dropdown"></li>
 				</ul>
 				<div id="tabContent2" class="tab-content">
@@ -511,7 +498,7 @@ function fakefake(){
 							for (int i = 0; i < followinglistsize; i++) {
 								followDTO record = followinglist.get(i);
 										%>
-								<p><%=record.getArtist_id()%></p>
+								<a href="/FairMusic/audiopage.do?audio_code=<%=record.getAudio_code()%>"><p><%=record.getArtist_id()%></p></a>
 							<% } %>
 					</div>
 					<div role="tabpanel" class="tab-pane fade" id="paneTwo2">
@@ -519,7 +506,7 @@ function fakefake(){
 							for (int i = 0; i < followerlistsize; i++) {
 								followDTO record = followerlist.get(i);
 										%>
-								<p><%=record.getArtist_id()%></p>
+								<a href="/FairMusic/audiopage.do?audio_code=<%=record.getAudio_code()%>"><p><%=record.getArtist_id()%></p></a>
 							<% } %>
 					</div>
 				</div>
@@ -645,7 +632,6 @@ function fakefake(){
 
 		</div>
 	</div>
-
 	</form>
 	
 	<div class="modal fade" id="editModal" role="dialog">
@@ -664,36 +650,32 @@ function fakefake(){
                   <input type="file"/>
                </div>
                <div class="col-sm-9">
-                  <div>
-                     <h5>Display name</h5>
-                     <input name="name" type="text" />
-                  </div>
                   <div class="row">
                      <div class="col-sm-6">
-                        <h5>First name</h5>
-                        <input type="text">
-                        <h5>City</h5>
-                        <input type="text">
+                     	<h5>비밀번호</h5>
+               			<input type="text" id="artist_pass"/>
                      </div>
                      <div class="col-sm-6">
-                         <h5>Last name</h5>
-                        <input type="text">
-                        <h5>Country</h5>
-                        <input type="text">
+                         <h5>이름</h5>
+                         <span id="next"></span>
+                        <input type="text" id="artist_name">
                      </div>
                   </div>
-                  <div>
-                  <h5>bio</h5>
-                  <textarea class="form-control" rows="5" id="comment"></textarea>
-                   <h3>your links</h3>
-                  <div id="linktext"><input type="text" size="70" /><br/></div>
-                  <div ><input type="button" value="add link" id="addlink"/></div>                 
+                  <div class="col-sm-6">
+                  <input type="button" value="수정하기" id="edit"/>
+                  </div>
+                  <div class="col-sm-6">
+                  <input type="button" value="탈퇴하기" id="drop"/>
+                  </div>
+                  <div class="col-sm-6">
+                  </div>
+                  <div class="col-sm-6">
+                  	정말로 탈퇴하시겠습니까? <input type="checkbox" id="dropcheck" />
                   </div>
                </div>
             </div>
         </div>
         <div class="modal-footer">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">Cancel</button>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> Save changes</button>      
         </div>
       </div>
@@ -720,6 +702,7 @@ function fakefake(){
       
     </div>
   </div>
+  
 
 </body>
 </html>

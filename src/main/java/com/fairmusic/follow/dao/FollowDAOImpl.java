@@ -116,7 +116,7 @@ public class FollowDAOImpl implements FollowDAO {
 			while (rs.next()) {
 
 				dto = new followDTO(rs.getString(1), rs.getString(2),
-						rs.getString(3),rs.getString(4));
+						rs.getString(3),rs.getString(4),rs.getString(5));
 				list.add(dto);
 			}
 			System.out.println("FOLLOW_SEARCH_FOLLOWING : " + list.size()+"개 행 조회 성공");
@@ -143,7 +143,7 @@ public class FollowDAOImpl implements FollowDAO {
 			while (rs.next()) {
 
 				dto = new followDTO(rs.getString(1), rs.getString(2),
-						rs.getString(3),rs.getString(4));
+						rs.getString(3),rs.getString(4),rs.getString(5));
 				list.add(dto);
 			}
 			System.out.println("FOLLOW_SEARCH_FOLLOWER : " + list.size()+"개 행 조회 성공");

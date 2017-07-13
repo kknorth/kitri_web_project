@@ -35,7 +35,7 @@ public class followingListServlet extends HttpServlet {
 		ArrayList<followDTO> followerlist = service.FOLLOW_SEARCH_FOLLOWER(mycode);
 		request.setAttribute("followinglist", followinglist);
 		request.setAttribute("followerlist", followerlist);
-		request.setAttribute("viewpath", "../MusicUpload/myFMpage.jsp");
+		request.setAttribute("viewpath", "../Collection/Following.jsp");
 
 		RequestDispatcher rd =
 				request.getRequestDispatcher("/layout/mainLayout.jsp");

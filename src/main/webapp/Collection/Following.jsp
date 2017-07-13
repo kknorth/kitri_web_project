@@ -1,3 +1,5 @@
+<%@page import="com.fairmusic.dto.followDTO"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
@@ -20,14 +22,18 @@
 	 </header>
 		<div id="content">
 		        <div class="section6">
+		        		<%
+							ArrayList<followDTO> followinglist = (ArrayList<followDTO>)request.getAttribute("followinglist");
+							int followinglistsize=followinglist.size();
+						%>
 		            <div class="following_product">
 		                <ul>
-		                    <li><a href="#" alt="">following</a></li>
-		                    <li><a href="#" alt="">following</a></li>
-		                    <li><a href="#" alt="">following</a></li>
-		                    <li><a href="#" alt="">following</a></li>
-		                    <li><a href="#" alt="">following</a></li>
-		                    <li><a href="#" alt="">following</a></li>
+						<%
+							for (int i = 0; i < followinglistsize; i++) {
+								followDTO record = followinglist.get(i);
+										%>
+								<li><a href="/FairMusic/audiopage.do?audio_code=<%=record.getAudio_code()%>" alt=""><%=record.getArtist_id()%></a></li>
+							<% } %>
 		                </ul>
 		            </div>   
 		        </div>

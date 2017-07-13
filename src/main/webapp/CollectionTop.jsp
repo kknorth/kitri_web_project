@@ -17,7 +17,7 @@
                 <li><a href="/FairMusic/view.do?viewpath=../Collection/Playlists.jsp" alt="">Playlists</a></li>
                 <li><a href="/FairMusic/view.do?viewpath=../Collection/Albums.jsp" alt="">Albums</a></li>
                 <li><a href="/FairMusic/view.do?viewpath=../Collection/Stations.jsp" alt="">Stations</a></li>
-                <li><a href="/FairMusic/view.do?viewpath=../Collection/Following.jsp" alt="">Following</a></li>
+                <li><a href="/FairMusic/followingList.do" alt="">Following</a></li>
                 <li><a href="/FairMusic/view.do?viewpath=../Collection/History.jsp" alt="">History</a></li>
             </ul>
         </div>

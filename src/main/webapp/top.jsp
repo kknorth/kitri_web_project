@@ -49,7 +49,7 @@
 						<li><a href="/FairMusic/have.do">HavingMusic</a></li>
 						<li><a href="/FairMusic/view.do?viewpath=../Collection/Likes.jsp">Likes</a></li>
 						<li><a href="/FairMusic/view.do?viewpath=../Collection/Playlists.jsp">PlayList</a></li>
-						<li><a href="/FairMusic/view.do?viewpath=../Collection/Following.jsp">Following</a></li>
+						<li><a href="/FairMusic/followingList.do">Following</a></li>
 						<li><a href="/FairMusic/view.do?viewpath=../Collection/Stations.jsp">Tracks</a></li>
 					</ul>
 				</li>

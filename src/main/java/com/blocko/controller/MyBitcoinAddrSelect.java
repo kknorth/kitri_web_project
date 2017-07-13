@@ -33,7 +33,7 @@ public class MyBitcoinAddrSelect extends HttpServlet implements MyBtcAddrReq{
 			String artist_code = artist.getArtist_code();
 			BlockoService service = new BlockoServiceImpl();
 			MyBTCaddrDTO addr = service.read(artist_code);
-			request.setAttribute("pk", addr.getMybtcaddr());
+			
 			PrintWriter pw = response.getWriter();
 			pw.print(addr.getMybtcaddr());
 		} catch (UnsupportedEncodingException e) {

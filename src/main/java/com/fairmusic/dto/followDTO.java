@@ -5,7 +5,26 @@ public class followDTO {
 	String artist_follow_code;
 	String follow_good_alive;
 	String artist_id;
+	String audio_code;
 	
+	public String getAudio_code() {
+		return audio_code;
+	}
+
+	public void setAudio_code(String audio_code) {
+		this.audio_code = audio_code;
+	}
+
+	public followDTO(String artist_code, String artist_follow_code,
+			String follow_good_alive, String artist_id, String audio_code) {
+		super();
+		this.artist_code = artist_code;
+		this.artist_follow_code = artist_follow_code;
+		this.follow_good_alive = follow_good_alive;
+		this.artist_id = artist_id;
+		this.audio_code = audio_code;
+	}
+
 	public followDTO(){}
 
 	public followDTO(String artist_code, String artist_follow_code,
@@ -64,8 +83,10 @@ public class followDTO {
 		return "followDTO [artist_code=" + artist_code
 				+ ", artist_follow_code=" + artist_follow_code
 				+ ", follow_good_alive=" + follow_good_alive + ", artist_id="
-				+ artist_id + "]";
+				+ artist_id + ", audio_code=" + audio_code + "]";
 	}
+
+	
 	
 	
 	

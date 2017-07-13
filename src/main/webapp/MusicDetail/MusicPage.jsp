@@ -92,7 +92,16 @@
     <h3><a href = '/FairMusic/audiobuy.do?audio_code=<%= audiodto.getAudio_code()%>'>결제</a></h3>
     </div>
     <div class="col-lg-4">
-    홍보
+	    <script type="text/javascript">
+	    function follow(){
+				$.post("/FairMusic/follow_ajax.do",{"follower":"<%= artistdto.getArtist_code()%>"},success_run)				
+			};
+		
+		function success_run(txt){
+			alert(txt);
+		};
+	    </script>
+    <a onclick="javascript:follow()">아티스트팔로우</a>
     </div>
     <div class="col-lg-4">
     기타

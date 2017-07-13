@@ -28,9 +28,28 @@
 			})			
 		})
 		
-	/*	function success_email(text){
-			alert(text)
-		} */
+	function success_run(txt){
+		$("#artist_email_check").html(txt)
+	}
+	   function FormSubmit() {
+		      if (grecaptcha.getResponse() == "") {
+		         alert("로봇이 아님을 체크해 주세요!");
+		         return false;
+		      
+		      }else {
+		         return true;
+		      }
+		      
+      if (typeof (greCAPTCHA != 'undefined')) {
+         if (greCAPTCHA.getResponsc() == "") { //서버단에서 한번 더 체크, 
+         // 사용자가 인증하는 순간 구글의 서버로 부터 토큰 부여받음 
+            alert("스팸방지코드를 확인해 주세요.");
+            return false;
+         }
+      } else {
+         return false;
+      }
+   }
 	</script> 
       <script type="text/javascript">
       /* ####################################################페이스북로그인########################################################## */
@@ -313,7 +332,7 @@
                               </div>
                               
                               <!-- 로봇검증  -->
-                            <!--   <div class="g-recaptcha"data-sitekey="6LeWpScUAAAAAEZHSU8Ofsqp1B06zp7EZCi1Oem_" style="float: right;"></div> -->
+                          <div class="g-recaptcha"data-sitekey="6LeWpScUAAAAAEZHSU8Ofsqp1B06zp7EZCi1Oem_" style="float: right;"></div>
                            </div>
                            
                         </form>

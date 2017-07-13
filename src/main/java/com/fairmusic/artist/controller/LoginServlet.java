@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
 				artist_code = loginUser.getArtist_code();
 				MessageServiceImpl M_service = new MessageServiceImpl();
 				newMessageList = M_service.NewMessage(artist_code);
-				rdpath="/FairMusic/view.do?leftpath=Side_Left.jsp&viewpath=../content.jsp&rightpath=Side_Right.jsp";
+				rdpath="/FairMusic/view.do?viewpath=../content.jsp&rightpath=Side_Right.jsp";
 				HttpSession ses = request.getSession();
 				ses.setAttribute("user", loginUser);
 				ses.setAttribute("newMessageList", newMessageList);

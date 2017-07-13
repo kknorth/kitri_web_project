@@ -30,6 +30,28 @@
 	});
 	
 </script>
+<script type="text/javascript">
+// Add contents for max height
+		$(document).ready(function () {
+			$(document).scroll(function() {
+				var maxHeight = $(document).height();
+					var currentScroll = $(window).scrollTop() + $(window).height();
+					
+						if (maxHeight <= currentScroll + 100) {
+							$.ajax({
+								url:"/widget.do",
+								type:"get",
+								dataType :"html",
+								success :success_run,
+								error :err_run
+							})
+						}
+				})
+		});
+		function success_run(txt) {
+			$("#mainview").html("绢菲促 さげjquery:"+txt)		
+		}
+</script>
 <body>
  <div class="wrdLastest" id=1>能掸明</div>
 <div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div><div class="wrdLastest" id=2>能掸明</div>

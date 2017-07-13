@@ -96,7 +96,23 @@
 </script>
 </head>
 <body>
-
+			<div id="fb-root"></div>
+				<script>(function(d, s, id) {
+					  var js, fjs = d.getElementsByTagName(s)[0];
+						  if (d.getElementById(id)) return;
+						  js = d.createElement(s); js.id = id;
+						  js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.9&appId=349635012119334";
+						  fjs.parentNode.insertBefore(js, fjs);
+						}
+						(document, 'script', 'facebook-jssdk'));
+				</script>
+		
+		  <span><a href ="javascript:sharetwitter('http://localhost:8088/FairMusic/index.jsp','share')" ><img src="/FairMusic/images/tweet.PNG"></a> </span>
+		  
+		  <div class="fb-share-button" data-href="http://naver.com" 
+		  data-layout="box_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" 
+		  href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">공유하기</a>
+		  </div>
 <div id="mainview">
       <div class="row">
       <div class="12u">
@@ -183,23 +199,7 @@
       </ol>
       </div>
       </div>
-      	<div id="fb-root"></div>
-		<script>(function(d, s, id) {
-			  var js, fjs = d.getElementsByTagName(s)[0];
-				  if (d.getElementById(id)) return;
-				  js = d.createElement(s); js.id = id;
-				  js.src = "//connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v2.9&appId=349635012119334";
-				  fjs.parentNode.insertBefore(js, fjs);
-				}
-				(document, 'script', 'facebook-jssdk'));
-		</script>
-		
-		  <span><a href ="javascript:sharetwitter('http://localhost:8088/FairMusic/index.jsp','share')" ><img src="/FairMusic/images/tweet.PNG"></a> </span>
-		  
-		  <div class="fb-share-button" data-href="http://naver.com" 
-		  data-layout="box_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" 
-		  href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">공유하기</a>
-		  </div>
+      	
 		  
    </div>
    

@@ -23,12 +23,15 @@ public class EmeilCheckServlet extends HttpServlet {
 		ArtistServiceimpl service = new ArtistServiceimpl();
 		boolean check = service.emailCheck(email);
 		String msg = "";
+		String state = "";
 		if(check==true){
 			msg = "이미 사용중인 이메일 입니다.";
+			state = "0";
 		}else{
 			msg = "사용가능~";
+			state = "1";
 		}
-		pw.write(msg);
+		pw.write(msg+"/"+state);
 	}
 
 }

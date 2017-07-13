@@ -140,6 +140,44 @@ public class ArtistDAOimpl implements ArtistDAO{
 		return dto;
 	}
 
+	@Override
+	public int edit(String artist_pass, String artist_name, String artist_code) {
+		Connection con = null;
+		PreparedStatement ptmt = null;
+		int result= 0;
+		try {
+			con = getConnection();
+			ptmt = con.prepareStatement(Edit);
+			ptmt.setString(1, artist_pass);
+			ptmt.setString(2, artist_name);
+			ptmt.setString(3, artist_code);
+			result = ptmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(null, ptmt, con);
+		}
+		return result;
+	}
+
+	@Override
+	public int drop(String artist_code) {
+		Connection con = null;
+		PreparedStatement ptmt = null;
+		int result= 0;
+		try {
+			con = getConnection();
+			ptmt = con.prepareStatement(Drop);
+			ptmt.setString(1, artist_code);
+			result = ptmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(null, ptmt, con);
+		}
+		return result;
+	}
+
 
 	
 }

@@ -22,6 +22,7 @@ var result = "";
 var state = "";
 var pass;
 var pass2;
+var result2;
 	window.onload = Page_load;
 	  function Page_load(){
 		displayCookie();
@@ -30,6 +31,7 @@ var pass2;
 	$(document).ready(function(){
 		$("#artist_email").on("keyup", function(){
 			$.post("/FairMusic/emailCheck.do", {"artist_email":$("#artist_email").val()}, success_run)
+			
 		})
 		$("#email_verify").on("click", function(){
 			if($("#artist_email").val()==null){
@@ -83,7 +85,12 @@ var pass2;
 	}
 	
 	function success_run(txt){
-		$("#artist_email_check").html(txt)
+	//$("#artist_email_check").html(txt)
+	      data2 = txt.split("/");
+	      msg2 = data2[0]; 
+	      result2 = data2[1];
+	      $("#artist_email_check").html(msg2);
+	      
 	}
 	   function FormSubmit() {
 		      if (grecaptcha.getResponse() == "") {
@@ -150,6 +157,8 @@ var pass2;
 	 			  alert("비밀번호를 다시 확인해주세요!")
 	            }else if(pass<8 || pass2<8){
 	            	alert("비밀번호는 8자 이상입니다.")
+	            }else if(result2!="1"){
+	            	alert("이미 사용중인 이메일 입니다.")
 	            }else{
 	                resultsub1 = FormSubmit()
 	                resultsub2 = CheckForm(myform)

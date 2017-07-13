@@ -46,5 +46,21 @@ public class ArtistServiceimpl implements ArtistService{
    }
 
 
+@Override
+public int edit(String artist_pass, String artist_name, String artist_code) {
+	  ArtistDAOimpl dao = new ArtistDAOimpl();
+	  int result = dao.edit(artist_pass, artist_name,  artist_code);
+	return result;
+}
+
+
+@Override
+public int drop(String artist_code) {
+	  ArtistDAOimpl dao = new ArtistDAOimpl();
+	  int result = dao.drop(artist_code);
+	return result;
+}
+
+
 }   
 
