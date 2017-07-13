@@ -16,7 +16,7 @@ public class audioDownloadServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	       String fileName = request.getParameter("file_name"); //get으로 들어온 인자 받기
-	        String sDownloadPath = "C:/Users/seong_jo/webwork/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/FairMusic/FM_audio_file/";
+	        String sDownloadPath = "C:/KITRI_ICT/workspace/webproject/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/FairMusic/FM_audio_file/";
 	        String sFilePath = sDownloadPath + fileName;
 	        
 	        byte b[] = new byte[4096];

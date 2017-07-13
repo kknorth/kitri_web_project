@@ -117,12 +117,10 @@ public class albumServlet extends HttpServlet {
 			System.out.println("앨범삽입 실패");
 		}
 
-		request.setAttribute("viewpath", "../MusicUpload/myFMpage.jsp");
-
-		
+	
 		//4. 요청재지정
 		RequestDispatcher rd =
-				request.getRequestDispatcher("/layout/mainLayout.jsp");
+				request.getRequestDispatcher("/FairMusic/second.do");
 		rd.forward(request, response);
 		
 		

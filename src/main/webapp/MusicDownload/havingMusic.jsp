@@ -20,7 +20,7 @@
     <div class="col-lg-3"><span class="label label-info">다운로드</span></div>
   </div>
   <%System.out.println(havingAudioDTO); %>
-  <%if(havingAudioDTO.size()!=0){ %>
+  <%if(havingAudioDTO!=null){ %>
   	<%for(int i = 0; i <havingAudioDTO.size(); i++){ %>
   	<%	audioDTO dto = havingAudioDTO.get(i); %>
   <div class="row">

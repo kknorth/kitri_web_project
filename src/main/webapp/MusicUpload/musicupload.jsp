@@ -157,7 +157,7 @@ String audio_code = code.uniqueCode(20);
 
 								<div>dropzone</div>
 
-								<input type="file" accept="image/png, application/pdf"
+								<input type="file" accept="image/*, application/pdf"
 									id="image_file" name="image_file" />
 
 							</div>
@@ -258,9 +258,9 @@ String audio_code = code.uniqueCode(20);
 
 								<option>무료</option>
 
-								<option>기부-조성원에게-</option>
+								<option>조성원에게</option>
 
-								<option>상업적 이용 금지</option>
+								<option>상업이용금지</option>
 
 								<option>유료</option>
 
@@ -630,7 +630,7 @@ String audio_code = code.uniqueCode(20);
 								<div class="real_audio_file" id="real_audio_div"
 									name="real_audio_div">
 
-									<input type="file" id="audio_file" name="audio_file">
+									<input type="file" id="audio_file" name="audio_file" accept = "audio/*">
 
 									<p>
 
@@ -654,7 +654,6 @@ String audio_code = code.uniqueCode(20);
 
 								<legend>설명</legend>
 
-								당신의 음원파일을 업로드하십시오.
 
 							</fieldset>
 
@@ -677,7 +676,7 @@ String audio_code = code.uniqueCode(20);
 								<h1>Load An mp4 file</h1>
 
 								<input type="file" id="the-video-file-field"
-									name="the-video-file-field">
+									name="the-video-file-field" accept = "video/*">
 
 								<div id="data-vid" class="large-8 columns">
 

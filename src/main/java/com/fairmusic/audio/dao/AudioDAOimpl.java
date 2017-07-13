@@ -134,13 +134,14 @@ public class AudioDAOimpl implements AudioDAO{
 
 		try {
 			con = DBUtil.getConnection();
-			ptmt = con.prepareStatement(select_audiolist);
+			ptmt = con.prepareStatement(having_audio_list);
 			ptmt.setString(1, artist_code);
 
 			rs = ptmt.executeQuery();
 			while (rs.next()) {
 				dto = new audiobuyDTO(rs.getString(1), rs.getString(2));
 				dtolist.add(dto);
+				System.out.println(dto + "dao 에서 dto 추가");
 			}
 
 		} catch (SQLException e) {
@@ -162,7 +163,7 @@ public class AudioDAOimpl implements AudioDAO{
 			ptmt = con.prepareStatement(audio_get);
 			ptmt.setString(1, artist_code);
 			ptmt.setString(2, audio_code);
-			
+			System.out.println(audio_code);
 			result = ptmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -184,7 +185,7 @@ public class AudioDAOimpl implements AudioDAO{
 			con = DBUtil.getConnection();
 			ptmt = con.prepareStatement(audio_10select);
 			
-
+			
 			rs = ptmt.executeQuery();
 			while (rs.next()) {
 				dto = new audioDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13));

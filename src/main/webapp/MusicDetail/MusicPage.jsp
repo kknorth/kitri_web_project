@@ -17,7 +17,7 @@
 <% audioDTO audiodto = (audioDTO)request.getAttribute("audioDTO"); %>
 <% albumDTO albumdto = (albumDTO)request.getAttribute("albumDTO"); %>
 <% artistDTO artistdto = (artistDTO)request.getAttribute("artistDTO"); %>
-
+<div class="container">
 <div class="row">
     <div class="col-lg-6">
  <jsp:include page="/widget.do" flush="true">
@@ -69,6 +69,7 @@
 	    
 	    <div id = "detailinfo3" class = "collapse">
     <% if(artistdto!=null){ %>
+    <%System.out.println(artistdto); %>
 	    <h2><%=artistdto.getArtist_name()%></h2>
 	    <h2><%=artistdto.getArtist_self_introduction() %></h2>
 	    <%}else{%>
@@ -78,44 +79,35 @@
 	    
 	    
 	     <div id = "detailinfo4" class = "collapse">
-    <% if(audiodto.getAudio_movie()!=null){ %>
-	    뮤직비디오 재생하는부분
-	    <%}else{%>
-	    <h3>해당 곡에는 뮤직비디오가 없습니다.</h3>
-	    <%} %>
+
+	   <div align="center" class="embed-responsive embed-responsive-16by9">
+    <video autoplay loop class="embed-responsive-item">
+    <%String moviePa = audiodto.getAudio_code()+"."+audiodto.getAudio_movie();%>
+        <source src="<%=moviePa%>" type="video/mp4">
+    </video>
+</div>
+	   
 	    </div>
     </div>
   </div>
   <div class="row">
     <div class="col-lg-4">
     <% String file_name = audiodto.getAudio_code()+"."+audiodto.getAudio_file(); %>
+    <%System.out.println (audiodto.getAudio_code()); %>
     <h3><a href = '/FairMusic/audiobuy.do?audio_code=<%= audiodto.getAudio_code()%>'>결제</a></h3>
     </div>
-    <div class="col-lg-4">
-	    <script type="text/javascript">
-	    function follow(){
-				$.post("/FairMusic/follow_ajax.do",{"follower":"<%= artistdto.getArtist_code()%>"},success_run)				
-			};
-		
-		function success_run(txt){
-			alert(txt);
-		};
-	    </script>
-    <a onclick="javascript:follow()">아티스트팔로우</a>
+    <%System.out.println( audiodto.getAudio_code()+"오디오디티오"); %>
+    <h3><a href = '<%= artistdto.getArtist_code()%>'>팔로우 여따 ㄱㄱ</a></h3>
     </div>
     <div class="col-lg-4">
     기타
     </div>
 </div>
   <div class="row">
-    <div class="col-lg-4 col-lg-offset-8">
-    댓글현황
-    </div>
-  </div>
-  <div class="row">
     <div class="col-lg-12">
-    댓글
+ 
     </div>
 </div>
+
 </body>
 </html>

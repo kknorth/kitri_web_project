@@ -14,6 +14,7 @@ import com.fairmusic.audio.service.AudioService;
 import com.fairmusic.audio.service.AudioServiceimpl;
 import com.fairmusic.dto.artistDTO;
 import com.fairmusic.dto.audioDTO;
+import com.fairmusic.seong.ServerPathServlet;
 
 public class widgetServlet extends HttpServlet {
     
@@ -22,6 +23,14 @@ public class widgetServlet extends HttpServlet {
 		request.setCharacterEncoding("euc-kr");
 
 		
+		ServletContext context = this.getServletContext();
+	    String realPath = context.getRealPath("/");
+	    
+	    String filepath = realPath+ "FM_audio_file";
+	    String imagepath = realPath+ "FM_audio_image";
+	    String videopath = realPath+ "FM_audio_video";
+	    
+	  
 		String audio_code = request.getParameter("audio_code");
 		System.out.println("오디오코드"+audio_code);
 		AudioService audioservice = new AudioServiceimpl();
@@ -31,25 +40,31 @@ public class widgetServlet extends HttpServlet {
 		ArtistServiceimpl artistservice = new ArtistServiceimpl();
 		artistDTO artistdto = artistservice.getArtistDTO(audiodto.getArtist_code());
 		System.out.println("아티스트디티오"+artistdto);
-		String artistName = artistdto.getArtist_name();
+		String artistName = "조성원";
 		System.out.println("아티스트네임"+artistName);
 		
 		request.setAttribute("audio_code", audio_code);
-		String audioPath = "C:/Users/seong_jo/webwork/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/FairMusic/FM_audio_file/"+audio_code+"."+audiodto.getAudio_file();
-		String audioImage = "C:/Users/seong_jo/webwork/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/FairMusic/FM_audio_image/"+audio_code+"."+audiodto.getAudio_image();
-		String audioMovie = "";
 		
+		ServerPathServlet path = new ServerPathServlet();
+		String  audioPath = filepath;
+		String  audioImage= imagepath;
+		String audioMovie = videopath;
+		
+		System.out.println(audioPath);
+		audioPath += "\\"+audio_code+"."+audiodto.getAudio_file();
+		audioImage += "\\"+audio_code+"."+audiodto.getAudio_image();
+		audioMovie += "\\"+audio_code+"."+audiodto.getAudio_movie();
+		System.out.println(audioPath);
 		request.setAttribute("audioDto", audiodto);
 		
-		System.out.println("셋애트리뷰트");
+		System.out.println("audioPath" + audioPath);
 		request.setAttribute("artistName",artistName);
 		
-		ServletContext context = this.getServletContext();
-	    String realPath = context.getRealPath("/");
 		request.setAttribute("audioPath",audioPath);
 		request.setAttribute("audioImage", audioImage);
+		request.setAttribute("audioMovie", audioMovie);
 		
-RequestDispatcher rd = request
+		RequestDispatcher rd = request
 				.getRequestDispatcher("/widget/fmWidget.jsp");
 		rd.include(request, response);
 	}

@@ -31,17 +31,22 @@ public class havingAudioServlet extends HttpServlet {
 		
 		AudioService service = new AudioServiceimpl();
 		ArrayList<audiobuyDTO> havingdto = service.havingAudio(artist_code);
-		
+		System.out.println(havingdto+"해빙디티오");
 		ArrayList<audioDTO> havingAudioDTO = new ArrayList<audioDTO>();
-		
+	
 		int size = havingdto.size();
+		System.out.println(size +"사잊");
 		audioDTO tempdto = null;
 		for(int i = 0;i < size;i++){
-			tempdto = service.selectAudio(havingdto.get(i).getAudio_code());
-			if(tempdto!= null){
-				havingAudioDTO.add(tempdto);
-			}
+			String tempcode = havingdto.get(i).getAudio_code();
+			System.out.println("이게 해야하는 코드임"+havingdto.get(i).getAudio_code());
+
+			
+			tempdto = service.selectAudio(tempcode);
+	System.out.println(tempdto);
+			havingAudioDTO.add(tempdto);
 		}
+		
 		
 		request.setAttribute("havingAudioDTO", havingAudioDTO);
 

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,8 +27,9 @@ public class audioBuyServlet extends HttpServlet {
 		artistDTO ardto = (artistDTO)request.getSession().getAttribute("user");
 		
 		String artist_code = ardto.getArtist_code();
-		String audio_code = request.getParameter("audio_code");
 		
+		String audio_code = request.getParameter("audio_code");
+		System.out.println(request.getParameter("audio_code")+"어오디오바이서블릿에서");
 		AudioService service = new AudioServiceimpl();
 		
 		
@@ -37,6 +40,7 @@ public class audioBuyServlet extends HttpServlet {
 		}
 		
 		request.setAttribute("result", result);
+		
 		
 		
 	}

@@ -28,9 +28,9 @@
 <% String audioindex = request.getParameter("audioindex"); %>
 </head>
 <body>
-<%System.out.println(dto.getAudio_alive()); %>
+<%System.out.println("이미지패스"+audioImagePath); %>
 <%if(dto.getAudio_alive().equals("1")){ %>
-<div class = "widgetindex">
+
 <div class="container">
   <div class="player" style="
 background-image: URL(<%= audioImagePath%>)">
@@ -72,10 +72,9 @@ background-image: URL(<%= audioImagePath%>)">
 <audio id="audio-player" ontimeupdate="SeekBar()" ondurationchange="CreateSeekBar()" preload="auto" loop>
 <% System.out.println("오디오패스"+audioPath); %>
 <%= "file:///"+audioPath %> 
-  <source src=" <%= audio_code %>.mp3" type="audio/mpeg">
+  <source src=" <%= audioPath %>.mp3" type="audio/mpeg">
 </audio>
 
-</div>
 <script src='https://code.jquery.com/jquery-2.1.1.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.5/waves.min.js'></script>
 <script src = '/FairMusic/widget/js/widget.js'></script>

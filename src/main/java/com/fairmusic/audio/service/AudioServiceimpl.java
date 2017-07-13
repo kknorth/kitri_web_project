@@ -48,6 +48,7 @@ public class AudioServiceimpl implements AudioService{
 	@Override
 	public int audiopurchase(String artist_code, String audio_code) {
 		AudioDAO dao = new AudioDAOimpl();
+		System.out.println("서비스단에선 오디오코드 "+ audio_code);
 		int result = dao.audiopurchase(artist_code, audio_code);
 		return result;
 	}
