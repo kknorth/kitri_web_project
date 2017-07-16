@@ -19,7 +19,7 @@
 
 	<style>
 	
-		 div #bg {
+		 div #stampstatus > #bg {
 		  position:  absolute; 
  		  margin-left: 2%; margin-right: auto; display: block;
 		  min-width: 90%;
@@ -250,25 +250,7 @@ function fakefake(){
 			    }
 			  });
 			});
-		/* 
-		alert("도큐먼트 대기중");
-		$("#uploadagreechk").on("click",function(){
-		  $("#agreeModal").modal("hide"); 
-		  $("#selectModal").modal({show: true})
-		
-		   alert("업로드 눌렀따");
-		}); 
-		
-		$("#audioupload").on("click",function(){
-		  $("#selectModal").modal("hide");
-		  $("#audioModal").modal("show");
-		});
-		
-		$("#albumupload").on("click",function(){
-		  $("#selectModal").modal("hide");
-		  $("#myModal2").modal("show");
-		}); */
-		
+	
 	      $("#edit").on("click", function(){
 	          pass = $("#artist_pass").val();
 	          if(pass.length<8){
@@ -289,6 +271,25 @@ function fakefake(){
 	             alert("체크박스를 확인해주세요!")
 	          }
 	       })
+	       
+	       
+	       $("#Certification").on("click",function() {
+					$.post("/FairMusic/stampselect",{ },success_stamp)
+			})
+							
+			function success_stamp(txt) {
+				 data = txt.split(",");
+				 musicName = data[0]; 
+				 musicstamp = data[1];
+				 stampId = data[2]; 
+				 Confirmations = data[3];
+	
+				
+			 $("#stampstatusResult").html("musicName : "+musicName+"<br/>"
+			 		+"musicstamp : "+musicstamp+"<br/>"+
+			 		"stampId : "+stampId+"<br/>"+
+			 		"Confirmations : "+Confirmations);	 		 
+			}
 	});
 </script>
 
@@ -332,13 +333,7 @@ function fakefake(){
 						role="tab" aria-controls="tab2">곡 관리</a></li>
 					<li role="presentation"><a href="#panethree" data-toggle="tab"
 						role="tab" aria-controls="tab3">BlockChain Certificate</a></li>
-					<li role="presentation" id ="btcaddr"><a href="#pane4" data-toggle="tab"
-					role="tab" aria-controls="tab4">My Bitcoin Address</a></li>
-					<li role="presentation" id ="btcsearch"><a href="#pane5" data-toggle="tab"
-						role="tab" aria-controls="tab5">BlockChainSearch</a></li>
-					<li role="presentation" id ="BlockStatus"><a href="#pane6" data-toggle="tab"
-					role="tab" aria-controls="tab6">BlockStatus</a></li>
-						
+
 				</ul>
 		
 				<div id="tabContent1" class="tab-content">
@@ -389,8 +384,9 @@ function fakefake(){
 						</div>
 					</div>
 					<div role="tabpanel" class="tab-pane fade" id="panethree">
-						<a class="btn btn-info btn-lg " data-toggle="modal" data-target="#editModal2">Certification</a>
+						<a class="btn btn-info btn-lg " data-toggle="modal" data-target="#stampstatusModal" id="Certification">Certification</a>
 							<div class="myFMContentss">
+							<div class="stampstatusResult">
 					
 				
 							<%
@@ -407,7 +403,7 @@ function fakefake(){
 							%>
 						</div>
 							
-							<div class="modal fade" id="editModal2" tabindex="-1" role="dialog" aria-labelledby="my80sizeModalLabel">
+							<div class="modal fade" id="stampstatusModal" tabindex="-1" role="dialog" aria-labelledby="my80sizeModalLabel">
 							<!-- 모달  -->
 								<div class="modal-dialog modal-80size" role="document">
 									<div class="modal-content modal-80size">
@@ -435,90 +431,7 @@ function fakefake(){
 								</div>
 							</div>
 					</div>
-					
-					<div role="tabpanel" class="tab-pane fade" id="pane4">
-						<script type="text/javascript">
-						var state = 0;
-						$(document).ready(function() {
-							$("#create").on("click",function() {
-								if (state == 1) {
-										alert("이미 생성했습니다.")
-								} else {
-									$.post("/FairMusic/MyBitcoinAddr",{ },success_run)
-								}
 
-							})
-							
-							$("#btcaddr").on("click",function() {
-
-								if (state == 1){
-
-									$.post("/FairMusic/MyBitcoinAddrSelect",{ },success_run)
-
-								}
-
-							})
-							
-							$("#search").on("click",function() {
-									$.post("/FairMusic/BlockChainSearch",{"btcval" : $("#btcval").val()},success_search)
-							})
-							
-							$("#BlockStatus").on("click",function() {
-									$.post("/FairMusic/BlockChainStatus",{ },success_status)
-							})
-		
-						})
-
-						function success_run(txt) {
-							state = 1;
-
-							$("#mybtc").html("Bitcoin Address : "+txt);
-						}
-						
-						function success_search(txt) {
-							/* data = txt.split(",");
-						      balance = data[0]; 
-						      txid = data[1];
-							 $("#btc").html("잔액 : "+balance+"<br/>"+"거래된 트랜잭션 ID : "+txid); */
-						      $("#balance").html("잔액 : "+txt);
-						}
-						
-						
-					/* 	function success_status(txt) {
-							 data = txt.split(",");
-						      balance = data[0]; 
-						      txid = data[1];
-							$("#block").html("잔액 : "+balance+"<br/>"+"거래된 트랜잭션 ID : "+txid);
-
-						} */
-						</script>
-						
-						<button type="button" class="btn btn-info btn-lg" id="create">Create Bitcoin</button>
-						<div id = "mybtc" style ="color:red;"></div>
-					</div>
-					
-					<div role="tabpanel" class="tab-pane fade" id="pane5">
-						<button type="button" class="btn btn-info btn-lg" id="search">Search</button>
-						<p>비트코인 주소 : </p><input type="text" name="btcval" id="btcval">
-						<!-- <div id = "btc" style ="color:red;"></div> -->
-						<%-- <button id = "balance" style ="color:red;">balance</button>
-						<%String[] txIds = (String[])request.getAttribute("txIds");
-						  String txId="";%>
-						<%for(int i=0; i <=txIds.length; i++){ %>
-								<button id = "txID" style ="color:red;"><%=txIds[i]%></button>
-						<%} %> --%>
-
-					</div>
-					<%--  <%BlockChainStatusDTO status = (BlockChainStatusDTO)request.getAttribute("statusdto"); %>  --%>
-					
-					<div role="tabpanel" class="tab-pane fade" id="pane6">
-						<!-- alert(status.getBlockId()) -->
-					<%--	<button id = "block" style ="color:red;"><%=status.getBlockId() %></button><br/>
-				 		<!-- <button id = "block2" style ="color:red;"><%=status.getParentId()%></button><br/>
-						<button id = "block3" style ="color:red;"><%=status.getHeight()%></button><br/>
-						<button id = "block4" style ="color:red;"><%=status.getTime()%></button><br/>
-						 <div id = "block" style ="color:red;"></div> -->  --%>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -544,7 +457,7 @@ function fakefake(){
 							for (int i = 0; i < followinglistsize; i++) {
 								followDTO record = followinglist.get(i);
 										%>
-								<p><%=record.getArtist_id()%></p>
+								<a href="/FairMusic/audiopage.do?audio_code=<%=record.getAudio_code()%>"><p><%=record.getArtist_id()%></p></a>
 							<% } %>
 					</div>
 					<div role="tabpanel" class="tab-pane fade" id="paneTwo2">
@@ -552,7 +465,7 @@ function fakefake(){
 							for (int i = 0; i < followerlistsize; i++) {
 								followDTO record = followerlist.get(i);
 										%>
-								<p><%=record.getArtist_id()%></p>
+								<a href="/FairMusic/audiopage.do?audio_code=<%=record.getAudio_code()%>"><p><%=record.getArtist_id()%></p></a>
 							<% } %>
 					</div>
 				</div>

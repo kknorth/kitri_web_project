@@ -7,6 +7,7 @@ import io.blocko.coinstack.exception.CoinStackException;
 import io.blocko.coinstack.model.Stamp;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,6 +25,8 @@ import com.blocko.dto.BitcoinAdressDTO;
 import com.blocko.dto.MusicStampDTO;
 import com.blocko.service.BlockoService;
 import com.blocko.service.BlockoServiceImpl;
+import com.fairmusic.dto.artistDTO;
+import com.fairmusic.dto.audioDTO;
 
 @WebServlet(name = "stampselect", urlPatterns = { "/stampselect" })
 public class StampSelect extends HttpServlet {
@@ -35,12 +38,15 @@ public class StampSelect extends HttpServlet {
 		response.setContentType("text/html;charset=euc-kr");
 		//최종 업로드 버튼 리스트 페이지로 리다이렉트 된다 그리고 리스트를 누르게되면 블록체인 정보가 출력
 		HttpSession ses = request.getSession();
-		String id= (String)ses.getAttribute("user"); 
+		artistDTO artist= (artistDTO)ses.getAttribute("user"); 
+		String artist_code = artist.getArtist_code();
+		PrintWriter pw = response.getWriter();
 		try {
-			String musicName =request.getParameter("musicName");
+			audioDTO audiodto = new audioDTO();
+			String musicName = audiodto.getAudio_title();
 
 			BlockoService service = new BlockoServiceImpl();
-			MusicStampDTO musicstamp = service.StampSelect(id, musicName);
+			MusicStampDTO musicstamp = service.StampSelect(artist_code, musicName);
 			
 			Stamp stamp = coinstack.getStamp(musicstamp.getStampId());
 
@@ -54,11 +60,12 @@ public class StampSelect extends HttpServlet {
 				msg = "블록체인 승인중";
 			}
 			
-			request.setAttribute("musicName",musicName);
+			pw.print(musicName+","+musicstamp.getMusicHash()+","+stamp.getTxId()+","+stamp.getConfirmations()+","+msg);
+		/*	request.setAttribute("musicName",musicName);
 			request.setAttribute("musicHash", musicstamp.getMusicHash());
 			request.setAttribute("txId", stamp.getTxId());
 			request.setAttribute("Confirmations", stamp.getConfirmations());
-			request.setAttribute("msg", msg);
+			request.setAttribute("msg", msg);*/
 		} catch (CoinStackException e) {
 			
 			e.printStackTrace();
@@ -66,8 +73,8 @@ public class StampSelect extends HttpServlet {
 			coinstack.close();
 		}
 
-		RequestDispatcher rd =
+	/*	RequestDispatcher rd =
 				request.getRequestDispatcher("/MusicUpload/musicstampselect.jsp");
-		rd.forward(request, response);
+		rd.forward(request, response);*/
 	}
 }

@@ -30,10 +30,10 @@
 <body>
 <%System.out.println("이미지패스"+audioImagePath); %>
 <%if(dto.getAudio_alive().equals("1")){ %>
-
+<% String imagename = audio_code+"."+dto.getAudio_image(); %> 
 <div class="container">
   <div class="player" style="
-background-image: URL(<%= audioImagePath%>)">
+background-image: URL('/FairMusic/FM_audio_image/<%= imagename%>')">
     <div class="like waves-effect waves-light">
       <i class="icon-heart"></i>
     </div>
@@ -72,9 +72,10 @@ background-image: URL(<%= audioImagePath%>)">
 <audio id="audio-player" ontimeupdate="SeekBar()" ondurationchange="CreateSeekBar()" preload="auto" loop>
 <% System.out.println("오디오패스"+audioPath); %>
 <%= "file:///"+audioPath %> 
-  <source src=" <%= audioPath %>.mp3" type="audio/mpeg">
+ 
+<%String audioname = audio_code+"."+dto.getAudio_file(); %>
+  <source src="/FairMusic/FM_audio_file/<%=audioname %>" type="audio/mpeg">
 </audio>
-
 <script src='https://code.jquery.com/jquery-2.1.1.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.5/waves.min.js'></script>
 <script src = '/FairMusic/widget/js/widget.js'></script>

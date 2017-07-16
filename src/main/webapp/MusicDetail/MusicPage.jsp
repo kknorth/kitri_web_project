@@ -94,10 +94,19 @@
     <div class="col-lg-4">
     <% String file_name = audiodto.getAudio_code()+"."+audiodto.getAudio_file(); %>
     <%System.out.println (audiodto.getAudio_code()); %>
+    <script type="text/javascript">
+       function follow(){
+            $.post("/FairMusic/follow_ajax.do",{"follower":"<%= artistdto.getArtist_code()%>"},success_run)            
+         };
+      
+      function success_run(txt){
+         alert(txt);
+      };
+       </script>
     <h3><a href = '/FairMusic/audiobuy.do?audio_code=<%= audiodto.getAudio_code()%>'>결제</a></h3>
     </div>
     <%System.out.println( audiodto.getAudio_code()+"오디오디티오"); %>
-    <h3><a href = '<%= artistdto.getArtist_code()%>'>팔로우 여따 ㄱㄱ</a></h3>
+    <h3><a onclick="javascript:follow()">아티스트팔로우</a></h3>
     </div>
     <div class="col-lg-4">
     기타

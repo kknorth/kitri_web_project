@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,7 +24,7 @@ import com.blocko.dto.BlockChainStatusDTO;
 @WebServlet(name = "BlockChainStatus", urlPatterns = { "/BlockChainStatus" })
 public class BlockChainStatus extends HttpServlet {
 	CoinStackClient coinstack = API.createNewCoinStackClient();
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BlockchainStatus status;
 		try {
 			status = coinstack.getBlockchainStatus();
@@ -58,5 +59,9 @@ public class BlockChainStatus extends HttpServlet {
 		} catch (CoinStackException e) {
 			e.printStackTrace();
 		}
+		request.setAttribute("viewpath", "../blockchainstatus/blockchainstatus.jsp");
+		RequestDispatcher rd =
+				request.getRequestDispatcher("/layout/mainLayout.jsp");
+		rd.forward(request, response);
 	}
 }

@@ -7,6 +7,11 @@
 <head>
 <title>Insert title here</title>
 </head>
+<style type="text/css">
+   .row{
+      background-image: url("/FairMusic/images/back.jpg");
+   }
+</style>
 <body>
 <% audioDTO audiodto = (audioDTO)request.getAttribute("audiodto"); %>
   <div class="row">
