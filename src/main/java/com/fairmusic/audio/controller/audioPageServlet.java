@@ -23,14 +23,17 @@ import com.fairmusic.dto.audioDTO;
 public class audioPageServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("euc-kr");
+		response.setContentType("text/html;charset=euc-kr");
+		
 		String audio_code = request.getParameter("audio_code");
 		
 		AudioService service = new AudioServiceimpl();
 		
 		audioDTO dto = service.selectAudio(audio_code);
-		
+		System.out.println("오디오페이지서블릿에서 오디오디티오"+audio_code);
 		String album_code = dto.getAlbum_code();
-		
+		System.out.println("오디오페이지서블릿에서 앨범코드"+album_code);
 		String artist_code = dto.getArtist_code();
 		
 		ArtistServiceimpl artistservice = new ArtistServiceimpl();
@@ -41,15 +44,21 @@ public class audioPageServlet extends HttpServlet {
 		
 		request.setAttribute("audioDTO", dto);
 		request.setAttribute("albumDTO", albumdto);
+		System.out.println("오디오페이지서블릿에서 앨범디티오"+albumdto);
 		request.setAttribute("artistDTO", artistdto);
 		
 		request.setAttribute("viewpath", "../MusicDetail/MusicPage.jsp");
 		
+		String leftpath = request.getParameter("leftpath");
+		String rightpath = request.getParameter("rightpath");
+
 		
-		//4. 요청재지정
-		RequestDispatcher rd =
-				request.getRequestDispatcher("/layout/mainLayout.jsp");
+		request.setAttribute("leftpath", leftpath);
+		request.setAttribute("rightpath", rightpath);
+		RequestDispatcher rd = request.getRequestDispatcher("/layout/mainLayout.jsp");
 		rd.forward(request, response);
+		
+
 		
 	}
 

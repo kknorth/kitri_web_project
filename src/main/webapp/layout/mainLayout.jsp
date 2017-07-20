@@ -20,7 +20,8 @@
 	<jsp:include page="../top.jsp"></jsp:include>
 	<div class="container-fluid text-center">
 		<div class="row">
-			<% if(request.getAttribute("leftpath")==null && request.getAttribute("rightpath")==null ){ %>
+			<% if(request.getAttribute("leftpath")==null && request.getAttribute("rightpath")==null ){
+				System.out.println("이경우다");%>
 				 <div class="col-sm-1"></div> 
 				<div class="col-sm-10">
 					<jsp:include page="${viewpath}"></jsp:include>

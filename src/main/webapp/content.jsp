@@ -112,10 +112,8 @@
         <%if(size!=0){ %>
         <%for(int i = 0; i < size;i++){ %>
         <%audioDTO dto = dtolist.get(i); %>
-        <jsp:include page="/widget.do">
-		<jsp:param value="<%=dto.getAudio_code()%>" name="audio_code"/>
-		<jsp:param value="<%=i %>" name="audioindex"/>
-		</jsp:include>  
+        
+		<a href="/FairMusic/audiopage.do?audio_code=<%=dto.getAudio_code()%>">바로가기</a>
 		<button type = "button" onclick ="window.open('/FairMusic/audiopage.do?audio_code=<%=dto.getAudio_code()%>')"> 상세페이지 이동 </button>
 <hr/>
 		<%} %>

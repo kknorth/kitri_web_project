@@ -91,6 +91,7 @@ public class ArtistDAOimpl implements ArtistDAO{
 		} finally {
 			DBUtil.close(rs, ptmt, con);
 		}
+		System.out.println("아티스트 디에이오임플에서 dto "+ dto);
 		return dto;
 	}
 

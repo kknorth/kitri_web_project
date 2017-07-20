@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
 			/* 로그인 */
 			ArtistServiceimpl service = new ArtistServiceimpl();
 			artistDTO loginUser = service.login(email, pass);
-			System.out.println("로그인서블릿 : "+ email+pass);
+
 			
 			String viewpath = "";
 			String leftpath= null;

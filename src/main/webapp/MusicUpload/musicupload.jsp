@@ -157,7 +157,7 @@ String audio_code = code.uniqueCode(20);
 
 								<div>dropzone</div>
 
-								<input type="file" accept="image/*, application/pdf"
+								<input type="file" accept="image/png, application/pdf"
 									id="image_file" name="image_file" />
 
 							</div>
@@ -190,15 +190,25 @@ String audio_code = code.uniqueCode(20);
 								<div class="col-xs-10">
 
 									<select name="audio_genre" id="audio_genre">
-										<option>장르1</option>
 										<option>발라드</option>
-										<option>어쩌구저쩌구</option>
+										<option>트로트</option>
 										<option>팝</option>
-										<option>락</option>
-										<option>앤</option>
-										<option>롤</option>
-
-									</select> &nbsp;
+										<option>군가</option>
+										<option>교가</option>
+										<option>뉴에이지</option>
+										<option>동요</option>
+										<option>록</option>
+										<option>민요</option>
+										<option>재즈</option>
+										<option>종교</option>
+										<option>컨트리</option>
+										<option>클래식</option>
+										<option>헤비메탈</option>
+										<option>힙합</option>
+										<option>OST</option>
+										<option>게임</option>
+										<option>애니</option>
+									</select>
 
 								</div>
 
@@ -221,7 +231,7 @@ String audio_code = code.uniqueCode(20);
 										<%
 											System.out.println(dto.getAlbum_title());
 										%>
-										<option><%=dto.getAlbum_title()%></option>
+										<option value="<%= dto.getAlbum_code()%>"><%=dto.getAlbum_title()%></option>
 										<%
 											}
 																	}

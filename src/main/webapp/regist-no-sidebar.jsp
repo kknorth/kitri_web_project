@@ -373,7 +373,7 @@ var result2;
                         </div>
                         <div id="artist_pass_check" style= "color: red"></div>
                         <div class="12u">
-                           <input name="artist_id" placeholder="이름" type="text" id = "artist_name" required="required"/>
+                           <input name="artist_name" placeholder="이름" type="text" id = "artist_name" required="required"/>
                         </div>
                            <!-- 이용약관   -->
                         <div>

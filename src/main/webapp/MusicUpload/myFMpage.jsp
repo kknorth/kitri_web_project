@@ -1,3 +1,4 @@
+<%@page import="com.fairmusic.dto.artistDTO"%>
 <%@page import="com.blocko.dto.BlockChainStatusDTO"%>
 <%@page import="com.fairmusic.dto.followDTO"%>
 <%@page import="com.blocko.controller.MyBtcAddrReq"%>
@@ -19,6 +20,43 @@
 
 	<style>
 	
+	.loadingpage{
+	background : #0d8aa5;
+	}
+	.loading {
+background: #0d8aa5;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -60px 0 0 -60px;
+  background: #fff;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  border: 10px solid #19bee1;
+}
+.loading:after {
+  content: '';
+  background: trasparent;
+  width: 140%;
+  height: 140%;
+  position: absolute;
+  border-radius: 100%;
+  top: -20%;
+  left: -20%;
+  opacity: 0.7;
+  box-shadow: rgba(255, 255, 255, 0.6) -4px -5px 3px -3px;
+  animation: rotate 2s infinite linear;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
 		 div #stampstatus > #bg {
 		  position:  absolute; 
  		  margin-left: 2%; margin-right: auto; display: block;
@@ -54,19 +92,15 @@
 
 
 var time;
-function faketime(){
-	alert("냠냠");
-	time = setTimeout(fakefake,10000);
-	
-}
 
-function fakefake(){
-	$('#fakeloadingModal').modal('hide')
-}
 
 	$(document).ready(function() {
 	
-		
+		function createSuccessModal(data){
+			$('#datatemp').val(data);
+			alert("이건 좀 다른거얌"+data);
+			$('#bitstartbtn').trigger('click');
+		}
 		
 		//check if browser supports file api and filereader features
 		if (window.File && window.FileReader && window.FileList && window.Blob) {
@@ -195,7 +229,7 @@ function fakefake(){
 				data: formData, 
 				url: '/FairMusic/audio.do', 
 				success: function(data){
-					alert(data);
+					createSuccessModal(data);
 					
 				},error : function(e) {
 					console.log("ERROR : ", e);
@@ -295,8 +329,14 @@ function fakefake(){
 
 </head>
 <body>
+<% artistDTO user = (artistDTO)request.getSession().getAttribute("user"); 
 
-
+System.out.println("유저가 있긴있지"+user);%>
+	<div class="row">
+		<div class="col-sm-12">
+			<img src="/FairMusic/images/line.png" />
+		</div>
+	</div>
 	<div class="row">
 		<div class="col-sm-3">
 			<img src="/FairMusic/images/temp.png"
@@ -305,7 +345,7 @@ function fakefake(){
 		<div class="col-sm-9">
 			<div class="row">
 				<div class="col-sm-5">
-					<span class="label label-info">해원우해원</span>
+					<span class="label label-info"><h3><%= user.getArtist_name() %></h3></span>
 				</div>
 				<div class="col-sm-4 col-sm-offset-0"></div>
 				<div class="col-sm-3">
@@ -314,15 +354,30 @@ function fakefake(){
 				<div class="col-sm-12">
 					<fieldset>
 						<legend>자기소개</legend>
-						<span class="label label-success">안녕하세요 2조의 귀염둥이를 맡고 있는
-							귀염둥이 해원이에요. 잘부탁드려요!!!<br> 준희씨의 노래를 정말정말 좋아한답니다.<br>
+						<span class="label label-success">
+						<h4>
+						<% if(user.getArtist_self_introduction()!=null){%>
+							
+							<%=user.getArtist_self_introduction()%>
+							
+							<%}else{%>
+							등록된 자기소개가 없습니다
+							
+							<%} %>
+						</h4>
 						</span>
 					</fieldset>
-					&nbsp;
+
 				</div>
 			</div>
 		</div>
 	</div>
+		<div class="row">
+		<div class="col-sm-12">
+			<img src="/FairMusic/images/line.png" />
+		</div>
+	</div>
+	
 	<div class="row">
 		<div class="col-sm-9">
 			<div role="tabpanel">
@@ -435,6 +490,12 @@ function fakefake(){
 				</div>
 			</div>
 		</div>
+			<div class="row">
+		<div class="col-sm-12">
+			<img src="/FairMusic/images/line.png" />
+		</div>
+	</div>
+		
 				<%
 					ArrayList<followDTO> followinglist = (ArrayList<followDTO>)request.getAttribute("followinglist");
 					ArrayList<followDTO> followerlist = (ArrayList<followDTO>)request.getAttribute("followerlist");
@@ -534,7 +595,7 @@ function fakefake(){
 					<jsp:include page="/MusicUpload/musicupload.jsp"></jsp:include>
 				</div>
 				<div class="modal-footer">
-					<button data-dismiss="modal" aria-hidden="true" id="audiocreate" data-toggle="modal" data-target="#fakeloadingModal"  onclick = "faketime()">등록하기</button>
+					<button data-dismiss="modal" aria-hidden="true" id="audiocreate">등록하기</button>
 				</div>
 			</div>
 		</div>
@@ -642,26 +703,24 @@ function fakefake(){
       
     </div>
   </div>
-  <div class="modal fade" id="fakeloadingModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-      	<div class = "modal-header">
-			<h3>UPLOADING</h3>
+  
+  
+  	<div class="modal fade" id="bitresultModal" role="dialog" width = "1200">
+		<div class="modal-dialog modal-lg">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-body">
+					<h3>이거야 이거</h3>
+					<input type ="text" id = "datatemp">
+					<h3>1 : </h3>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" > Save changes</button>
+					<button type="button" data-toggle="modal" data-target="#bitresultModal" id = "bitstartbtn" name = "bitstartbtn" hidden ="true">시작버튼</button>
+				</div>
+			</div>
 		</div>
-
-        <div class = "modal-body">
-			<h3> 로딩중입니다 </h3>
-			
-		</div>
-        <div class="modal-footer">
-        	
-        </div>
-      </div>
-      
-    </div>
-  </div>
+	</div>
 
 </body>
 </html>
