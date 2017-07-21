@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.blocko.dto.BitcoinAdressDTO;
+import com.blocko.dto.MusicStampDTO;
+import com.blocko.dto.MyBTCaddrDTO;
+import com.blocko.service.BlockoService;
+import com.blocko.service.BlockoServiceImpl;
 import com.fairmusic.album.service.AlbumService;
 import com.fairmusic.album.service.AlbumServiceimpl;
 import com.fairmusic.audio.service.AudioService;
@@ -37,12 +42,18 @@ public class audioManageServlet extends HttpServlet {
 		audioDTO audiodto =service.selectAudio(audio_code);
 
 		request.setAttribute("audiodto", audiodto);
-	/*	여기에서 비트코인 저작권 DTO리스트 가꼬와서 공유*/
+
 		
+		BlockoService bservice = new BlockoServiceImpl();
+		ArrayList<BitcoinAdressDTO> blist = bservice.bitcoinAdressSelect(audio_code);
 		
+		/* 판매량 가꼬와서 여기서 공유*/
+		request.setAttribute("bitlist", blist);
+		
+		request.setAttribute("viewpath", "../MusicDetail/MusicManage.jsp");
 		//4. 요청재지정
 		RequestDispatcher rd =
-				request.getRequestDispatcher("/MusicDetail/MusicManage.jsp");
+				request.getRequestDispatcher("/layout/mainLayout.jsp");
 		rd.forward(request, response);
 	}
 

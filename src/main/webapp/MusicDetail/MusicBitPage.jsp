@@ -119,10 +119,14 @@ div #stampstatus>#bg {
 </style>
 
 </head>
-<body>
+<body>			
 	<%
-		audioDTO audiodto = (audioDTO) request.getAttribute("audiodto");
-	ArrayList<BitcoinAdressDTO> bitlist = (ArrayList<BitcoinAdressDTO>)request.getAttribute("bitlist");
+	
+	audioDTO audiodto = (audioDTO)request.getAttribute("audiodto");
+	String musicHash = (String)request.getAttribute("musicHash");
+	String txId = (String)request.getAttribute("txId");
+	int Confirmations = (Integer)request.getAttribute("Confirmations");
+	
 	%>
 	<div class="row">
 		<div class="col-sm-12">
@@ -142,98 +146,67 @@ div #stampstatus>#bg {
 				<div class="col-sm-5">
 					<h1><span class="label label-info"><%=audiodto.getAudio_title()%></span></h1>
 				</div>
+
 				<div class="col-sm-4 col-sm-offset-0"></div>
 				<div class="col-sm-3"><%=audiodto.getAudio_code()%></div>
 				<div class="col-sm-12">
 					<fieldset>
-						<legend>판매관리</legend>
-						
-							<h4>
-								<%
-									if (audiodto.getAudio_price() != null) {
-								%>
-								<div class="row">
-									<div class="col-lg-12">
-										<div class="row">
-											<div class="col-lg-4">
-												<h3><span class="label label-info">이름</span></h3>
-											</div>
-											<div class="col-lg-4">
-												<h3><span class="label label-info">비트코인 계좌</span></h3>
-											</div>
-											<div class="col-lg-4">
-												<h3><span class="label label-info">수익 비율 </span></h3>
-											</div>
-										</div>
-										<% int size = bitlist.size();
-										
-											for(int i = 0; i<size;i++){
-											BitcoinAdressDTO bdto = bitlist.get(i);
-											%>
-										<div class="row">
-											<div class="col-lg-4">
-												<h3><span class="label label-default"><%=bdto.getRighterName()%></span></h3>
-											</div>
-											<div class="col-lg-4">
-												<h3><span class="label label-default"><%=bdto.getBitcoinAdress()%></span></h3>
-											</div>
-											<div class="col-lg-4">
-												<h3><span class="label label-default"><%=bdto.getRighterVal()%></span></h3>
-											</div>
-										</div>
-										<%} %>
-									</div>
-								</div>
-								<%
-									} else {
-								%>
-								<div class="row">
-									<div class="col-lg-12">
-									<h3><span class="label label-default">이 곡은 무료로 제공되는 컨텐츠입니다.</span></h3>
+						<legend>musicHash</legend>
+								<div class="row">	
+	
+									<div class="col-lg-4">
+									<h3><span class="label label-default">musicHash</span></h3>
 									
 									</div>
+									<div class="col-lg-8">
+									<h3><span class="label label-default"><%= musicHash%></span></h3>
+									</div>
 								</div>
-
-								<%
-									}
-								%>
-							</h4>
-						
 					</fieldset>
-
 				</div>
 				<div class="col-sm-12">
 					<fieldset>
-						<legend>판매현황</legend>
-						
-							<h4>
-							<h3><span class="label label-default">판매량</span> : <span class="label label-default">0</span></h3>
-							
-								<%
-									if (audiodto.getAudio_price() != null) {
-								%>
-							<br/><h3><span class="label label-default">곡 [<%=audiodto.getAudio_title()%>]의 수익 : [0]</span></h3>
-
-								<%
-									}else{
-								%>
-								<br/><h3><span class="label label-default">곡 [<%=audiodto.getAudio_title()%>]은 [<%=audiodto.getAudio_copyrighter() %>]로 선택하셨기 때문에, 수익은 없습니다.</span></h3>
-								<%} %>
-								
-							</h4>
-						
+						<legend>txId</legend>
+								<div class="row">
+									<div class="col-lg-4">
+									<h3><span class="label label-default">txId</span></h3>
+									
+									</div>
+									<div class="col-lg-8">
+									<h3><span class="label label-default"><%= txId%></span></h3>
+									</div>
+								</div>
 					</fieldset>
-
 				</div>
 				<div class="col-sm-12">
 					<fieldset>
-						<legend>음원관리</legend>
-							<button type="button" class="btn btn-primary" onclick="location.href = '/FairMusic/audiomanage.do?audio_code=<%=audiodto.getAudio_code()%>'"><h4>곡 삭제</h4></button>
-						
+						<legend>Confirmations</legend>
+								<div class="row">
+									<div class="col-lg-4">
+									<h3><span class="label label-default">Confirmations</span></h3>
+									
+									</div>
+									<div class="col-lg-8">
+									<h3><span class="label label-default"><%= Confirmations%></span></h3>
+									</div>
+								</div>
 					</fieldset>
-
 				</div>
-
+				<div class="col-sm-12">
+					<fieldset>
+						<legend>ㄴㅇㄹㄴㅇㄹ</legend>
+								<div class="row">
+									<div class="col-lg-4">
+									<h3><span class="label label-default">ㄴㅇㄹㅇㄴ</span></h3>
+									
+									</div>
+									<div class="col-lg-8">
+									<h3><span class="label label-default">타임스탬프자리</span></h3>
+									</div>
+								</div>
+					</fieldset>
+				</div>
+				
 			</div>
 		</div>
 	</div>

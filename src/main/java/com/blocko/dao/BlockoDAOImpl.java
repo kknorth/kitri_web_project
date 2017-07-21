@@ -118,15 +118,17 @@ public class BlockoDAOImpl implements BlockoDAO {
 			ptmt.setString(1,id);
 			ptmt.setString(2,MusicName);
 			rs = ptmt.executeQuery();
-			if(rs.next()){
+			while(rs.next()){
 				Stamp =new MusicStampDTO(rs.getString(1),rs.getString(2),
 						rs.getString(3),rs.getString(4));
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally{
 			close(rs, ptmt, con);
 		}
+		System.out.println("com/blocko.daoimpl ¿¡¼­ ½ºÅÆÇÁ °¡²¿¿À´ÂÁß ½ºÅÆÇÁ : "+Stamp);
 		return Stamp;
 		}
 

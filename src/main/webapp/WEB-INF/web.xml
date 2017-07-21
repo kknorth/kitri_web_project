@@ -100,7 +100,6 @@
     <servlet-name>myalbum</servlet-name>
     <url-pattern>/myalbum.do</url-pattern>
   </servlet-mapping>
-
   <servlet>
     <description></description>
     <display-name>second</display-name>
@@ -181,5 +180,14 @@
     <servlet-name>ten</servlet-name>
     <url-pattern>/ten.do</url-pattern>
   </servlet-mapping>
-
+  <servlet>
+    <description></description>
+    <display-name>bitpage</display-name>
+    <servlet-name>bitpage</servlet-name>
+    <servlet-class>com.fairmusic.audio.controller.audioBitPageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>bitpage</servlet-name>
+    <url-pattern>/bitpage.do</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import io.blocko.bitcoinj.core.Sha256Hash;
 import io.blocko.bitcoinj.core.Utils;
 import io.blocko.coinstack.CoinStackClient;
@@ -14,16 +16,19 @@ import com.blocko.api.API;
 import com.blocko.dto.MusicStampDTO;
 import com.blocko.service.BlockoService;
 import com.blocko.service.BlockoServiceImpl;
+import com.fairmusic.dto.artistDTO;
 
 public class StampInsert {
 	CoinStackClient coinstack = API.createNewCoinStackClient();
 	@SuppressWarnings("null")
-	public Map<String, String> insert(String audio_code,byte[] filebyte){
+	public Map<String, String> insert(String audio_code,byte[] filebyte,HttpSession ses){
 		
 		Map<String,String> stampData = new HashMap<String, String>();
+		artistDTO ardto = (artistDTO)ses.getAttribute("user");
 		
-		String id= null;
-		String audiobyte = audio_code; //
+		String id= ardto.getArtist_code();
+
+		String audiobyte = audio_code; 
 		byte[] data = filebyte;
 		byte[] hash = Sha256Hash.create(data).getBytes();
 		String MusicHash = Utils.HEX.encode(hash);

@@ -95,7 +95,7 @@ public class audioServlet extends HttpServlet {
                   
                   //여기밑에
                   StampInsert tempstamp = new StampInsert();
-                  stampData = tempstamp.insert(audio_code, audiobyte);
+                  stampData = tempstamp.insert(audio_code, audiobyte,request.getSession());
                   //여기위에쨘쨘
                   System.out.println("audio_file saved in "+filedir.getPath()+randomvalue+"."+ex[1]);
                   }
@@ -139,7 +139,7 @@ public class audioServlet extends HttpServlet {
               }else if(item.getFieldName().equals("ccl_check")){
                  System.out.println("체크"+item.getString("UTF-8"));
                  audio_copyrighter = item.getString("UTF-8");
-              }else if(item.getFieldName().equals("audio_value")){
+              }else if(item.getFieldName().equals("btc_value")){
                  System.out.println("밸류"+item.getString("UTF-8"));
                  audio_price = item.getString("UTF-8");
               }
@@ -158,7 +158,7 @@ public class audioServlet extends HttpServlet {
       audio_code = (String)request.getSession().getAttribute("audio_code");
       System.out.println("오디오 코드 Q빼앵뱽앵"+audio_code);
       Map<String, String> stampDataresult = SeongfileUpload(request,audio_code);
-      
+      System.out.println("스탬프데이터리절트"+stampDataresult);
       artistDTO loginUser=(artistDTO)request.getSession().getAttribute("user");
       audioDTO audio = new audioDTO(audio_code, audio_file, audio_image, audio_movie, audio_title,loginUser.getArtist_code(), audio_jenre, audio_detail, album_code, "sysdate", audio_copyrighter, audio_price,"1");
       //여기에서 카피라이터 dto 생성이랑 db에 집어넣기 등등등
@@ -168,9 +168,11 @@ public class audioServlet extends HttpServlet {
       
       PrintWriter pw=response.getWriter();
 
-      pw.write(result);
+      
       pw.write(stampDataresult.get("msg"));
+      pw.write("○");
       pw.write(stampDataresult.get("MusicHash"));
+      pw.write("○");
       pw.write(stampDataresult.get("stampId"));
     }
    
