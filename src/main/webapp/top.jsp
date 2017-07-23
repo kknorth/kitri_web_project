@@ -47,7 +47,7 @@
 						<!-- <li><a href="/FairMusic/followingList.do">Mypage</a></li> -->
 						<li><a href="/FairMusic/second.do">Mypage</a></li>
 						<li><a href="/FairMusic/have.do">HavingMusic</a></li>
-						<li><a href="/FairMusic/BlockChainStatus">BlockChainStatus</a></li>
+						<li><a href="/FairMusic/view.do?viewpath=../blockchainstatus/blockchainstatus.jsp">BlockChainStatus</a></li>
 						<li><a href="/FairMusic/view.do?viewpath=../Collection/Playlists.jsp">PlayList</a></li>
 						<li><a href="/FairMusic/followingList.do">Following</a></li>
 						<li><a href="/FairMusic/view.do?viewpath=../Collection/Stations.jsp">Tracks</a></li>

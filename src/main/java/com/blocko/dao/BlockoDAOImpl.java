@@ -1,14 +1,10 @@
 package com.blocko.dao;
 
 
-import static com.fairmusic.fw.BlockoQuery.BITCOINADDR_INSERT;
-import static com.fairmusic.fw.BlockoQuery.BITCOINADDR_SELECT;
-import static com.fairmusic.fw.BlockoQuery.MYBTC_INSERT;
-import static com.fairmusic.fw.BlockoQuery.STAMP_INSERT;
-import static com.fairmusic.fw.BlockoQuery.STAMP_SELECT;
 import static com.fairmusic.fw.BlockoQuery.*;
 import static com.fairmusic.fw.DBUtil.close;
 import static com.fairmusic.fw.DBUtil.getConnection;
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,6 +15,8 @@ import java.util.ArrayList;
 import com.blocko.dto.BitcoinAdressDTO;
 import com.blocko.dto.MusicStampDTO;
 import com.blocko.dto.MyBTCaddrDTO;
+
+
 
 public class BlockoDAOImpl implements BlockoDAO {
 
@@ -36,6 +34,23 @@ public class BlockoDAOImpl implements BlockoDAO {
 			ptmt.setString(4, stamp.getStampId());
 			//ptmt.setString(5, stamp.getTxId());
 			//ptmt.setString(6, stamp.getTimestamp());
+			result = ptmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			close(null, ptmt, con);
+		}
+		return result;
+	}
+	@Override
+	public int delete(String artist_code){
+		Connection con = null;
+		PreparedStatement ptmt = null;
+		int result= 0;
+		try {
+			con = getConnection();
+			ptmt = con.prepareStatement(MYBTC_DELETE);
+			ptmt.setString(1, artist_code);
 			result = ptmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

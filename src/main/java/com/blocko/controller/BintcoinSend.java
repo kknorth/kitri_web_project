@@ -24,24 +24,25 @@ import com.blocko.dto.MyBTCaddrDTO;
 import com.blocko.service.BlockoService;
 import com.blocko.service.BlockoServiceImpl;
 import com.fairmusic.dto.artistDTO;
+import com.fairmusic.dto.audioDTO;
 @WebServlet(name = "bitcoinsend", urlPatterns = { "/bitcoinsend" })
 public class BintcoinSend extends HttpServlet {
 	CoinStackClient coinstack = API.createNewCoinStackClient();
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("euc-kr");
 		response.setContentType("text/html;charset=euc-kr");
-
-		String audio_code= null;
 		
 		try {
 			BlockoService service = new BlockoServiceImpl();
+			audioDTO audiodto = new audioDTO();
+			String audio_code = audiodto.getAudio_title();
 			ArrayList<BitcoinAdressDTO> btcaddrlist = service.bitcoinAdressSelect(audio_code);
-		
 			HttpSession ses = request.getSession();
 			artistDTO artist= (artistDTO)ses.getAttribute("user"); 
 			String artist_code = artist.getArtist_code();
 			System.out.println("artist_code :"+artist_code);
 			MyBTCaddrDTO addr = service.read(artist_code);
+			
 			String MyPrivateKey=addr.getMypk();
 			String[] toAddress = new String[2];
 			double[] righterVal = new double[2];

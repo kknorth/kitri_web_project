@@ -1,7 +1,6 @@
-<%@page import="com.fairmusic.dto.followDTO"%>
-<%@page import="com.blocko.controller.MyBtcAddrReq"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<%@ page import="java.util.ArrayList" %>
 <%@page import="com.fairmusic.dto.albumDTO"%>
 <%@page import="com.fairmusic.dto.audioDTO"%>
@@ -13,9 +12,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/FairMusic/MusicUpload/js/range.js"></script>
-<link rel="stylesheet" href="/FairMusic/MusicUpload/css/range.css">
-
 	<style>
 	
 		 div #bg {
@@ -45,56 +41,102 @@
 					$("#create").on("click",function() {
 						if (state == 1) {
 								alert("이미 생성했습니다.")
-						} else {
-							$.post("/FairMusic/MyBitcoinAddr",{ },success_addr)
-						}
-
+						} else { 
+							$.get("/FairMusic/MyBitcoinAddr",{ },success_addr)
+						} 
+					})
+					
+					$("#delete").on("click",function() {
+						$.get("/FairMusic/MyBitcoinAddrDelete",{ },success_deladdr)
 					})
 					
 					$("#btcaddr").on("click",function() {
-						if (state == 1){
-							$.post("/FairMusic/MyBitcoinAddrSelect",{ },success_addr)
-						}
+						$.get("/FairMusic/MyBitcoinAddr",{ },success_addr)
 					})
 					
 					$("#search").on("click",function() {
-							$.post("/FairMusic/BlockChainSearch",{"btcval" : $("#btcval").val()},success_search)
+						$.get("/FairMusic/BlockChainSearch",{"btcval" : $("#btcval").val()},success_search)
 					})
 					
-					$("#BlockStatus").on("click",function() {
-							$.post("/FairMusic/BlockChainStatus",{ },success_status)
+					$("#txsearch").on("click",function() {
+						$.get("/FairMusic/TransactionSearch",{"txval" : $("#txval").val()},success_txsearch)
+					}) 
+					
+					$("#BlockchainStatus").on("click",function() {
+							$.get("/FairMusic/BlockChainStatus",{ },success_status)
+					})
+					
+					$("#TransactionStatus").on("click",function() {
+							$.get("/FairMusic/TransactionStatus",{ },success_txstatus)
 					})
 
 				})
 
 				function success_addr(txt) {
-					state = 1;
-					$("#mybtc").html("Bitcoin Address : "+txt);
+					data = txt.split(",");
+				    state2 = data[0]; 
+				    addr = data[1];
+				    pk = data[2];
+				    if(state2==0){
+				    	$("#mybtc").html("Bitcoin Address : "+addr);
+				    }else{
+				    	state = 1;
+				    	alert("bitcoin Address : "+addr+"\n PrivateKey : "+pk+"\n privateKey는 타인에게 공유되서는 안됩니다. \n 개인적으로 메모를 해두시길 바랍니다.")
+				    	$("#mybtc").html("Bitcoin Address : "+addr);
+				    }
+					
 				}
-				
-				function success_search(txt) {
-					 data = txt.split(",");
-				      balance = data[0]; 
-				      txid = data[1];
-					$("#mybitcoin").html("잔액 : "+balance+"<br/>"+"거래된 트랜잭션 ID : "+txid);
+					
+				function success_deladdr(txt) {
+					if(txt==1){
+						alert("삭제 완료")
+						$("#mybtc").html("");	
+					}else{
+						alert("주소를 생성해 주세요.")	
+					}
+					
 				}
-				
-				function success_status(txt) {
-					 data = txt.split(",");
-				      balance = data[0]; 
-				      txid = data[1];
-					$("#block").html("잔액 : "+balance+"<br/>"+"거래된 트랜잭션 ID : "+txid);
 
-					$("#mybtcaddr").html(txt);
+				function success_search(txt) {	    
+					$("#btcsearch").html("잔액 <br/>0."+txt+" BTC"); 
 				}
+				
+				function success_txsearch(txt) {	    
+					 $("#txId").html(txt);  
+				/* 	for (var i = 0; i < txt.length; i++) {
+						$("<td style ="color:red;"></td>").appendTo("#txId");
+					} */
+				}
+
+				function success_txstatus(txt) {
+				/* 	data = txt.split(",");
+					txId = data[0]; 
+					inputscnt = data[1];
+					outscnt = data[2]; 
+					$("#txId2").html(txId); 
+					$("#inputs").html(inputscnt); 
+					$("#outs").html(outscnt);  */
+					 $("#txId2").html(txt);  
+				}
+		
+				function success_status(txt) {
+					data = txt.split(",");
+					BestBlock = data[0]; 
+					ParentId = data[1];
+					Height = data[2]; 
+					BlockConfirmationTime = data[3];
+					$("#BestBlock").html(BestBlock);
+					$("#ParentId").html(ParentId);
+					$("#Height").html(Height);
+					$("#BlockConfirmationTime").html(BlockConfirmationTime);
+				} 
 			</script>
 
 
 </head>
 <body>
 
-
-		<div class="row">
+		<div class="row"><br/><br/><br/><br/><br/>
 			<div class="col-sm-3">
 				<img src="/FairMusic/images/temp.png"
 					class="img-circle img-responsive" alt="Placeholder image">
@@ -103,8 +145,8 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<fieldset>
-							<legend>fairMusic에서 나의 블록체인의 상태를 확인하세요</legend>
-								<span class="label label-success">fairMusic은 원원 저작권을 블록체인 상에 보관함으로써 저작권자들의 권리를 보호해줍니다.<br><br> 블록체인에 삽입된 음원 검색 및 비트코인 주소 잔액을 조회해 보세요
+							<legend style=" font: italic bold 1.5em/1em Georgia, serif ;">FairMusic에서 나의 블록체인의 상태를 확인하세요<br/><br/><br/></legend><br/>
+								<span class="label label-success" style=" font: italic bold 1.5em/1em Georgia, serif ; color: green;">FairMusic은 음원 저작권을 블록체인 상에 보관함으로써 <br/><br/><br/>저작권자들의 창작물 권리를 보호해줍니다.<br/><br/><br/>블록체인에 삽입된 음원 검색 및 블록체인 세부 거래 정보를 검색해보세요!
 								 <br>
 							</span>
 						</fieldset>
@@ -122,93 +164,135 @@
 					<li role="presentation" id ="btcaddr"><a href="#pane1" data-toggle="tab"
 					role="tab" aria-controls="tab2">My Bitcoin Address</a></li>
 					
-					<li role="presentation" id ="btcsearch"><a href="#pane2" data-toggle="tab"
-						role="tab" aria-controls="tab3">BlockChainSearch</a></li>
+					<li role="presentation" id ="bitcoinsearch"><a href="#pane2" data-toggle="tab"
+						role="tab" aria-controls="tab3">Bitcoin balance</a></li>
 						
-					<li role="presentation" id ="BlockStatus"><a href="#pane3" data-toggle="tab"
+					<li role="presentation" id ="transactionsearch"><a href="#pane3" data-toggle="tab"
+					role="tab" aria-controls="tab3">TransactionSearch</a></li>
+						
+					<li role="presentation" id ="BlockchainStatus"><a href="#pane4" data-toggle="tab"
 					role="tab" aria-controls="tab4">BlockStatus</a></li>
+					
+					<li role="presentation" id ="TransactionStatus"><a href="#pane5" data-toggle="tab"
+					role="tab" aria-controls="tab4">TransactionStatus</a></li>
 						
 				</ul>
 		
 				<div id="tabContent1" class="tab-content">
 					
-						<div role="tabpanel" class="tab-pane fade" id="pane1">
-							<button type="button" class="btn btn-info btn-lg" id="create">Create Bitcoin</button>
-							<div class="mybitcoin"></div>
+						<div role="tabpanel" class="tab-pane fade" id="pane1"><br/>
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Create</th>
+										<th>Bitcoin Address</th>
+										<th>Delete</th>
+									</tr>
+								</thead>
+								<tbody>
+										<tr>
+											<td><a class="btn btn-info btn-lg "  id="create">Create Bitcoin</a></td>
+											<td><a class="btn btn-info btn-lg "  id="mybtc" style ="color:red;"></a></td>
+											<td><a class="btn btn-info btn-lg "  id="delete">Delete</a></td>
+										</tr>
+								</tbody>
+							</table>
+							
 						</div>
 						
 						
-						<div role="tabpanel" class="tab-pane fade" id="pane2">
-							<a class="btn btn-info btn-lg " data-toggle="modal" data-target="BlockChainSearchModal">BlockChainSearch</a>
-							<p>비트코인 주소 : </p><input type="text" name="btcval" id="btcval">
-							<div id = "mybtcaddr" style ="color:red;"></div>
-						<%-- <button id = "balance" style ="color:red;">balance</button>
-						<%String[] txIds = (String[])request.getAttribute("txIds");
-						  String txId="";%>
-						<%for(int i=0; i <=txIds.length; i++){ %>
-								<button id = "txID" style ="color:red;"><%=txIds[i]%></button>
-						<%} %> --%>
-	
+						<div role="tabpanel" class="tab-pane fade" id="pane2"><br/>
+						<form role="form" class="form-horizonta">
+							<table class="table">
+									<thead>
+										<tr>
+											<th>BlockChainSearch</th>
+											<th>result</th>
+											<th>Search</th>
+										</tr>
+									</thead>
+									<tbody>
+											<tr>
+												<td><input type="text" name="btcval" placeholder="bitcoin Address" id="btcval" size="70" style= "font-size:12pt; color:#ff0000; font-weight:bold; border: 1px solid #ff0000;"></td>
+												<td id="btcsearch" style ="color:red;"></td>
+												<td><input type="button" value="Search" class="btn btn-info btn-lg "  id="search"/></td>
+											</tr>
+									</tbody>
+							</table>
+						</form>
+						</div>
+						
+						<div role="tabpanel" class="tab-pane fade" id="pane3"><br/>
+							<form role="form" class="form-horizontal">
+							<table class="table">
+									<thead>
+										<tr>
+											<th>TransactionSearch</th>
+										</tr>
+									</thead>
+									<tbody>
+											<tr>
+												<td><input type="text" name="txval" placeholder="bitcoin Address" id="txval" size="70" style= "font-size:12pt; color:#ff0000; font-weight:bold; border: 1px solid #ff0000;"></td>
+												<td><input type="button" value="Search" class="btn btn-info btn-lg "  id="txsearch"/></td>
+											</tr>
+
+											<tr>
+												<th>txId</th>
+												<td id="txId" style ="color:red;"></td>
+											</tr>
+							
+									</tbody>
+							</table>
+							</form>
 						</div>
 						
 						
-						<div role="tabpanel" class="tab-pane fade" id="pane3">
-						<a class="btn btn-info btn-lg " data-toggle="modal" data-target="blockstatusModal">BlockStatus</a>
+						<div role="tabpanel" class="tab-pane fade" id="pane4"><br/>
+								<table class="table">
+									<thead>
+										<tr>
+											<th>Lately Block ID</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<th>BestBlock</th>
+											<th id="BestBlock" style ="color:red;"></th>
+										</tr>
+										<tr>
+											<th>ParentId</th>
+											<td id="ParentId" style ="color:red;"></td>
+										</tr>
+										<tr>
+											<th>Height</th>
+											<td id="Height" style ="color:red;"></td>
+										</tr>
+										<tr>
+											<th>BlockConfirmationTime</th>
+											<td id="BlockConfirmationTime" style ="color:red;"></td>
+										</tr>
+									</tbody>
+								</table>
+						</div>
 						
-							<%--  <%BlockChainStatusDTO status = (BlockChainStatusDTO)request.getAttribute("statusdto"); %>  --%>
-									<!-- alert(status.getBlockId()) -->
-					<%--	<button id = "block" style ="color:red;"><%=status.getBlockId() %></button><br/>
-				 		<!-- <button id = "block2" style ="color:red;"><%=status.getParentId()%></button><br/>
-						<button id = "block3" style ="color:red;"><%=status.getHeight()%></button><br/>
-						<button id = "block4" style ="color:red;"><%=status.getTime()%></button><br/>
-						 <div id = "block" style ="color:red;"></div> -->  --%>
+						<div role="tabpanel" class="tab-pane fade" id="pane5"><br/>
+								<table class="table">
+									<thead>
+										<tr>
+											<th>Transaction ID(lately 8)</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<th>txIds </th>
+											<td id="txId2" style ="color:red;"> </td> 
+										</tr>
+										
+									</tbody>
+								</table>
 						</div>
 				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- ########################################### modalmodalmodalmodalmodalmodalmodal -->
-
-	<div class="modal fade" id="certificationModal" role="dialog">
-		<div class="modal-dialog">
-
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">×</button>
-					<h3></h3>
-				</div>
-
-				<div class="modal-body">
-					<button type="button" class="btn btn-info" id="audioupload"
-						data-toggle="modal" data-target="#audioModal" data-dismiss="modal"
-						aria-hidden="true">
-						<h1>음원</h1>
-					</button>
-					<button type="button" class="btn btn-info" id="albumupload" data-toggle="modal" data-target="#albumModal" data-dismiss="modal"
-						aria-hidden="true">
-						<h1>앨범</h1>
-					</button>
-				</div>
-				<div class="modal-footer"></div>
-			</div>
-
-		</div>
-	</div>
-
-	<div class="modal fade" id="btcaddrModal" role="dialog" width = "1200">
-		<div class="modal-dialog modal-lg">
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-body">
-					<jsp:include page="/MusicUpload/musicupload.jsp"></jsp:include>
-				</div>
-				<div class="modal-footer">
-					<button data-dismiss="modal" aria-hidden="true" id="audiocreate" data-toggle="modal" data-target="#fakeloadingModal"  onclick = "faketime()">등록하기</button>
-				</div>
-			</div>
+			</div>``
 		</div>
 	</div>
 

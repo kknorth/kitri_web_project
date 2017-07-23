@@ -49,7 +49,7 @@ public class StampSelect extends HttpServlet {
 			MusicStampDTO musicstamp = service.StampSelect(artist_code, musicName);
 			
 			Stamp stamp = coinstack.getStamp(musicstamp.getStampId());
-
+			
 			DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG);
 			String msg="";
 			
@@ -72,7 +72,7 @@ public class StampSelect extends HttpServlet {
 		}finally{
 			coinstack.close();
 		}
-
+ 
 	/*	RequestDispatcher rd =
 				request.getRequestDispatcher("/MusicUpload/musicstampselect.jsp");
 		rd.forward(request, response);*/

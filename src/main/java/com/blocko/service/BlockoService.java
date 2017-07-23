@@ -13,4 +13,5 @@ public interface BlockoService {
 	MusicStampDTO StampSelect(String id,String MusicName);
 	int mybtcaddr(MyBTCaddrDTO myaddr);
 	MyBTCaddrDTO read(String artist);
+	int delete(String artist_code);
 }

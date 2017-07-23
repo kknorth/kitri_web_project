@@ -14,6 +14,7 @@ public interface BlockoDAO {
 	
 	int mybtcaddr(MyBTCaddrDTO myaddr);
 	MyBTCaddrDTO read(String artist);
+	int delete(String artist_code);
 }
 
 

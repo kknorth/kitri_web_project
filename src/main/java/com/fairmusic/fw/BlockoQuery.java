@@ -18,4 +18,7 @@ public class BlockoQuery {
 	
 	public static String MYBTC_SELECT
 	="select * from mybtc where artist_code =?";	
+	
+	public static String MYBTC_DELETE
+	="delete from mybtc where artist_code = ?";
 }

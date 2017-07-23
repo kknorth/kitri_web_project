@@ -16,6 +16,12 @@ public class BlockoServiceImpl implements BlockoService{
 		int result = dao.insert(stamp);
 		return result;
 	}
+	public int delete(String artist_code) {
+		BlockoDAO dao = new BlockoDAOImpl();
+		int result = dao.delete(artist_code);
+		return result;
+	}
+	
 
 	@Override
 	public int bitcoinAdressInsert(BitcoinAdressDTO bitcoinAdress) {
